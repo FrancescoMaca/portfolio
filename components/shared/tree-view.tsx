@@ -1,43 +1,12 @@
 'use client';
-import React, { useEffect } from "react"
+import React from "react"
 import TreeEntry from "./tree-entry"
-import { motion } from 'framer-motion'
 
 export default function TreeView() {
 
-    useEffect(() => {
-        const resizableDiv = document.getElementById("treeview")
-        const resizerDiv = document.getElementById("treeview-resize")
-        
-        let isResizing = false
-
-        if (!resizableDiv || !resizerDiv) return
-        
-        resizerDiv.addEventListener("mousedown", e => {
-            isResizing = true
-
-            document.addEventListener("mousemove", resize)
-            document.addEventListener("mouseup", stopResize)
-        });
-
-        function resize(e: MouseEvent) {
-            if (!isResizing || !resizableDiv) return
-
-            resizableDiv.style.width = e.clientX - resizableDiv.offsetLeft + "px"
-        }
-
-        function stopResize() {
-            isResizing = false
-
-            document.removeEventListener("mousemove", resize)
-            document.removeEventListener("mouseup", stopResize)
-        }
-    }, []);
-
     return (
-        <div id='treeview' className="fixed left-0 top-0 min-w-fit w-[20%] max-w-[30%] h-full bg-dark-gray text-[1.5rem] text-base text-white overflow-hidden select-none">
-            <div id='treeview-resize' className="absolute right-0 top-0 border-r-4 border-light-gray w-2 h-full hover:cursor-col-resize"></div>
-            <div className="flex flex-col w-full h-full px-5 py-3">
+        <div className="flex flex-col min-w-fit h-full border-r-2 border-light-gray bg-dark-gray text-[1.5rem] text-base text-white select-none z-10">
+            <div className="flex flex-col w-full h-full px-5 py-3 overflow-hidden">
                 <div className="flex justify-between items-center mb-5">
                     <h3 className="serif uppercase">Explorer</h3>
                     <h3 className="select-none hover:cursor-pointer ml-16">
@@ -49,22 +18,15 @@ export default function TreeView() {
                 <TreeEntry title="FRANCESCO'S CODE CHRONACLES" icon={"./svg/arrow.svg"} isDirectory isRootDirectory>
                     <TreeEntry title=".next" icon={'./svg/folder/next.svg'} isDirectory></TreeEntry>
                     <TreeEntry title="app" icon={'./svg/folder/app.svg'} isDirectory>
-                        <TreeEntry title="favicon.ico" icon={'./svg/favicon.svg'} isDirectory></TreeEntry>
-                        <TreeEntry title="global.css" icon={'./svg/css.svg'} isDirectory></TreeEntry>
-                        <TreeEntry title="layout.tsx" icon={'./svg/react.svg'} isDirectory></TreeEntry>
-                        <TreeEntry title="page.tsx" icon={'./svg/react.svg'} isDirectory></TreeEntry>
+                        <TreeEntry title="favicon.ico" icon={'./svg/favicon.svg'}></TreeEntry>
+                        <TreeEntry title="global.css" icon={'./svg/css.svg'}></TreeEntry>
+                        <TreeEntry title="layout.tsx" icon={'./svg/react.svg'}></TreeEntry>
+                        <TreeEntry title="page.tsx" icon={'./svg/react.svg'}></TreeEntry>
                     </TreeEntry>
                     <TreeEntry title="components" icon={'./svg/folder/node.svg'} isDirectory>
-                        <TreeEntry title="home-page.tsx" icon={'./svg/react.svg'}></TreeEntry>
-                        <TreeEntry title="project-page.tsx" icon={'./svg/react.svg'}></TreeEntry>
-                        <TreeEntry title="contact-page.tsx" icon={'./svg/react.svg'}></TreeEntry>
-                        <motion.div className="absolute right-0"
-                            initial={{top: "30%"}}
-                            animate={{top: "80%"}}
-                            transition={{ duration: 2, type: "spring", damping: 10, stiffness: 200 }}
-                        >
-                            <img width="40" height="40" src="./svg/arrow-help.svg" alt="" />
-                        </motion.div>
+                        <TreeEntry title="home-page.tsx" icon={'./svg/react.svg'} isClickable></TreeEntry>
+                        <TreeEntry title="project-page.tsx" icon={'./svg/react.svg'} isClickable></TreeEntry>
+                        <TreeEntry title="contact-page.tsx" icon={'./svg/react.svg'} isClickable></TreeEntry>
                     </TreeEntry>
                     <TreeEntry title="node_modules" icon={'./svg/folder/node.svg'} isDirectory></TreeEntry>
                     <TreeEntry title="public" icon={'./svg/folder/public.svg'} isDirectory></TreeEntry>
@@ -80,16 +42,16 @@ export default function TreeView() {
                     <TreeEntry title="yarn.lock" icon={'./svg/yarn.svg'} ></TreeEntry>
                 </TreeEntry>
             </div>
-            <div className="absolute bottom-0 left-0 w-full flex flex-col-reverse">
-                <div className="w-full h-fit border-t-4 border-light-gray px-5">
+            <div className=" bottom-0 left-0 w-full flex flex-col-reverse">
+                <div className="w-full h-fit border-t-2 bg-dark-gray border-light-gray px-5">
                     <div className="flex items-center">
-                        <img src='./svg/arrow.svg' alt=">" className='mr-2 -rotate-90'/>
+                        <img src='./svg/arrow.svg' width={20} height={20} alt=">" className='mr-2 -rotate-90'/>
                         <h3 className="uppercase text-white">timeline</h3>
                     </div>
                 </div>
-                <div className="w-full h-fit border-t-4 border-light-gray px-5">
+                <div className="w-full h-fit border-t-2 bg-dark-gray border-light-gray px-5">
                     <div className="flex items-center">
-                        <img src='./svg/arrow.svg' alt=">" className='mr-2 -rotate-90'/>
+                        <img src='./svg/arrow.svg' width={20} height={20} alt=">" className='mr-2 -rotate-90'/>
                         <h3 className="uppercase text-white">outline</h3>
                     </div>
                 </div>
