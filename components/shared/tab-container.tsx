@@ -1,12 +1,6 @@
-import Tab from "./tab"
-
-interface TabContainerProps {
-    children: React.ReactNode
-}
-
-export default function TabContainer({children}: TabContainerProps) {
+export default function TabContainer({children}: {children: React.ReactNode}) {
     return (
-    <div className="flex border-b-2 border-light-gray">
+    <div className="flex border-b-2 border-light-gray bg-dark-gray">
         {children}
     </div>
     )

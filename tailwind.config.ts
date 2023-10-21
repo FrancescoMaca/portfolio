@@ -22,6 +22,10 @@ const config: Config = {
         'light-gray': '#303030',
         'accent': '#32aef3',
         'accent-alpha': '#32aef38c',
+      },
+      fontSize: {
+        'lg': '4rem',
+        'base': '1rem'
       }
     }
   },

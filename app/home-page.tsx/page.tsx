@@ -1,4 +1,4 @@
-import Head from '../components/home-page/head'
+import Head from '../../components/home-page/head'
 // import About from './about'
 // import Contact from './contact'
 // import Footer from './footer'

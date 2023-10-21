@@ -10,7 +10,7 @@ export default function Tab({title}: {title: string}) {
     
         if (currentPath.endsWith(title)) {
           tabRef.current?.classList.toggle('bg-light-gray')
-        }
+        }        
     }, [tabRef]);
 
     const closeTab = () => {
@@ -23,14 +23,18 @@ export default function Tab({title}: {title: string}) {
         }
     }
 
+    function goToTab() {
+        window.location.href = title;
+    }
+
     return (
-    <div ref={tabRef} className={`flex justify-between bg-${title === 'home-page.tsx' ? 'bg-lighter-dark-gray' : 'dark-gray'} border-light-gray p-2 w-1/4 max-w-[15rem] text-white`}>
+    <div ref={tabRef} onClick={goToTab} className={`flex justify-between hover:bg-lighter-dark-gray bg-${title === 'home-page.tsx' ? 'lighter-dark-gray' : 'dark-gray'} border-light-gray p-2 min-w-fit w-1/4 max-w-[15rem] text-white`}>
         <div className="flex items-center">
             <img src="./svg/react.svg" alt=">"  width={20} height={20} className="mr-2"/>
             <h3>{title}</h3>
         </div>
-        <div className="flex items-center aspect-square" onClick={closeTab}>
-            <img src="./svg/close.svg" alt="x" width={20} height={20} className="p-1 rounded-md hover:bg-slate-400 hover:cursor-pointer"/>
+        <div className="flex items-center aspect-square" onClick={e => {e.stopPropagation(); closeTab()}}>
+            <img src="./svg/close.svg" alt="x" width={20} height={20} className="p-1 rounded-md hover:bg-light-gray hover:cursor-pointer"/>
         </div>
     </div>
     )

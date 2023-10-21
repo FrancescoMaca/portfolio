@@ -5,7 +5,7 @@ import TreeEntry from "./tree-entry"
 export default function TreeView() {
 
     return (
-        <div className="flex flex-col min-w-fit h-full border-r-2 border-light-gray bg-dark-gray text-[1.5rem] text-base text-white select-none z-10">
+        <div className="flex flex-col min-w-fit h-full border-r-2 border-light-gray bg-dark-gray text-base text-white select-none z-10">
             <div className="flex flex-col w-full h-full px-5 py-3 overflow-hidden">
                 <div className="flex justify-between items-center mb-5">
                     <h3 className="serif uppercase">Explorer</h3>
@@ -18,41 +18,41 @@ export default function TreeView() {
                 <TreeEntry title="FRANCESCO'S CODE CHRONACLES" icon={"./svg/arrow.svg"} isDirectory isRootDirectory>
                     <TreeEntry title=".next" icon={'./svg/folder/next.svg'} isDirectory></TreeEntry>
                     <TreeEntry title="app" icon={'./svg/folder/app.svg'} isDirectory>
-                        <TreeEntry title="favicon.ico" icon={'./svg/favicon.svg'}></TreeEntry>
-                        <TreeEntry title="global.css" icon={'./svg/css.svg'}></TreeEntry>
-                        <TreeEntry title="layout.tsx" icon={'./svg/react.svg'}></TreeEntry>
-                        <TreeEntry title="page.tsx" icon={'./svg/react.svg'}></TreeEntry>
+                        <TreeEntry title="favicon.ico" icon={'./svg/favicon.svg'} isClickable></TreeEntry>
+                        <TreeEntry title="global.css" icon={'./svg/css.svg'} isClickable></TreeEntry>
+                        <TreeEntry title="layout.tsx" icon={'./svg/react.svg'} isClickable></TreeEntry>
+                        <TreeEntry title="page.tsx" icon={'./svg/react.svg'} isClickable></TreeEntry>
                     </TreeEntry>
                     <TreeEntry title="components" icon={'./svg/folder/node.svg'} isDirectory>
-                        <TreeEntry title="home-page.tsx" icon={'./svg/react.svg'} isClickable></TreeEntry>
-                        <TreeEntry title="project-page.tsx" icon={'./svg/react.svg'} isClickable></TreeEntry>
-                        <TreeEntry title="contact-page.tsx" icon={'./svg/react.svg'} isClickable></TreeEntry>
+                        <TreeEntry title="home-page.tsx" icon={'./svg/react.svg'} isLink isClickable></TreeEntry>
+                        <TreeEntry title="project-page.tsx" icon={'./svg/react.svg'} isLink isClickable></TreeEntry>
+                        <TreeEntry title="contact-page.tsx" icon={'./svg/react.svg'} isLink isClickable></TreeEntry>
                     </TreeEntry>
                     <TreeEntry title="node_modules" icon={'./svg/folder/node.svg'} isDirectory></TreeEntry>
                     <TreeEntry title="public" icon={'./svg/folder/public.svg'} isDirectory></TreeEntry>
                     <TreeEntry title="scripts" icon={'./svg/folder/script.svg'} isDirectory></TreeEntry>
                     <TreeEntry title="styles" icon={'./svg/folder/css.svg'} isDirectory></TreeEntry>
-                    <TreeEntry title="eslintrc.json" icon={'./svg/eslint.svg'} ></TreeEntry>
-                    <TreeEntry title=".gitignore" icon={'./svg/git.svg'} ></TreeEntry>
-                    <TreeEntry title="jsconfig.json" icon={'./svg/json.svg'} ></TreeEntry>
-                    <TreeEntry title="LICENSE" icon={'./svg/contributing.svg'} ></TreeEntry>
-                    <TreeEntry title="next.config.js" icon={'./svg/next.svg'} ></TreeEntry>
-                    <TreeEntry title="package.json" icon={'./svg/nodejs.svg'} ></TreeEntry>
-                    <TreeEntry title="README.md" icon={'./svg/readme.svg'} ></TreeEntry>
-                    <TreeEntry title="yarn.lock" icon={'./svg/yarn.svg'} ></TreeEntry>
+                    <TreeEntry title="eslintrc.json" icon={'./svg/eslint.svg'}></TreeEntry>
+                    <TreeEntry title=".gitignore" icon={'./svg/git.svg'}></TreeEntry>
+                    <TreeEntry title="jsconfig.json" icon={'./svg/json.svg'}></TreeEntry>
+                    <TreeEntry title="LICENSE" icon={'./svg/contributing.svg'}></TreeEntry>
+                    <TreeEntry title="next.config.js" icon={'./svg/next.svg'}></TreeEntry>
+                    <TreeEntry title="package.json" icon={'./svg/nodejs.svg'}></TreeEntry>
+                    <TreeEntry title="README.md" icon={'./svg/readme.svg'}></TreeEntry>
+                    <TreeEntry title="yarn.lock" icon={'./svg/yarn.svg'}></TreeEntry>
                 </TreeEntry>
             </div>
             <div className=" bottom-0 left-0 w-full flex flex-col-reverse">
-                <div className="w-full h-fit border-t-2 bg-dark-gray border-light-gray px-5">
+                <div className="w-full h-fit border-y-2 bg-dark-gray border-light-gray px-5">
                     <div className="flex items-center">
                         <img src='./svg/arrow.svg' width={20} height={20} alt=">" className='mr-2 -rotate-90'/>
-                        <h3 className="uppercase text-white">timeline</h3>
+                        <h3 className="uppercase text-sm py-1 text-white">timeline</h3>
                     </div>
                 </div>
                 <div className="w-full h-fit border-t-2 bg-dark-gray border-light-gray px-5">
                     <div className="flex items-center">
                         <img src='./svg/arrow.svg' width={20} height={20} alt=">" className='mr-2 -rotate-90'/>
-                        <h3 className="uppercase text-white">outline</h3>
+                        <h3 className="uppercase text-sm py-1 text-white">outline</h3>
                     </div>
                 </div>
             </div>
