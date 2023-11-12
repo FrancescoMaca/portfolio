@@ -1,8 +1,9 @@
-import type { Metadata } from 'next'
 import './globals.css'
+import type { Metadata } from 'next'
 import TreeView from '@/components/shared/tree-view'
 import TabContainer from '@/components/shared/tab-container'
 import Tab from '@/components/shared/tab'
+import { useState } from 'react'
 
 export const metadata: Metadata = {
   title: 'Francesco\' Code Chronacles',
@@ -17,12 +18,7 @@ export default function RootLayout({children}: {children: React.ReactNode}) {
           <TreeView/>
         </div>
         <div className="relative flex-1 overscroll-none overflow-y-scroll">
-          <TabContainer>
-            <Tab title='home-page.tsx'></Tab>
-            <Tab title='project-page.tsx'></Tab>
-            <Tab title='contact-page.tsx'></Tab>
-            <Tab title='test-page.tsx'></Tab>
-          </TabContainer>
+          <TabContainer/>
           <div className="m-5 h-[300vh]">
             {children}
           </div>
