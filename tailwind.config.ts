@@ -17,6 +17,8 @@ const config: Config = {
       },
       fontSize: {
         'm': '2rem',
+        's': '1.75rem',
+        'xs': '1.5rem',
       },
       borderRadius: {
         '4xl': '3rem',
