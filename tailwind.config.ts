@@ -8,27 +8,25 @@ const config: Config = {
   ],
   theme: {
     extend: {
-      backgroundImage: {
-        'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
-        'gradient-conic':
-          'conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))',
-      },
       colors: {
-        'white': '#fafaff',
-        'white-alpha': '#fafaff8c',
-        'details': '#ffffff40',
-        'dark-gray': '#1c1c1c',
-        'lighter-dark-gray': '#202020',
-        'light-gray': '#303030',
-        'accent': '#32aef3',
-        'accent-alpha': '#32aef38c',
+        'dark': '#222222',
+        'gray': '#3F3F3F',
+        'light-gray': '#C7C7C7',
+        'dark-white': '#D9D9D9',
+        'white': '#FAFAFF',
       },
       fontSize: {
-        'lg': '4rem',
-        'base': '1rem'
+        'm': '2rem',
+      },
+      borderRadius: {
+        '4xl': '3rem',
       }
+    },
+    fontFamily: {
+      'text': 'Josefin Sans',
     }
   },
   plugins: [],
 }
+
 export default config

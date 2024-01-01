@@ -2,25 +2,17 @@
 @tailwind components;
 @tailwind utilities;
 
-@import url('https://fonts.googleapis.com/css2?family=BioRhyme:wght@700&display=swap');
-@import url('https://db.onlinewebfonts.com/c/1db29588408eadbd4406aae9238555eb?family=Consolas');
-
-html {
-  background: #000;
-  overscroll-behavior: none;
-}
-
-.font-ide {
-  font-family: "Consolas" !important;
-}
-
-.font-title {
-  font-style: 'BioRhyme';
+@font-face {
+  font-family: 'Josefin Sans';
+  font-style: normal;
+  font-weight: 400;
+  src: url('../public/font/JosefinSans-Regular.ttf') format('truetype');
 }
 
 /* For WebKit (Chrome, Safari) */
 ::-webkit-scrollbar {
   width: 10px;
+  height: 10px;
 }
 
 ::-webkit-scrollbar-track {
