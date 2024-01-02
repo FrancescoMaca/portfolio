@@ -13,7 +13,7 @@ export default function Navbar() {
   }
 
   return (
-    <motion.div className="text-m rounded-b-3xl bg-light-gray">
+    <motion.div className="text-m rounded-b-3xl bg-light-gray mx-5">
       {/* the hidden class is temporary */}
       <div className="relative px-3 rounded-b-3xl bg-dark-white hidden">
         <NavbarDecoration position="top-3 left-8"/>

@@ -19,7 +19,7 @@ export default function RootLayout({children}: {children: React.ReactNode}) {
         <link rel="apple-touch-icon" href="/favicon/favicon-128x128.png" />
         <link rel="manifest" href="/manifest.json" />
       </head>
-      <body className='bg-dark font-text px-5'>
+      <body className='bg-dark font-text'>
         <Navbar/>
         {children}
         <Footer/>

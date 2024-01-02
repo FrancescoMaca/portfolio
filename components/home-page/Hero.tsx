@@ -15,9 +15,9 @@ export default function Hero() {
         <img src="/illustration/me.webp" alt="hero image" />
       </div>
       <div className="flex justify-center my-4 text-black">
-        <div className="text-xs w-fit px-2 py-1 bg-light-gray rounded-xl border-b-4 border-black">
+        <button className="text-xs w-fit px-2 py-1 bg-light-gray rounded-xl border-b-4 border-black">
           Get to know me!
-        </div>
+        </button>
       </div>
     </div>
   )
