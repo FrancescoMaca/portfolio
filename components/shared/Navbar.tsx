@@ -1,5 +1,6 @@
 'use client'
 import { motion } from "framer-motion"
+import Link from "next/link";
 import { useState } from "react";
 
 export default function Navbar() {
@@ -14,11 +15,11 @@ export default function Navbar() {
         <NavbarDecoration position="top-3 left-8"/>
         <NavbarDecoration position="bottom-3 right-8"/>
         <div className="flex flex-col items-center text-center">
-          <NavbarButton>Home</NavbarButton>
-          <NavbarButton>Showcase</NavbarButton>
-          <NavbarButton>Resume</NavbarButton>
-          <NavbarButton>Contact Me</NavbarButton>
-          <NavbarButton>Swondi</NavbarButton>
+          <NavbarButton cb={() => setIsOpen(false)} link="/">Home</NavbarButton>
+          <NavbarButton cb={() => setIsOpen(false)} link="/showcase">Showcase</NavbarButton>
+          <NavbarButton cb={() => setIsOpen(false)} link="/resume">Resume</NavbarButton>
+          <NavbarButton cb={() => setIsOpen(false)} link="/contact-me">Contact Me</NavbarButton>
+          <NavbarButton cb={() => setIsOpen(false)} link="/swondi">Swondi</NavbarButton>
         </div>
       </motion.div>
       <div className="flex justify-evenly w-full py-3"
@@ -28,7 +29,7 @@ export default function Navbar() {
           <motion.img src="/svg/double-arrow-down.svg" alt="arrow down" height={16} width={16}
             animate={{
               rotate: isOpen ? 180 : 0,
-              transition: { duration: 0.5, stiffness: 100, damping: 10}        
+              transition: { duration: 0.5, stiffness: 100, damping: 10 }        
             }}
           />
         </div>
@@ -36,7 +37,7 @@ export default function Navbar() {
           <motion.img src="/svg/double-arrow-down.svg" alt="arrow down" height={16} width={16}
             animate={{
               rotate: isOpen ? 180 : 0,
-              transition: { duration: 0.5, stiffness: 100, damping: 10}        
+              transition: { duration: 0.5, stiffness: 100, damping: 10 }        
             }}
           />
         </div>
@@ -45,7 +46,7 @@ export default function Navbar() {
   )
 }
 
-function NavbarButton({ children }: { children: React.ReactNode }) {
+function NavbarButton({ children, link, cb }: { children: React.ReactNode, link: string, cb: () => void }) {
   return (
     <motion.div className="w-fit px-2 py-1 my-3 border-b-4 bg-light-gray rounded-lg"
       whileHover={{
@@ -54,7 +55,7 @@ function NavbarButton({ children }: { children: React.ReactNode }) {
         transition: { duration: 0.5, stiffness: 100, damping: 10}
       }}
     >
-      <span>{children}</span>
+      <Link href={link} onClick={cb}><span>{children}</span></Link>
     </motion.div>
   )
 }
