@@ -1,21 +1,16 @@
 'use client'
-
-import { motion, useMotionValue } from "framer-motion"
+import { motion } from "framer-motion"
+import { useState } from "react";
 
 export default function Navbar() {
 
-  const dragStart = (e: React.TouchEvent) => {
-    
-  }
-
-  const dragLeave = (e: React.TouchEvent) => {
-          
-  }
+  const [isOpen, setIsOpen] = useState<boolean>(false)
 
   return (
-    <motion.div className="text-m rounded-b-3xl bg-light-gray mx-5">
-      {/* the hidden class is temporary */}
-      <div className="relative px-3 rounded-b-3xl bg-dark-white hidden">
+    <div className="fixed top-0 left-[5%] w-[90%] text-m rounded-b-3xl bg-light-gray z-50">
+      <motion.div layout className="relative px-3 rounded-b-3xl bg-dark-white overflow-hidden"
+        animate={{ height: isOpen ? '430px' : '0px', transition: { duration: 0.5, stiffness: 100, damping: 10} }}
+      >
         <NavbarDecoration position="top-3 left-8"/>
         <NavbarDecoration position="bottom-3 right-8"/>
         <div className="flex flex-col items-center text-center">
@@ -25,19 +20,28 @@ export default function Navbar() {
           <NavbarButton>Contact Me</NavbarButton>
           <NavbarButton>Swondi</NavbarButton>
         </div>
-      </div>
+      </motion.div>
       <div className="flex justify-evenly w-full py-3"
-        onTouchMove={dragStart}
-        onTouchEnd={dragLeave}
+        onClick={() => setIsOpen(!isOpen)}
       >
         <div>
-          <img src="/svg/double-arrow-down.svg" alt="arrow down" height={16} width={16} />
+          <motion.img src="/svg/double-arrow-down.svg" alt="arrow down" height={16} width={16}
+            animate={{
+              rotate: isOpen ? 180 : 0,
+              transition: { duration: 0.5, stiffness: 100, damping: 10}        
+            }}
+          />
         </div>
         <div>
-          <img src="/svg/double-arrow-down.svg" alt="arrow down" height={16} width={16} />
+          <motion.img src="/svg/double-arrow-down.svg" alt="arrow down" height={16} width={16}
+            animate={{
+              rotate: isOpen ? 180 : 0,
+              transition: { duration: 0.5, stiffness: 100, damping: 10}        
+            }}
+          />
         </div>
       </div>
-    </motion.div>
+    </div>
   )
 }
 
@@ -46,6 +50,7 @@ function NavbarButton({ children }: { children: React.ReactNode }) {
     <motion.div className="w-fit px-2 py-1 my-3 border-b-4 bg-light-gray rounded-lg"
       whileHover={{
         translateY: '5px',
+        borderColor: '#C7C7C7',
         transition: { duration: 0.5, stiffness: 100, damping: 10}
       }}
     >
@@ -58,13 +63,11 @@ function NavbarDecoration({position}: {position: string}) {
 
   const clickDown = (e: React.MouseEvent | React.TouchEvent) => {
     const source = e.target as HTMLDivElement
-    
     source.classList.remove('border-b-4')
   }
 
   const clickUp = (e: React.MouseEvent | React.TouchEvent) => {
     const source = e.target as HTMLDivElement
-    
     source.classList.add('border-b-4')
   }
 

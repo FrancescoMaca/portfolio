@@ -1,6 +1,4 @@
-import { motion } from "framer-motion";
-
-
+'use client'
 export default function Hero() {
 
   return (
@@ -15,7 +13,9 @@ export default function Hero() {
         <img src="/illustration/me.webp" alt="hero image" />
       </div>
       <div className="flex justify-center my-4 text-black">
-        <button className="text-xs w-fit px-2 py-1 bg-light-gray rounded-xl border-b-4 border-black">
+        <button className="text-xs w-fit px-2 py-1 bg-light-gray rounded-xl border-b-4 border-black hover:translate-y-1 hover:border-dark"
+          onClick={() => document.getElementById("about-me").scrollIntoView({ behavior: "smooth"})}
+        >
           Get to know me!
         </button>
       </div>
