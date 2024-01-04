@@ -10,7 +10,7 @@ export default function Hero() {
         Frontend Engineer - Student
       </h2>
       <div className="mt-8">
-        <img src="/illustration/me.webp" alt="hero image" />
+        <img src="/illustration/me.svg" alt="hero image" />
       </div>
       <div className="flex justify-center my-4 text-black">
         <button className="text-xs w-fit px-2 py-1 bg-light-gray rounded-xl border-b-4 border-black hover:translate-y-1 hover:border-dark"
