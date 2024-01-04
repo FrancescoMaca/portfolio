@@ -28,6 +28,10 @@ function Link({ color, delay = 0, children }: { color: string, delay?: number, c
     <motion.span className="px-3 py-2 rounded-xl border-2 border-b-4 border-white text-transparent bg-clip-text"
       style={{ backgroundImage: `${color}`}}
       initial={{ opacity: 0, translateX: -20 }}
+      whileHover={{
+        translateY: '5px',
+        transition: { duration: 0.5, stiffness: 100, damping: 10}
+      }}
       whileInView={{
         opacity: 1,
         translateX: 0,

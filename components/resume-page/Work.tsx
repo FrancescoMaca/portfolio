@@ -1,5 +1,5 @@
 'use client'
-import { ResumeTitle } from "./ResumeUtils";
+import { ResumeTitle } from "./utils";
 
 type TimeSpan = {
   from: string,
@@ -13,7 +13,17 @@ type ExperienceProps = {
 export default function Work() {
   return (
     <div className="">
-      <ResumeTitle>Work Experience</ResumeTitle>
+      <ResumeTitle icon="resume-work.svg">Work Experience</ResumeTitle>
+      <Experience props={{
+        position: 'Frontend Developer',
+        company: 'Swondi LLC, Sarasota FL',
+        date: {
+          from: 'Aug. 2023',
+          to: 'Present'
+        }
+      }}>
+        I started a company for web design and development, where I work as a frontend developer. I am responsible for creating websites and web applications for clients, as well as managing the company's social media presence.
+      </Experience>
       <Experience props={{
         position: 'Coding Teacher',
         company: 'TheCoderSchool, Sarasota FL',
@@ -62,7 +72,8 @@ export default function Work() {
 
 function Experience({ props, children }: { props: ExperienceProps, children: React.ReactNode }) {
   return (
-    <div className="mt-5">
+    <div className="relative mt-5">
+      <div className="absolute top-0 -left-5 w-2 h-full rounded-r-lg bg-light-gray"/>
       <h2 className="text-xs font-bold">
         {props.position}
       </h2>
