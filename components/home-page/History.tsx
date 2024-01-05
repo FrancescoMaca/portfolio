@@ -1,5 +1,5 @@
 'use client'
-import { motion } from "framer-motion";
+import { motion, useAnimation } from "framer-motion";
 
 export default function History() {
 
@@ -16,7 +16,7 @@ export default function History() {
         I was enrolled in an IT institute and continued my studies in Java as well as C
       </TimelineEntry>
       <TimelineEntry year={2022}>
-        Moved to Florida and started my <TextInfo description="Data Structure and Algorithm">AA Degree</TextInfo>. I also started web development with core technologies
+        Moved to Florida and started my <TextInfo description="Associate Degree">AA Degree</TextInfo>. I also started web development with core technologies
       </TimelineEntry>
       <TimelineEntry year={2023} isLast>
         Learned React, Tailwind and softwares for automatic deployment such as Docker
@@ -42,6 +42,8 @@ function TimelineEntry({year, children, isLast}: {year: number, children: React.
 
 function TextInfo({children, description}: {children: React.ReactNode, description: string}) {
 
+  const descControls = useAnimation()
+  
   return (
     <motion.div className="relative inline-block text-transparent bg-clip-text"
       initial={{ backgroundPosition: "0% 0%", backgroundSize: '300%',
@@ -55,7 +57,21 @@ function TextInfo({children, description}: {children: React.ReactNode, descripti
           ease: "linear",
         }
       }}
+      onMouseEnter={() => descControls.start({ opacity: 1 })}
+      onMouseLeave={() => descControls.start({ opacity: 0 })}
     >
+      <motion.div className="absolute text-center bottom-full right-0 w-52 p-2 h-fit text-white text-xs rounded-xl bg-dark opacity-0"
+        style={{
+          borderImage: 'linear-gradient(to right, #ff0000, #ecff00, #ffbd00, #ff0000)',
+          borderWidth: 2, borderImageSlice: 1, borderImageWidth: 2
+        }}
+        initial={{
+          borderRadius: 10,
+        }}
+        animate={descControls}
+      >
+        {description}
+      </motion.div>
       <span>{children}</span>
     </motion.div>
   )
