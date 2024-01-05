@@ -60,7 +60,7 @@ function TextInfo({children, description}: {children: React.ReactNode, descripti
       onMouseEnter={() => descControls.start({ opacity: 1 })}
       onMouseLeave={() => descControls.start({ opacity: 0 })}
     >
-      <motion.div className="absolute text-center bottom-full right-0 w-52 p-2 h-fit text-white text-xs rounded-xl bg-dark opacity-0"
+      <motion.div className="absolute text-center bottom-full right-0 w-52 p-2 h-fit text-white text-xs rounded-xl bg-dark opacity-0 z-20"
         style={{
           borderImage: 'linear-gradient(to right, #ff0000, #ecff00, #ffbd00, #ff0000)',
           borderWidth: 2, borderImageSlice: 1, borderImageWidth: 2
