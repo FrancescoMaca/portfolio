@@ -1,6 +1,6 @@
 'use client'
 import { motion, useAnimation } from "framer-motion"
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import { bake_cookie, read_cookie } from 'sfcookies'
 
 export default function ShowcasePage() {
@@ -12,19 +12,21 @@ export default function ShowcasePage() {
           EasyDiscord is an extention of Discord that will allow a user to create servers and bots fast and easily.
         </Project>
         <Project name="Cassius Disadventures" img="/projects/cassius.webp" link="https://github.com/FrancescoMaca/Le-Sventure-di-Cassius">
-          Game engine created as a school project. Due to the limited time, we couldn't include all the features we wanted.
+          Game engine created as a school project. Due to the limited time, we could not include all the features we wanted.
         </Project>
         <Project name="Maestrale's Restaurant" img="/projects/maestrales.webp" link="https://maestralerestaurant.com">
-          The official website for Maestrale's Restaurant in Sarasota, FL.
+          The official website for Maestrale&apos;s Restaurant in Sarasota, FL.
         </Project>
-        <EmptyProject />
+        <div className="hidden xl:block"></div>
         <div className="flex justify-center items-center">
-          <button className="flex items-center py-3 px-4 text-xs text-black border-4 border-dark-white bg-light-gray rounded-full">
+          <a className="flex items-center py-3 px-4 text-xs text-black border-4 border-dark-white bg-light-gray rounded-full"
+            href="https://github.com/FrancescoMaca" target="_blank"
+          >
             <span>View More on</span>
             <span className="inline-block pl-2">
               <img src="/projects/github-button.svg" alt="github logo" width={32} />
             </span>
-          </button>
+          </a>
         </div>
       </div>
       <h2 className="uppercase text-s my-16">Upcoming</h2>
@@ -45,10 +47,14 @@ export default function ShowcasePage() {
 
 function Project({name, img, link, children}: {name: string, img: string, link: string, children: React.ReactNode}) {
 
-  const cookie = read_cookie(name)
-  const [isFav, setFav] = useState<boolean>(cookie.length !== 0 ? JSON.parse(cookie as string).value : false)
+  const [isFav, setFav] = useState<boolean>(false)
   const favControls = useAnimation()
   const linkControls = useAnimation()
+
+  useEffect(() => {
+    const cookie = read_cookie(name)
+    setFav(cookie.length !== 0 ? JSON.parse(cookie as string).value : false)
+  }, [])
 
   const toggleFav = (_: React.MouseEvent) => {
     setFav(!isFav)
@@ -61,9 +67,6 @@ function Project({name, img, link, children}: {name: string, img: string, link: 
   }
 
   const clickEffect = (_: React.MouseEvent) => {
-    
-    window.open(link, '_blank')
-
     linkControls.start({
       translateY: ['0px', '5px', '0px'],
       transition: { duration: 0.2, stiffness: 100, damping: 10 }
@@ -94,22 +97,15 @@ function Project({name, img, link, children}: {name: string, img: string, link: 
             />
             <img className={`absolute top-0 left-0 w-full h-full blur-md ${isFav ? '' : 'hidden'}`} src="/svg/heart-fill.svg" alt="github link" />
           </motion.button>
-          <motion.button className="relative self-end px-2 py-1 border-2 border-b-4 border-white rounded-lg cursor-pointer z-10"
+          <motion.a className="relative self-end px-2 py-1 border-2 border-b-4 border-white rounded-lg cursor-pointer z-10"
+            href={link} target="_blank"
             onClick={clickEffect}
             animate={linkControls}
           >
             <img src="/svg/github.svg" alt="github link" />
-          </motion.button>
+          </motion.a>
         </div>
       </div>
-    </div>
-  )
-}
-
-function EmptyProject() {
-  return (
-    <div>
-
     </div>
   )
 }

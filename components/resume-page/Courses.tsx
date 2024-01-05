@@ -12,7 +12,7 @@ export default function Couses() {
         <Course type="In-Class">Data Abaktsus Course <span className="text-light-gray">(20 hours)</span></Course>
         <Course type="In-Class">Game Development Course with C++ <span className="text-light-gray">(10 hours)</span></Course>
         <Course type="Online">LUISS preparation Course for IOI</Course>
-        <Course type="Online">CS50's Introduction to Computer Science <span className="text-light-gray">(10 weeks)</span></Course>
+        <Course type="Online">CS50&apos;s Introduction to Computer Science <span className="text-light-gray">(10 weeks)</span></Course>
       </ul>
     </div>
   )

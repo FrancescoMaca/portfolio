@@ -23,7 +23,7 @@ export default function Work() {
           to: 'Present'
         }
       }}>
-        I started a company for web design and development, where I work as a frontend developer. I am responsible for creating websites and web applications for clients, as well as managing the company's social media presence.
+        I started a company for web design and development, where I work as a frontend developer. I am responsible for creating websites and web applications for clients, as well as managing the company&apos;s social media presence.
       </Experience>
       <Experience props={{
         position: 'Coding Teacher',

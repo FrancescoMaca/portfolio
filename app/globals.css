@@ -9,6 +9,10 @@
   src: url('../public/font/JosefinSans-Regular.ttf') format('truetype');
 }
 
+html {
+  scroll-behavior: smooth;
+}
+
 /* For WebKit (Chrome, Safari) */
 ::-webkit-scrollbar {
   width: 10px;

@@ -15,7 +15,7 @@ export default function SwondiPage() {
         <p className="text-xxs md:text-xs py-5">
           In august 2023 I founded a company called Swondi. My goal is to make Swondi innovate the field of
           web development, allowing anyone to create a website that is esthetically good and in a short amount of time.
-          I'm not going to write the usual "we are the best" or "we are the fastest" because I don't want to be like
+          I&apos;m not going to write the usual &quot;we are the best&quot; or &quot;we are the fastest&quot; because I don&apos;t want to be like
           all the other companies out there. I will say though, that I am going to innovate the web development field.
         </p>
         <hr />
