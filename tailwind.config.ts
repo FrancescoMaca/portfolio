@@ -17,8 +17,8 @@ const config: Config = {
         'white': '#FAFAFF',
       },
       fontSize: {
-        'm': '2rem',
-        's': '1.75rem',
+        'm': '3rem',
+        's': '2rem',
         'xs': '1.5rem',
       },
       borderRadius: {

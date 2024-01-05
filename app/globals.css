@@ -23,3 +23,8 @@
   background: #C7C7C7;
   border-radius: 10px 400px;
 }
+
+/* Tailwind problems as always :D */
+input {
+  --tw-ring-shadow: 0 0 #000 !important;
+}

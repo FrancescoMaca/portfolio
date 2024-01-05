@@ -62,7 +62,7 @@ export default function ContactPage() {
   }
 
   return (
-    <div className="flex flex-col mt-16 h-screen">
+    <div className="flex flex-col mt-16">
       <h1 className="uppercase text-white text-s px-5">Send Me a Message</h1>
       <motion.div className="flex items-center w-fit mt-10 text-xs bg-dark-white rounded-r-3xl"
         animate={nameControls}
@@ -112,8 +112,8 @@ export default function ContactPage() {
           </button>
         </div>
       </div>
-      <div className="overflow-hidden">
-        <img src="/illustration/mail.svg" alt="email illustration" className="w-full h-full" />
+      <div className="h-fit overflow-hidden">
+        <img src="/illustration/mail.svg" alt="email illustration" width={'100%'}  height={'100%'}/>
       </div>
     </div>
   )

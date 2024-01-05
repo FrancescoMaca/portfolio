@@ -8,13 +8,21 @@ export default function Navbar() {
   const [isOpen, setIsOpen] = useState<boolean>(false)
 
   return (
-    <div className="fixed top-0 left-[5%] w-[90%] text-m rounded-b-3xl bg-light-gray z-50">
+    <div className="fixed top-0 left-[5%] w-[90%] text-s rounded-b-3xl bg-light-gray z-50">
       <motion.div layout className="relative px-3 rounded-b-3xl bg-dark-white overflow-hidden"
         initial={{ height: '0px' }}
         animate={{ height: isOpen ? '430px' : '0px', transition: { duration: 0.5, stiffness: 100, damping: 10} }}
       >
+        {/* Decorations */}
         <NavbarDecoration position="top-3 left-8"/>
         <NavbarDecoration position="bottom-3 right-8"/>
+        <motion.div className="absolute bottom-3 left-8 p-2 bg-light-gray border-b-4 border-black rounded-lg"
+          whileHover={{
+            scale: 1.1,
+          }}
+        >
+          <a href={"mailto:francescomacalusobusiness@gmail.com"}><img src="/svg/email-icon.svg" alt="email icon" width={32} height={32}/></a>
+        </motion.div>
         <div className="flex flex-col items-center text-center">
           <NavbarButton cb={() => setIsOpen(false)} link="/">Home</NavbarButton>
           <NavbarButton cb={() => setIsOpen(false)} link="/showcase">Showcase</NavbarButton>

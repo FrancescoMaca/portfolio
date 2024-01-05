@@ -1,9 +1,8 @@
 
-
 export default function Footer() {
   return (
-    <div>
-      <p className="w-full text-center my-5 text-white">Made with 💛 by Francesco Macaluso</p>
+    <div className="absolute bottom-0 left-0 w-full h-fit">
+      <p className="w-full text-center mb-5 text-white">Made with 💛 by Francesco Macaluso</p>
     </div>
   )
 }
