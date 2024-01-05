@@ -9,8 +9,8 @@ export default function ResumeHead() {
       <div className="w-fit">
         <motion.img src="/pictures/resume-picture.webp" alt="profile picture" className="rounded-full border-2 border-white" width={256} height={256} />
       </div>
-      <h1 className="text-s mt-5">Francesco Macaluso</h1>
-      <h1 className="text-xs">Frontend Developer & Student</h1>
+      <h1 className="text-s md:text-m mt-5">Francesco Macaluso</h1>
+      <h1 className="text-xs md:text-s">Frontend Developer & Student</h1>
       <div className="grid grid-cols-2 gap-5 text-xs my-10">
         <Link color="linear-gradient(to top, #0077B5, #0077B5)">Linked-In</Link>
         <Link delay={.5} color="linear-gradient(45deg, #6e5494, #4078c0)">GitHub</Link>
@@ -25,7 +25,7 @@ export default function ResumeHead() {
 function Link({ color, delay = 0, children }: { color: string, delay?: number, children: React.ReactNode }) {
   
   return (
-    <motion.span className="px-3 py-2 rounded-xl border-2 border-b-4 border-white text-transparent bg-clip-text"
+    <motion.span className="px-3 py-2 rounded-xl border-2 border-b-4 border-white md:text-s text-transparent bg-clip-text"
       style={{ backgroundImage: `${color}`}}
       initial={{ opacity: 0, translateX: -20 }}
       whileHover={{

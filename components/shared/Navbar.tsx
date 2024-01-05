@@ -8,7 +8,7 @@ export default function Navbar() {
   const [isOpen, setIsOpen] = useState<boolean>(false)
 
   return (
-    <div className="fixed top-0 left-[5%] w-[90%] text-s rounded-b-3xl bg-light-gray z-50">
+    <div className="fixed top-0 left-[5%] md:left-[50%] md:-translate-x-1/2 w-[90%] max-w-3xl text-s rounded-b-3xl bg-light-gray z-50">
       <motion.div layout className="relative px-3 rounded-b-3xl bg-dark-white overflow-hidden"
         initial={{ height: '0px' }}
         animate={{ height: isOpen ? '430px' : '0px', transition: { duration: 0.5, stiffness: 100, damping: 10} }}

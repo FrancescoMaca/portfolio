@@ -7,19 +7,25 @@ export default function Skills() {
   return (
     <div className="flex flex-col">
       <ResumeTitle icon="resume-skills.svg">Skills</ResumeTitle>
-      <p className="self-center w-fit mt-5 px-3 py-2 text-xxs bg-ligh-gray border-2 border-white rounded-lg">
+      <p className="self-center w-fit mt-5 px-3 py-2 text-xxs md:text-xs bg-ligh-gray border-2 border-white rounded-lg">
         The highlighted are the ones I am currently mastering :)
       </p>
-      <div className="flex flex-col">
-        <div className="flex flex-col mt-5">
-          <div>
-            <h2 className="px-5 my-5 text-xs">Languages</h2>
+      <div className="flex flex-col mb-10">
+        <div className="flex flex-col lg:flex-row mt-5">
+          <div className="w-full md:px-10">
+            <h2 className="px-5 my-5 md:text-s">Languages</h2>
             <Skill name="Italian" level={10} />
             <Skill name="English" level={8} />
             <Skill name="Spanish" level={4} highlight />
           </div>
-          <div>
-            <h2 className="px-5 my-5 text-xs">Soft Skills</h2>
+          <div className="hidden lg:block w-full md:px-10">
+            <h2 className="px-5 my-5 md:text-s">Programming Languages</h2>
+            <Skill name="C# & C" level={8} />
+            <Skill name="Java (jUnit, Gradle, Spring, JavaFX...) " level={8} />
+            <Skill name="Web Dev & Related Technologies" level={9} highlight />
+          </div>
+          <div className="block lg:hidden w-full md:px-10">
+            <h2 className="px-5 my-5 md:text-s">Soft Skills</h2>
             <SkillList>
               -Determined
               -Teamwork
@@ -33,15 +39,29 @@ export default function Skills() {
             </SkillList>
           </div>
         </div>
-        <div className="flex flex-col mt-5">
-        <div>
-            <h2 className="px-5 my-5 text-xs">Programming Languages</h2>
+        <div className="flex flex-col lg:flex-row mt-5">
+          <div className="block lg:hidden w-full md:px-10">
+            <h2 className="px-5 my-5 md:text-s">Programming Languages</h2>
             <Skill name="C# & C" level={8} />
             <Skill name="Java (jUnit, Gradle, Spring, JavaFX...) " level={8} />
             <Skill name="Web Dev & Related Technologies" level={9} highlight />
           </div>
-          <div>
-            <h2 className="px-5 my-5 text-xs">Tools & Softwares</h2>
+          <div className="hidden lg:block w-full md:px-10">
+            <h2 className="px-5 my-5 md:text-s">Soft Skills</h2>
+            <SkillList>
+              -Determined
+              -Teamwork
+              -Leadership
+              -Problem Solving
+              -Creativity
+              -Communication
+              -Adaptability
+              -Time Management
+              -Attention to Details
+            </SkillList>
+          </div>
+          <div className="w-full md:px-10">
+            <h2 className="px-5 my-5 md:text-s">Tools & Softwares</h2>
             <SkillList>
               -Redux
               -React (Js & Ts)
@@ -99,7 +119,7 @@ function SkillList({children}: {children: React.ReactNode}) {
       {
         skills.map((skill, i) => {
           return (
-            <li key={i} className="text-xxs my-1">
+            <li key={i} className="text-xxs md:text-xs my-1">
               {skill.trim()}
             </li>
           )

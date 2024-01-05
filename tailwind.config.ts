@@ -17,6 +17,7 @@ const config: Config = {
         'white': '#FAFAFF',
       },
       fontSize: {
+        'l': '4rem',
         'm': '3rem',
         's': '2rem',
         'xs': '1.5rem',

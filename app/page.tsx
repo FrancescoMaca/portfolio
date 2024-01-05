@@ -5,7 +5,7 @@ import Skills from "@/components/home-page/Skills"
 
 export default function Default() {
   return (
-    <div>
+    <div className="flex flex-col">
       <Hero />
       <History />
       <Skills />

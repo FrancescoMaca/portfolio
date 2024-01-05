@@ -4,8 +4,8 @@ import { motion } from "framer-motion";
 export default function History() {
 
   return (
-    <div id="about-me" className="relative flex flex-col text-white bg-gray rounded-3xl p-5">
-      <h3 className="py-10 text-center text-s">MY JOURNEY</h3>
+    <div id="about-me" className="relative flex flex-col self-center w-full max-w-7xl md:mx-5 lg:mx-10 mt-5 lg:mt-20 text-white bg-gray rounded-3xl p-5">
+      <h3 className="py-10 text-center text-s lg:text-m">MY JOURNEY</h3>
       <TimelineEntry year={2017}>
         I started my journey with game development, using mainly C# with Unity 2D, and C++
       </TimelineEntry>
@@ -31,9 +31,9 @@ function TimelineEntry({year, children, isLast}: {year: number, children: React.
     <div className="relative flex">
       <div className={`absolute top-0 left-9 w-1 h-full bg-dark ${isLast ? 'hidden' : ''}`}/>
       <motion.div className="relative px-2 pt-1 h-fit bg-dark rounded-lg z-10">
-        <span className="text-s">{year}</span>
+        <span className="text-s ">{year}</span>
       </motion.div>
-      <div className="p-5 pb-16 text-xs">
+      <div className="p-5 pt-0 pb-16 text-xs md:text-s">
         {children}
       </div>
     </div>

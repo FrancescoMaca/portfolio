@@ -5,9 +5,9 @@ import { bake_cookie, read_cookie } from 'sfcookies'
 
 export default function ShowcasePage() {
   return (
-    <div className="text-white px-5">
+    <div className="text-white px-5 min-h-screen">
       <h1 className="uppercase text-s my-16">My Showcase</h1>
-      <div className="flex flex-col gap-10">
+      <div className="flex flex-col md:grid md:grid-cols-2 xl:grid-cols-3 gap-10">
         <Project name="EasyDiscord" img="/projects/easy-discord.webp" link="https://github.com/FrancescoMaca/Easy-Discord">
           EasyDiscord is an extention of Discord that will allow a user to create servers and bots fast and easily.
         </Project>
@@ -17,7 +17,8 @@ export default function ShowcasePage() {
         <Project name="Maestrale's Restaurant" img="/projects/maestrales.webp" link="https://maestralerestaurant.com">
           The official website for Maestrale's Restaurant in Sarasota, FL.
         </Project>
-        <div className="self-center">
+        <EmptyProject />
+        <div className="flex justify-center items-center">
           <button className="flex items-center py-3 px-4 text-xs text-black border-4 border-dark-white bg-light-gray rounded-full">
             <span>View More on</span>
             <span className="inline-block pl-2">
@@ -27,7 +28,7 @@ export default function ShowcasePage() {
         </div>
       </div>
       <h2 className="uppercase text-s my-16">Upcoming</h2>
-      <div className="flex flex-col gap-10">
+      <div className="flex flex-col md:grid md:grid-cols-2 xl:grid-cols-3 gap-10 pb-20">
         <Project name="BookItNow" img="/projects/bookitnow.webp" link="https://github.com/Swondi/BookItNow">
           Streamline restaurant reservations, save costs, and enhance the guest experience with BookItNow—an intuitive and affordable reservation API.
         </Project>
@@ -41,6 +42,7 @@ export default function ShowcasePage() {
     </div>
   )
 }
+
 function Project({name, img, link, children}: {name: string, img: string, link: string, children: React.ReactNode}) {
 
   const cookie = read_cookie(name)
@@ -69,18 +71,20 @@ function Project({name, img, link, children}: {name: string, img: string, link: 
   }
 
   return (
-    <div className="relative flex flex-col w-full border-2 border-white rounded-xl p-5">
+    <div className="relative flex flex-col justify-between w-full border-2 border-white rounded-xl p-5 md:p-10">
       {/* Blur border */}
       <div className="absolute top-0 left-0 w-full h-full border-2 border-white rounded-xl blur-md"/>
-      <h2 className="w-fit text-xs">
-        {name}
-      </h2>
-      <p className="my-5">
-        {children}
-      </p>
+      <div>
+        <h2 className="w-fit text-xs md:text-s">
+          {name}
+        </h2>
+        <p className="md:text-xs my-5">
+          {children}
+        </p>
+      </div>
       <div className="flex justify-between">
         <div className="relative flex justify-between z-0">
-          <img src={img} alt="project image" width={96} height={96} className="absolute top-0 left-0 blur-xl rounded-xl -z-10"/>
+          <img src={img} alt="project image" className="absolute w-[96px] h-[96px] lg:w-[128px] lg:h-[128px] top-0 left-0 blur-xl rounded-xl -z-10"/>
           <img src={img} alt="project image" width={96} height={96} className="rounded-xl"/>
         </div>
         <div className="flex gap-5">
@@ -98,6 +102,14 @@ function Project({name, img, link, children}: {name: string, img: string, link: 
           </motion.button>
         </div>
       </div>
+    </div>
+  )
+}
+
+function EmptyProject() {
+  return (
+    <div>
+
     </div>
   )
 }

@@ -10,9 +10,10 @@ type ExperienceProps = {
   company: string,
   date: TimeSpan
 }
+
 export default function Work() {
   return (
-    <div className="">
+    <div>
       <ResumeTitle icon="resume-work.svg">Work Experience</ResumeTitle>
       <Experience props={{
         position: 'Frontend Developer',
@@ -72,18 +73,18 @@ export default function Work() {
 
 function Experience({ props, children }: { props: ExperienceProps, children: React.ReactNode }) {
   return (
-    <div className="relative mt-5">
+    <div className="relative mt-5 ">
       <div className="absolute top-0 -left-5 w-2 h-full rounded-r-lg bg-light-gray"/>
-      <h2 className="text-xs font-bold">
+      <h2 className="text-xs md:text-s font-bold">
         {props.position}
       </h2>
-      <h3 className="text-light-gray">
+      <h3 className=" md:text-xs text-light-gray">
         {props.company}
       </h3>
-      <h4 className="text-light-gray">
+      <h4 className="md:text-xs text-light-gray">
         {props.date.from} - {props.date.to}
       </h4>
-      <p className="mt-3">
+      <p className="md:text-xs mt-3">
         {children}
       </p>
     </div>

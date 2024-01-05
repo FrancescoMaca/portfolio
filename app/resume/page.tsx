@@ -11,21 +11,21 @@ import Link from "next/link";
 
 export default function ResumePage() {
   return (
-    <div className="mt-16 text-white px-5 h-fit">
+    <div className="mt-16 text-white px-5 h-fit pb-20">
       <Head />
       <Work />
       <Skills />
       <div className="flex flex-col">
         <ResumeTitle icon="resume-projects.svg">Projects</ResumeTitle>
-        <p className="my-5">
+        <p className="my-5 text-center md:text-xs">
           In the .pdf version of my resume you can find a list of all the projects I have worked on, including the ones I am currently working on. <br/>
         </p>
-        <span className="self-center mb-5">If you want to check out my projects, click <Link className="underline" href="/showcase">here</Link></span>
+        <span className="self-center md:text-xs mb-5">If you want to check out my projects, click <Link className="underline" href="/showcase">here</Link></span>
       </div>
       <Courses />
       <Certifications />
       <div className="flex flex-col">
-        <p className="my-5">
+        <p className="my-5 md:text-xs">
           All certifications are available on request. <br/>
           To download the .pdf version of my resume, click the button below.
         </p>

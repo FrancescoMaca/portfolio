@@ -4,9 +4,9 @@ import { useState } from "react"
 
 export default function Skills() {
   return (
-    <div className="flex flex-col font-text text-white px-5 mt-20">
+    <div className="flex flex-col self-center font-text text-white px-5 mt-20">
       <h3 className="text-s">These are the things I know...</h3>
-      <div className="self-center grid grid-cols-4 gap-10 my-10">
+      <div className="self-center grid grid-cols-4 md:grid-cols-7 lg:grid-cols-10 gap-10 my-10">
         <div className="flex items-center justify-center">
           <IconSkill img="langs/react.svg" name="React"/>
         </div>

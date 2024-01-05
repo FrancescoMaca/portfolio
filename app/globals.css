@@ -25,6 +25,6 @@
 }
 
 /* Tailwind problems as always :D */
-input {
+input, textarea {
   --tw-ring-shadow: 0 0 #000 !important;
 }

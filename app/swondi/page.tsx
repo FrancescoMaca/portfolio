@@ -4,15 +4,15 @@ import Link from "next/link"
 
 export default function SwondiPage() {
   return (
-    <div className="relative h-screen pt-16 px-5 text-white overflow-hidden">
+    <div className="relative flex flex-col h-screen pt-16 px-5 text-white overflow-hidden">
       <Background />
-      <h1 className="text-center text-s">— Swondi —</h1>
-      <div className="flex flex-col mt-10">
+      <h1 className="text-center text-s md:text-m whitespace-nowrap">— Swondi —</h1>
+      <div className="self-center flex flex-col mt-10 w-full max-w-5xl">
         <div className="flex justify-center my-10">
-          <img src="/svg/swondi/logo.svg" alt="swondi icon" width={128} />
+          <img src="/svg/swondi/logo.svg" alt="swondi icon" width={128} height={128} />
         </div>
         <hr />
-        <p className="text-xxs py-5">
+        <p className="text-xxs md:text-xs py-5">
           In august 2023 I founded a company called Swondi. My goal is to make Swondi innovate the field of
           web development, allowing anyone to create a website that is esthetically good and in a short amount of time.
           I'm not going to write the usual "we are the best" or "we are the fastest" because I don't want to be like

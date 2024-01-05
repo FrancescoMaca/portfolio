@@ -6,7 +6,7 @@ export default function Couses() {
   return (
     <div>
       <ResumeTitle icon="resume-courses.svg">Courses</ResumeTitle>
-      <ul className="my-10">
+      <ul className="my-10 md:text-xs">
         <Course type="In-Class">UX/UI Design <span className="text-light-gray">(offered by SCF)</span></Course>
         <Course type="In-Class">Android Development Course <span className="text-light-gray">(20 hours)</span></Course>
         <Course type="In-Class">Data Abaktsus Course <span className="text-light-gray">(20 hours)</span></Course>

@@ -7,7 +7,7 @@ export default function Certifications() {
       <ResumeTitle icon="resume-certificate.svg">
         Certifications
       </ResumeTitle>
-      <ul className="list-inside list-disc">
+      <ul className="list-inside list-disc my-10">
         <Certification>MikroTik Certified Network Associate (MTCNA)</Certification>
         <Certification>UX/UI Design Course Certification</Certification>
         <Certification>HTML/CSS Course Certification</Certification>
@@ -18,7 +18,7 @@ export default function Certifications() {
 
 function Certification({children}: {children: React.ReactNode}) {
   return (
-    <li className="my-3">
+    <li className="my-3 md:text-xs">
       {children}
     </li>
   )
