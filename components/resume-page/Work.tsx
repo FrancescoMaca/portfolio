@@ -1,5 +1,8 @@
 'use client'
+import { Player } from "@lordicon/element";
 import { ResumeTitle } from "./utils";
+import { useRef } from "react";
+import suitcaseIcon from '@/public/icons/suitcase.json'
 
 type TimeSpan = {
   from: string,
@@ -12,9 +15,10 @@ type ExperienceProps = {
 }
 
 export default function Work() {
+  
   return (
     <div>
-      <ResumeTitle icon="resume-work.svg">Work Experience</ResumeTitle>
+      <ResumeTitle icon={suitcaseIcon}>Work Experience</ResumeTitle>
       <Experience props={{
         position: 'Frontend Developer',
         company: 'Swondi LLC, Sarasota FL',

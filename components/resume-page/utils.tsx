@@ -1,10 +1,18 @@
-export function ResumeTitle({icon, children}: {icon: string, children: React.ReactNode}) {
+import { Player } from "@lordicon/react";
+import { useRef } from "react";
+import { motion } from "framer-motion";
+
+export function ResumeTitle({icon, children}: {icon: any, children: React.ReactNode}) {
+  const iconRef = useRef<Player>(null)
+
   return (
     <div className="flex justify-center w-full py-3 my-2 border-y-2 border-white">
-      <h3 className="flex items-center text-center text-s md:text-m">
+      <motion.h3 className="flex items-center justify-center text-center text-s md:text-m"
+        onHoverStart={() => iconRef.current?.playFromBeginning()}
+      >
         <span className="pr-2">{children}</span>
-        <img src={`/svg/resume/${icon}`} alt="title icon" width={32} height={32}/>
-      </h3>
+        <Player ref={iconRef} icon={icon} size={40} />
+      </motion.h3>
     </div>
   )
 }

@@ -1,12 +1,13 @@
 'use client'
 import { motion } from "framer-motion";
 import { ResumeTitle } from "./utils";
+import skillsIcon from '@/public/icons/skills.json'
 
 export default function Skills() {
   
   return (
     <div className="flex flex-col">
-      <ResumeTitle icon="resume-skills.svg">Skills</ResumeTitle>
+      <ResumeTitle icon={skillsIcon} >Skills</ResumeTitle>
       <p className="self-center w-fit mt-5 px-3 py-2 text-xxs md:text-xs bg-ligh-gray border-2 border-white rounded-lg">
         The highlighted are the ones I am currently mastering :)
       </p>
@@ -80,7 +81,7 @@ export default function Skills() {
   )
 }
 
-function Skill({name, delay, level, highlight}: {name: string, delay?: number, level: number, highlight?: boolean}) {
+function Skill({name, level, highlight}: {name: string, level: number, highlight?: boolean}) {
 
   const initialState = highlight ? {
     width: 0, backgroundPosition: `0% 0%`, backgroundSize: '300%',

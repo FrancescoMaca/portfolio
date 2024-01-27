@@ -426,6 +426,25 @@
     jsbi "^4.3.0"
     tslib "^2.4.1"
 
+"@lordicon/element@^1.4.2":
+  version "1.4.2"
+  resolved "https://registry.yarnpkg.com/@lordicon/element/-/element-1.4.2.tgz#b912b6973c0c52e017d70c56d3bdbd619cb23312"
+  integrity sha512-h5T2YCk5d2O5JjSSA8StUDC/nB2S8OqrTYuOOkrg2fSOzSc1DglUFdHEaskxP5gvnSEsZCIGObtuVlXvmzbjsA==
+  dependencies:
+    "@lordicon/helpers" "^1.4.1"
+
+"@lordicon/helpers@^1.4.1":
+  version "1.4.1"
+  resolved "https://registry.yarnpkg.com/@lordicon/helpers/-/helpers-1.4.1.tgz#acde75192d7379bdc6d5cd26a54bad5c1285c1b1"
+  integrity sha512-59TZlDSiGjN2AY2JAnyynTT3Zt05uKFmcLcv/1ZBst0Cc4emyrtglFObHxLcFyonHrsTM25cZ9FxK98Y6V90MA==
+
+"@lordicon/react@^1.4.1":
+  version "1.4.1"
+  resolved "https://registry.yarnpkg.com/@lordicon/react/-/react-1.4.1.tgz#805859cb3536e7e4648b0afc4b8df39f3708c7cb"
+  integrity sha512-qXUQ5XuqUpN4cAyEDnW5Do2p0tbHUbkTkRUo1EnsVbJFy+uiJR6X8NqYZxT62dNSmLBskuA9DdKLLLXiU2c2KQ==
+  dependencies:
+    "@lordicon/helpers" "^1.4.1"
+
 "@mdx-js/esbuild@^2.0.0":
   version "2.3.0"
   resolved "https://registry.yarnpkg.com/@mdx-js/esbuild/-/esbuild-2.3.0.tgz#97f2f1b854d904c50bcd0a219b3664657f4fe8c3"
@@ -3177,6 +3196,11 @@ loose-envify@^1.1.0, loose-envify@^1.4.0:
   integrity sha512-lyuxPGr/Wfhrlem2CL/UcnUc1zcqKAImBDzukY7Y5F/yQiNdko6+fRLevlw1HgMySw7f611UIY408EtxRSoK3Q==
   dependencies:
     js-tokens "^3.0.0 || ^4.0.0"
+
+lottie-web@^5.12.2:
+  version "5.12.2"
+  resolved "https://registry.yarnpkg.com/lottie-web/-/lottie-web-5.12.2.tgz#579ca9fe6d3fd9e352571edd3c0be162492f68e5"
+  integrity sha512-uvhvYPC8kGPjXT3MyKMrL3JitEAmDMp30lVkuq/590Mw9ok6pWcFCwXJveo0t5uqYw1UREQHofD+jVpdjBv8wg==
 
 lower-case@^2.0.2:
   version "2.0.2"

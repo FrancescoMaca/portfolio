@@ -8,6 +8,7 @@ import { ResumeTitle } from "@/components/resume-page/utils";
 import { motion } from "framer-motion";
 import Link from "next/link";
 
+import projectIcon from '@/public/icons/projects.json'
 
 export default function ResumePage() {
   return (
@@ -16,7 +17,7 @@ export default function ResumePage() {
       <Work />
       <Skills />
       <div className="flex flex-col">
-        <ResumeTitle icon="resume-projects.svg">Projects</ResumeTitle>
+        <ResumeTitle icon={projectIcon}>Projects</ResumeTitle>
         <p className="my-5 text-center md:text-xs">
           In the .pdf version of my resume you can find a list of all the projects I have worked on, including the ones I am currently working on. <br/>
         </p>

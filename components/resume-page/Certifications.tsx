@@ -1,10 +1,11 @@
 import { ResumeTitle } from "./utils"
+import certifiateIcon from '@/public/icons/certificate.json'
 
 
 export default function Certifications() {
   return (
     <div className="my-10">
-      <ResumeTitle icon="resume-certificate.svg">
+      <ResumeTitle icon={certifiateIcon}>
         Certifications
       </ResumeTitle>
       <ul className="list-inside list-disc my-10">

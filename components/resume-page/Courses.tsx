@@ -1,11 +1,12 @@
 import React from "react"
 import { ResumeTitle } from "./utils"
+import coursesIcon from '@/public/icons/courses.json'
 
 export default function Couses() {
 
   return (
     <div>
-      <ResumeTitle icon="resume-courses.svg">Courses</ResumeTitle>
+      <ResumeTitle icon={coursesIcon}>Courses</ResumeTitle>
       <ul className="my-10 md:text-xs">
         <Course type="In-Class">UX/UI Design <span className="text-light-gray">(offered by SCF)</span></Course>
         <Course type="In-Class">Android Development Course <span className="text-light-gray">(20 hours)</span></Course>

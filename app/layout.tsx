@@ -1,6 +1,6 @@
-import Footer from '@/components/shared/Footer'
 import './globals.css'
 import type { Metadata } from 'next'
+import Footer from '@/components/shared/Footer'
 import Navbar from '@/components/shared/Navbar'
 
 export const metadata: Metadata = {
@@ -18,6 +18,7 @@ export default function RootLayout({children}: {children: React.ReactNode}) {
         <link rel="icon" sizes="32x32 64x64 96x96 128x128 256x256 512x512" href="/favicon/favicon-32.png" type="image/png" />
         <link rel="apple-touch-icon" href="/favicon/favicon-128x128.png" />
         <link rel="manifest" href="/manifest.json" />
+        <script async src="https://cdn.lordicon.com/lordicon.js"></script>
       </head>
       <body className='relative bg-dark font-text overscroll-none'>
         <Navbar/>
