@@ -1,15 +1,13 @@
 'use client'
-import { Player } from "@lordicon/react";
 import { motion } from "framer-motion"
 import Link from "next/link";
-import { useRef, useState } from "react";
+import { useState } from "react";
 import mailIcon from '@/public/icons/email.json'
+import LordIcon from "@/app/LordIcon";
 
 export default function Navbar() {
 
   const [isOpen, setIsOpen] = useState<boolean>(false)
-
-  const emailRef = useRef<Player>(null)
 
   return (
     <div className="fixed top-0 left-[5%] md:left-[50%] md:-translate-x-1/2 w-[90%] max-w-3xl text-s rounded-b-3xl bg-light-gray z-50">
@@ -25,11 +23,9 @@ export default function Navbar() {
             scale: 1.1,
           }}
         >
-          <motion.a href={"mailto:francescomacalusobusiness@gmail.com"}
-            onHoverStart={() => emailRef.current?.playFromBeginning()}
-          >
-            <Player ref={emailRef} icon={mailIcon} size={32} />
-          </motion.a>
+          <a href={"mailto:francescomacalusobusiness@gmail.com"}>
+            <LordIcon data={mailIcon} size={32} state={"hover-flying"}/>
+          </a>
         </motion.div>
         <div className="flex flex-col items-center text-center">
           <NavbarButton cb={() => setIsOpen(false)} link="/">Home</NavbarButton>

@@ -6,7 +6,7 @@ export default function Couses() {
 
   return (
     <div>
-      <ResumeTitle icon={coursesIcon}>Courses</ResumeTitle>
+      <ResumeTitle icon={coursesIcon} state="hover-closed">Courses</ResumeTitle>
       <ul className="my-10 md:text-xs">
         <Course type="In-Class">UX/UI Design <span className="text-light-gray">(offered by SCF)</span></Course>
         <Course type="In-Class">Android Development Course <span className="text-light-gray">(20 hours)</span></Course>

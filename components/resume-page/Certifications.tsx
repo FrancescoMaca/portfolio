@@ -5,7 +5,7 @@ import certifiateIcon from '@/public/icons/certificate.json'
 export default function Certifications() {
   return (
     <div className="my-10">
-      <ResumeTitle icon={certifiateIcon}>
+      <ResumeTitle icon={certifiateIcon} state="hover-pinch">
         Certifications
       </ResumeTitle>
       <ul className="list-inside list-disc my-10">

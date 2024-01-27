@@ -1,3 +1,4 @@
+'use client'
 import Hero from "@/components/home-page/Hero"
 import History from "@/components/home-page/History"
 import Other from "@/components/home-page/Other"

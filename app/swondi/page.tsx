@@ -39,7 +39,7 @@ function Background() {
   const particleColors = ['#583C87', '#E45A84', '#FFACAC'];
   const particleSize = 20;
   const animationDuration = '6s';
-  const amount = 20;
+  const amount = 25;
 
   const getRandomValue = (max: number) => Math.floor(Math.random() * max);
   const getRandomColor = () => particleColors[getRandomValue(particleColors.length)];
@@ -58,7 +58,7 @@ function Background() {
         boxShadow: `${particleSize * 2 * (Math.random() > 0.5 ? -1 : 1)} 0 ${(Math.random() + 0.5) * particleSize * 0.5} currentColor`,
       }}
       initial={{
-        opacity: 0,
+        opacity: 1,
         transform: 'translate3d(0, 0, 1px) rotate(0deg)',
       }}
       animate={{

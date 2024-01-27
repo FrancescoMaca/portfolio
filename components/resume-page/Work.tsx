@@ -1,7 +1,6 @@
 'use client'
-import { Player } from "@lordicon/element";
+// import { Player } from "@lordicon/element";
 import { ResumeTitle } from "./utils";
-import { useRef } from "react";
 import suitcaseIcon from '@/public/icons/suitcase.json'
 
 type TimeSpan = {

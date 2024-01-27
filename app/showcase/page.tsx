@@ -1,8 +1,8 @@
 'use client'
-import { Player } from "@lordicon/react"
 import { motion, useAnimation } from "framer-motion"
-import { useEffect, useRef, useState } from "react"
+import { useEffect, useState } from "react"
 import { bake_cookie, read_cookie } from 'sfcookies'
+import LordIcon from "../LordIcon"
 import heartIcon from '@/public/icons/heart.json'
 
 export default function ShowcasePage() {
@@ -52,12 +52,10 @@ function Project({name, img, link, children}: {name: string, img: string, link: 
   const [isFav, setFav] = useState<boolean>(false)
   const favControls = useAnimation()
   const linkControls = useAnimation()
-  const iconRef = useRef<Player>(null)
   
   useEffect(() => {
     const cookie = read_cookie(name)
     setFav(cookie.length !== 0 ? JSON.parse(cookie as string).value : false)
-    iconRef.current.play()
   }, [])
 
   const toggleFav = (_: React.MouseEvent) => {
@@ -66,9 +64,6 @@ function Project({name, img, link, children}: {name: string, img: string, link: 
       translateY: ['0px', '5px', '0px'],
       transition: { duration: 0.2, stiffness: 100, damping: 10 }
     })
-
-    iconRef.current?.playFromBeginning()
-
     bake_cookie(name, JSON.stringify({value: !isFav}))
   }
 
@@ -98,7 +93,7 @@ function Project({name, img, link, children}: {name: string, img: string, link: 
         </div>
         <div className="flex gap-5">
           <motion.button className="relative self-end px-2 py-1 border-2 border-b-4 border-white rounded-lg z-10 cursor-pointer" onClick={toggleFav} animate={favControls}>
-            <Player state={isFav ? "morph-glitter" : "hover-cross"} ref={iconRef} icon={heartIcon} />
+            <LordIcon data={heartIcon} size={32} state={isFav ? "morph-glitter" : "hover-cross"}></LordIcon>
           </motion.button>
           <motion.a className="relative self-end px-2 py-1 border-2 border-b-4 border-white rounded-lg cursor-pointer z-10"
             href={link} target="_blank"
