@@ -7,7 +7,7 @@ export default function Hero() {
   return (
     <div className="mt-16 text-white">
       <h1 className="uppercase text-center text-s md:text-m lg:text-l">
-        Hello, I&apos;m <ChangeableName />
+        Hi, I&apos;m <ChangeableName />
       </h1>
       <h2 className="text-center text-xs md:text-s lg:text-m">
         Frontend Engineer - Student
