@@ -22,10 +22,6 @@ WORKDIR /app
 COPY --from=deps /app/node_modules ./node_modules
 COPY . .
 
-ENV EMAILJS_KEY=HORkjsRYVsjoqY7Uv
-ENV EMAILJS_SERVICE=service_7gfdfwc
-ENV EMAILJS_TEMPLATE=template_k5gzrm6
-
 RUN \
   if [ -f yarn.lock ]; then yarn run build; \
   elif [ -f package-lock.json ]; then npm run build; \

@@ -13,6 +13,15 @@ jobs:
     - name: Check out the repository
       uses: actions/checkout@v4
 
+    - name: Create .env file
+      run: |
+        rm .env && \
+        cp .env.sample .env && \
+        sed -i 's/EMAILJS_SERVICE=.*/EMAILJS_SERVICE=\"${{ secrets.EMAILJS_SERVICE }}\"/' .env && \
+        sed -i 's/EMAILJS_TEMPLATE=.*/EMAILJS_TEMPLATE=\"${{ secrets.EMAILJS_TEMPLATE }}\"/' .env && \
+        sed -i 's/EMAILJS_KEY=.*/EMAILJS_KEY=\"${{ secrets.EMAILJS_KEY }}\"/' .env && \
+        cat .env
+        
     - name: Set up Docker Buildx
       uses: docker/setup-buildx-action@v3
 
