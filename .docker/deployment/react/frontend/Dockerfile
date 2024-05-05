@@ -34,12 +34,12 @@ RUN rm .env
 RUN cp .env.sample .env
 RUN echo $EMAILJS_KEY $EMAILJS_SERVICE $EMAILJS_TEMPLATE
 
-# RUN sed -i 's/EMAILJS_KEY=.*/EMAILJS_KEY="'"$EMAILJS_KEY"'"/' .env
-# RUN cat .env
-# RUN sed -i 's/EMAILJS_SERVICE=.*/EMAILJS_SERVICE="'"$EMAILJS_SERVICE"'"/' .env
-# RUN cat .env
-# RUN sed -i 's/EMAILJS_TEMPLATE=.*/EMAILJS_TEMPLATE="'"$EMAILJS_TEMPLATE"'"/' .env
-# RUN cat .env
+RUN sed -i 's/EMAILJS_KEY=.*/EMAILJS_KEY="'"$EMAILJS_KEY"'"/' .env
+RUN cat .env
+RUN sed -i 's/EMAILJS_SERVICE=.*/EMAILJS_SERVICE="'"$EMAILJS_SERVICE"'"/' .env
+RUN cat .env
+RUN sed -i 's/EMAILJS_TEMPLATE=.*/EMAILJS_TEMPLATE="'"$EMAILJS_TEMPLATE"'"/' .env
+RUN cat .env
 
 RUN \
   if [ -f yarn.lock ]; then yarn run build; \
