@@ -1,0 +1,19 @@
+services: # containers
+  franky-portfolio-next:  # 1st container (frontend)
+    container_name: franky-portfolio-next # container name that is trying to create
+    image: swondi/franky-portfolio:latest # looks for this image, if not found looks in the hub (best practice, use a tag [:latest])
+    build: # ONLY FOR LOCAL BUILD, OTHERWISE THE SERVER WILL FETCH TO DOCKER HUB
+      context: .
+      dockerfile: ../.docker/deployment/react/frontend/Dockerfile
+    environment: # env vars for the container
+      TARGET: production
+    ports:
+      - "3000"
+    networks:
+      nginx-proxy-manager_default:
+    restart: unless-stopped
+
+networks:
+  nginx-proxy-manager_default:
+    external: true # the network in NOT declared in this file, it is declared in another file
+    name: nginx-proxy-manager_default
