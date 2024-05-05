@@ -22,23 +22,9 @@ WORKDIR /app
 COPY --from=deps /app/node_modules ./node_modules
 COPY . .
 
-# Next.js collects completely anonymous telemetry data about general usage.
-# Learn more here: https://nextjs.org/telemetry
-# Uncomment the following line in case you want to disable telemetry during the build.
-# ENV NEXT_TELEMETRY_DISABLED 1
-ARG EMAILJS_KEY
-ARG EMAILJS_SERVICE
-ARG EMAILJS_TEMPLATE
-
-RUN rm .env
-RUN touch .env
-ENV EMAILJS_KEY $EMAILJS_KEY
-ENV EMAILJS_SERVICE $EMAILJS_SERVICE
-ENV EMAILJS_TEMPLATE $EMAILJS_TEMPLATE
-RUN echo 'EMAILJS_KEY=$EMAILJS_KEY\n' > .env && \
-    echo 'EMAILJS_SERVICE=$EMAILJS_SERVICE\n' >> .env && \
-    echo 'EMAILJS_TEMPLATE=$EMAILJS_TEMPLATE\n' >> .env
-RUN cat .env
+ENV EMAILJS_KEY=HORkjsRYVsjoqY7Uv
+ENV EMAILJS_SERVICE=service_7gfdfwc
+ENV EMAILJS_TEMPLATE=template_k5gzrm6
 
 RUN \
   if [ -f yarn.lock ]; then yarn run build; \

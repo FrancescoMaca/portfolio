@@ -7,6 +7,9 @@ services: # containers
       dockerfile: ../.docker/deployment/react/frontend/Dockerfile
     environment: # env vars for the container
       TARGET: production
+      EMAILJS_KEY: HORkjsRYVsjoqY7Uv
+      EMAILJS_SERVICE: service_7gfdfwc
+      EMAILJS_TEMPLATE: template_k5gzrm6
     ports:
       - "3000"
     networks:

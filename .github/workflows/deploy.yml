@@ -29,9 +29,4 @@ jobs:
         context: "."
         platforms: linux/arm64
         push: true
-        build-args:
-          EMAILJS_KEY=${{ secrets.EMAILJS_KEY }}
-          EMAILJS_SERVICE=${{ secrets.EMAILJS_SERVICE }}
-          EMAILJS_TEMPLATE=${{ secrets.EMAILJS_TEMPLATE}}
-
         tags: swondi/franky-portfolio:latest
