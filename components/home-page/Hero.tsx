@@ -13,7 +13,7 @@ export default function Hero() {
         Frontend Engineer - Student
       </h2>
       <div className="flex justify-center mt-8">
-        <img src="/illustration/me.svg" alt="hero image" className="w-full max-w-3xl"/>
+        <img src="/illustration/me.svg" alt="hero image" className="w-full max-w-3xl" title="Illustration Home Page"/>
       </div>
       <div className="flex justify-center my-4 text-black">
         <button className="text-xs md:text-s w-fit px-2 py-1 bg-light-gray rounded-xl border-b-4 border-black hover:translate-y-1 hover:border-dark">
@@ -46,7 +46,7 @@ function ChangeableName() {
   const [iterationCount, setIterationCount] = useState(0);
 
   useEffect(() => {
-    let interval;
+    let interval: NodeJS.Timeout;
 
     if (iterationCount < 7) {
       setIterationCount(p => p + 1)

@@ -8,13 +8,13 @@ export default function Other() {
       <h2 className="text-center text-xs lg:text-s md:pb-5">You can find me on the different socials</h2>
       <div className="relative flex justify-center gap-10 my-5">
         <a href="https://www.instagram.com/franky_maca/" target="_blank">
-          <img src="/svg/socials/instagram.svg" alt="instagram logo" width={64} height={64} />
+          <img src="/svg/socials/instagram.svg" alt="instagram logo" width={64} height={64}  title="Instagram Icon"/>
         </a>
         <a href="https://github.com/FrancescoMaca/" target="_blank">
-          <img src="/svg/socials/github.svg" alt="github logo" width={64} height={64} />
+          <img src="/svg/socials/github.svg" alt="github logo" width={64} height={64}  title="GitHub Icon"/>
         </a>
         <a href="https://leetcode.com/FrankyMaca/" target="_blank">
-          <img src="/svg/socials/leetcode.svg" alt=" logo" width={64} height={64} />
+          <img src="/svg/socials/leetcode.svg" alt=" logo" width={64} height={64}  title="LeetCode Icon"/>
         </a>
       </div>
       <p className="text-center md:text-xs">

@@ -72,10 +72,10 @@ function IconSkill({ img, name }: {img: string, name: string}) {
       onMouseLeave={() => setOpacity(0)}
     >
       <div className="relative overflow-visible hover:scale-105">
-        <motion.img src={`/svg/${img}`} alt="language icon" width={64} height={64}
+        <motion.img src={`/svg/${img}`} alt="language icon" width={64} height={64} title="Language Icon"
           animate={rotateAnimation}
         />
-        <img className={`absolute top-0 left-0 blur-lg -z-10`}
+        <img className={`absolute top-0 left-0 blur-lg -z-10`} title="Language Icon"
           src={`/svg/${img}`} alt="language icon" width={64} height={64}
         />
       </div>

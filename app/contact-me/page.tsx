@@ -73,14 +73,14 @@ export default function ContactPage() {
             onChange={(e) => setName(e.target.value)}
           />
           <div className="w-fit p-2">
-            <img src="/svg/name-icon.svg" alt="name icon" width={64} height={64}/>
+            <img src="/svg/name-icon.svg" alt="Name Icon" width={64} height={64} title="Name Icon"/>
           </div>
         </motion.div>
         <motion.div className="self-end flex items-center w-fit lg:w-4/5 max-w-2xl justify-between mt-10 lg:m-10 text-xs bg-dark-white rounded-l-3xl lg:rounded-3xl"
           animate={emailControls}
         >
           <div className="w-fit p-2 pl-3">
-            <img src="/svg/email-icon.svg" alt="email icon" width={64} height={64} className="p-2"/>
+            <img src="/svg/email-icon.svg" alt="Email Icon" width={64} height={64} className="p-2" title="Email Icon"/>
           </div>
           <input type="text" placeholder="E-mail"
             className="w-full rounded-xl bg-transparent border-0 md:text-xs"
@@ -115,7 +115,7 @@ export default function ContactPage() {
         </div>
       </div>
       <div className="self-center max-w-7xl h-fit overflow-hidden pb-10">
-        <img src="/illustration/mail.svg" alt="email illustration" width={'100%'}  height={'100%'}/>
+        <img src="/illustration/mail.svg" alt="email illustration" width={'100%'}  height={'100%'} title="Footer Illustration"/>
       </div>
     </div>
   )

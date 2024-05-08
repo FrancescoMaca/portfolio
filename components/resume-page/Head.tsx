@@ -7,7 +7,7 @@ export default function ResumeHead() {
   return (
     <div className="flex flex-col items-center">
       <div className="w-fit">
-        <motion.img src="/pictures/resume-picture.webp" alt="profile picture" className="rounded-full border-2 border-white" width={256} height={256} />
+        <motion.img src="/pictures/resume-picture.webp" alt="profile picture" className="rounded-full border-2 border-white" width={256} height={256} title="Resume Picture"/>
       </div>
       <h1 className="text-s md:text-m mt-5">Francesco Macaluso</h1>
       <h1 className="text-xs md:text-s">Frontend Developer & Student</h1>

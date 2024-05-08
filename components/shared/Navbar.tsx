@@ -39,7 +39,7 @@ export default function Navbar() {
         onClick={() => setIsOpen(!isOpen)}
       >
         <div>
-          <motion.img src="/svg/double-arrow-down.svg" alt="arrow down" height={16} width={16}
+          <motion.img src="/svg/double-arrow-down.svg" alt="arrow down" height={16} width={16} title="Arrow Down"
             animate={{
               rotate: isOpen ? 180 : 0,
               transition: { duration: 0.5, stiffness: 100, damping: 10 }        
@@ -47,7 +47,7 @@ export default function Navbar() {
           />
         </div>
         <div>
-          <motion.img src="/svg/double-arrow-down.svg" alt="arrow down" height={16} width={16}
+          <motion.img src="/svg/double-arrow-down.svg" alt="arrow down" height={16} width={16} title="Arrow Down"
             animate={{
               rotate: isOpen ? 180 : 0,
               transition: { duration: 0.5, stiffness: 100, damping: 10 }        

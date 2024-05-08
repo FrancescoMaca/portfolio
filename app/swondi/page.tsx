@@ -9,7 +9,7 @@ export default function SwondiPage() {
       <h1 className="text-center text-s md:text-m whitespace-nowrap">— Swondi —</h1>
       <div className="self-center flex flex-col mt-10 w-full max-w-5xl">
         <div className="flex justify-center my-10">
-          <img src="/svg/swondi/logo.svg" alt="swondi icon" width={128} height={128} />
+          <img src="/svg/swondi/logo.svg" alt="swondi icon" width={128} height={128} title="Company Logo"/>
         </div>
         <hr />
         <p className="text-xxs md:text-xs py-5">

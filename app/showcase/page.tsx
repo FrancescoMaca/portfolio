@@ -100,7 +100,7 @@ function Project({name, img, link, children}: {name: string, img: string, link: 
             onClick={clickEffect}
             animate={linkControls}
           >
-            <img src="/svg/github.svg" alt="github link" />
+            <img src="/svg/github.svg" alt="github link" title="GitHub Icon"/>
           </motion.a>
         </div>
       </div>
