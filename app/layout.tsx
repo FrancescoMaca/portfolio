@@ -1,12 +1,6 @@
 import './globals.css'
-import type { Metadata } from 'next'
 import Footer from '@/components/shared/Footer'
 import Navbar from '@/components/shared/Navbar'
-
-export const metadata: Metadata = {
-  title: 'Francesco { Code Artist }',
-  description: 'My Beautiful Portfolio',
-}
 
 export default function RootLayout({children}: {children: React.ReactNode}) {
   return (
