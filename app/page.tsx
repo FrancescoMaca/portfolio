@@ -13,7 +13,7 @@ export default function Default() {
         <Panel>
           <PanelGroup direction="horizontal">
             <Toolbox/>
-            <Panel id='files' className="bg-green-950 border-border" maxSize={15} minSize={0} collapsible={true}>
+            <Panel id='files' className="bg-green-950" maxSize={15} minSize={0} collapsible={true}>
               files go here
             </Panel>
             <PanelResizeHandle />
