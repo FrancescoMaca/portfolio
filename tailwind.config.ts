@@ -10,11 +10,16 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        'dark': '#222222',
-        'gray': '#3F3F3F',
-        'light-gray': '#C7C7C7',
-        'dark-white': '#D9D9D9',
-        'white': '#FAFAFF',
+        'dark': '#181818',
+        'accent': '#5576CC',
+        'border-panel': '#2B2B2B',
+        'border-input': '#474747',
+        'input': '#2A2A2A',
+        'control-active': '#737373',
+        'control-disable': '#4D4D4D',
+        'text-normal': '#C6C6C6',
+        'text-unfocused': '#6A6A6A',
+        'selection-color': '#4160A3'
       },
       fontSize: {
         'l': '4rem',
@@ -27,7 +32,7 @@ const config: Config = {
       }
     },
     fontFamily: {
-      'text': 'Josefin Sans',
+      'text': 'Melno',
     }
   },
   plugins: [

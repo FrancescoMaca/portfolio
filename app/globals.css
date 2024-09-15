@@ -3,14 +3,18 @@
 @tailwind utilities;
 
 @font-face {
-  font-family: 'Josefin Sans';
+  font-family: 'Melno';
   font-style: normal;
   font-weight: 400;
-  src: url('../public/font/JosefinSans-Regular.ttf') format('truetype');
+  src: url('../public/font/menlo-regular.ttf') format('truetype');
 }
 
 html {
   scroll-behavior: smooth;
+}
+
+::selection {
+  background-color: #4160A3;
 }
 
 /* For WebKit (Chrome, Safari) */
