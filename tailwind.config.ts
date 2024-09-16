@@ -11,6 +11,7 @@ const config: Config = {
     extend: {
       colors: {
         'dark': '#181818',
+        'hover-dark': '#48484855',
         'accent': '#5576CC',
         'border-panel': '#2B2B2B',
         'border-input': '#474747',

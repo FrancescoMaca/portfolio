@@ -24,12 +24,11 @@ html {
 }
 
 ::-webkit-scrollbar-track {
-  background: #3F3F3F;
+  background: #00000000;
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #C7C7C7;
-  border-radius: 10px 400px;
+  background: #4D4D4D;
 }
 
 /* Tailwind problems as always :D */
