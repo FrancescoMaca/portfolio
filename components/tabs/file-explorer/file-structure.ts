@@ -19,10 +19,14 @@ export const fileStructure = [
     name: 'app',
     icon: 'type_app',
     isFolder: true,
+    isOpenByDefault: true,
     children: [
       { name: 'globals.css', icon: 'type_css' },
       { name: 'layout.tsx', icon: 'type_reactts' },
-      { name: 'page.tsx', icon: 'type_reactts' }
+      { name: 'page.tsx', icon: 'type_reactts' },
+      { name: 'project-page.tsx', icon: 'type_reactts' },
+      { name: 'company-page.tsx', icon: 'type_reactts' },
+      { name: 'contact-page.tsx', icon: 'type_reactts' }
     ]
   },
   {
@@ -93,7 +97,7 @@ export const fileStructure = [
     icon: 'type_node',
     isFolder: true,
     children: [
-      { name: 'random-package.garb', icon: 'type_garb' }
+      { name: 'Disk quota exceeded [errno 122]', icon: 'type_error' }
     ]
   },
   {

@@ -21,7 +21,7 @@ export default function Default() {
                 <PanelGroup direction="vertical">
                   <Editor />
                   <PanelResizeHandle className="w-full h-2 border-t-border-panel border-t-2"/>
-                  <Panel className="bg-dark" defaultSize={10} minSize={15} maxSize={50}>
+                  <Panel className="bg-dark text-white" defaultSize={10} minSize={15} maxSize={50}>
                     Console
                   </Panel>
                 </PanelGroup>

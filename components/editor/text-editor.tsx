@@ -10,7 +10,7 @@ export default function TextEditor({ currentPage }: { currentPage: string }) {
   return (
     <div className="flex w-full h-full flex-col bg-editor text-white font-mono text-sm">
       <div className="flex-grow overflow-auto">
-        <div className="flex">
+        <div className="flex h-full bg-red-400">
           <SyntaxHighlighter
             customStyle={editorStyle}
             lineNumberStyle={lineNumberStyle}

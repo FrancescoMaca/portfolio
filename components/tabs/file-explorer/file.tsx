@@ -1,3 +1,5 @@
+'use client'
+import RainbowText from '@/components/utils/rainbow-text';
 import React from 'react';
 
 interface FileProps {
@@ -41,6 +43,8 @@ export default function File({ name, icon, isFolder = false, isOpen = false, lev
           {
             isFolder && Array.isArray(name) ?
               formatFolderName(name) :
+              isRoutingPath(name as string) ?
+              <RainbowText className='whitespace-nowrap'>{name}</RainbowText> :
               <span className='whitespace-nowrap'>{name}</span>
           }
         </p>
@@ -54,6 +58,7 @@ function formatFolderName(name: string[]) {
     <>
       {
         name.map((fName: string, i: number) => {
+          
           return (
             <span key={i} className=''>
               <span className='hover:underline'>{fName}</span>
@@ -64,4 +69,16 @@ function formatFolderName(name: string[]) {
       }
     </>
   )
+}
+
+const routingPages: string[] = [
+  'app',
+  'page.tsx',
+  'project-page.tsx',
+  'company-page.tsx',
+  'contact-page.tsx',
+]
+
+function isRoutingPath(name: string) {
+  return routingPages.includes(name)
 }

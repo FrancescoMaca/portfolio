@@ -7,12 +7,13 @@ interface FileExplorerItemProps {
     icon: string;
     isFolder?: boolean;
     children?: FileExplorerItemProps['item'][];
+    isOpenByDefault?: boolean;
   };
   level: number;
 }
 
 export default function FileExplorerItem({ item, level }: FileExplorerItemProps) {
-  const [isOpen, setIsOpen] = useState(false);
+  const [isOpen, setIsOpen] = useState(item.isOpenByDefault);
 
   const toggleOpen = () => {
     if (item.isFolder) {
@@ -26,14 +27,14 @@ export default function FileExplorerItem({ item, level }: FileExplorerItemProps)
         name={item.name}
         icon={item.icon}
         isFolder={item.isFolder}
-        isOpen={isOpen}
+        isOpen={item.isOpenByDefault}
         level={level}
         onToggle={toggleOpen}
       />
       {isOpen && item.children && (
         <div>
           {item.children.map((child, index) => (
-            <FileExplorerItem key={index} item={child} level={level + 1} />
+            <FileExplorerItem key={index} item={child} level={level + 1}/>
           ))}
         </div>
       )}

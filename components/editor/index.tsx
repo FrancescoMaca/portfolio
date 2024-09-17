@@ -43,7 +43,7 @@ export default function Editor() {
     <Panel className="flex flex-col" minSize={30} defaultSize={35}>
       {
         tabs.length > 0 ?
-        <div className="flex items-center text-white overflow-y-auto">
+        <div className="flex items-center text-text-unfocused overflow-y-auto">
           {tabs.map((tab, i) => (
             <Tab
             key={i}
