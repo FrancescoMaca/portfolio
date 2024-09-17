@@ -7,13 +7,13 @@ import FileExplorerTab from "./file-explorer";
 import SourceControlTab from "./source-control";
 import ExtensionTab from "./extensions";
 import RunAndDebugTab from "./run-and-debug";
-import { useEffect } from "react";
+import { useEffect, useRef } from "react";
 
 export function ActiveTabComponent() {
   const activeTab = useSelector((state: RootState) => state.toolbox.activeTab);
+  const panelRef = useRef(null);
 
   useEffect(() => {
-
     const handle = getResizeHandleElement('resize-handle')
     const observer = new MutationObserver((_) => {
       const handleState = handle.getAttribute('data-resize-handle-state')
@@ -31,6 +31,7 @@ export function ActiveTabComponent() {
       observer.disconnect()
     }
   }, [])
+
   const renderComponent = () => {
     switch (activeTab.text) {
       case 'Folders':
@@ -41,7 +42,6 @@ export function ActiveTabComponent() {
         return <ExtensionTab />;
       case 'Run and Debug':
         return <RunAndDebugTab />;
-        
       default:
         return <FileExplorerTab />;
     }
@@ -49,7 +49,7 @@ export function ActiveTabComponent() {
 
   return (
     <>
-      <Panel id="active-tab" minSize={0} maxSize={80} collapsedSize={0} className="">
+      <Panel ref={panelRef} id="active-tab" minSize={22} maxSize={50} defaultSize={30} collapsedSize={0} collapsible={true}>
         {
           renderComponent()
         }

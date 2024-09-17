@@ -11,6 +11,7 @@ const config: Config = {
     extend: {
       colors: {
         'dark': '#181818',
+        'editor': '#1E1E1E',
         'hover-dark': '#48484855',
         'accent': '#5576CC',
         'border-panel': '#2B2B2B',
@@ -18,9 +19,10 @@ const config: Config = {
         'input': '#2A2A2A',
         'control-active': '#737373',
         'control-disable': '#4D4D4D',
-        'text-normal': '#C6C6C6',
+        'text-normal': '#cccccc',
         'text-unfocused': '#6A6A6A',
-        'selection-color': '#4160A3'
+        'selection-color': '#4160A3',
+        'line-number': '#717680'
       },
       fontSize: {
         'l': '4rem',

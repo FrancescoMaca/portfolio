@@ -1,13 +1,13 @@
 'use client'
 
-import Navbar from "@/components/navbar"
 import { ReduxProvider } from "@/components/redux/redux-provider"
 import { ActiveTabComponent } from "@/components/tabs"
-import Toolbox from "@/components/toolbox"
 import { Panel, PanelGroup, PanelResizeHandle } from "react-resizable-panels"
+import Toolbox from "@/components/toolbox"
+import Navbar from "@/components/navbar"
+import Editor from "@/components/editor"
 
 export default function Default() {
-
   return (
     <ReduxProvider>
       <div className="h-screen">
@@ -19,16 +19,10 @@ export default function Default() {
               <ActiveTabComponent />
               <Panel>
                 <PanelGroup direction="vertical">
-                  <Panel className="bg-red-400">
-                    IDE and code go here
-                  </Panel>
-                  <PanelResizeHandle/>
-                  <Panel defaultSize={20}>
-                    <PanelGroup direction="horizontal">
-                      <Panel className="bg-pink-400" defaultSize={10}>
-                        Console
-                      </Panel>
-                    </PanelGroup>
+                  <Editor />
+                  <PanelResizeHandle className="w-full h-2 border-t-border-panel border-t-2"/>
+                  <Panel className="bg-dark" defaultSize={10} minSize={15} maxSize={50}>
+                    Console
                   </Panel>
                 </PanelGroup>
               </Panel>

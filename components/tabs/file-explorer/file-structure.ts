@@ -1,4 +1,3 @@
-
 export const fileStructure = [
   {
     name: ['.docker', 'deployment', 'react', 'frontend'],
@@ -16,7 +15,6 @@ export const fileStructure = [
       { name: 'deploy.yml', icon: 'type_yaml' }
     ]
   },
-  { name: 'README.md', icon: 'type_markdown' },
   {
     name: 'app',
     icon: 'type_app',
@@ -90,10 +88,14 @@ export const fileStructure = [
       }
     ]
   },
-  { name: 'lordicons-types.ts', icon: 'type_typescript' },
-  { name: 'next.config.js', icon: 'type_next' },
-  { name: 'package.json', icon: 'type_json' },
-  { name: 'postcss.config.js', icon: 'type_postcssconfig' },
+  {
+    name: 'node_modules',
+    icon: 'type_node',
+    isFolder: true,
+    children: [
+      { name: 'random-package.garb', icon: 'type_garb' }
+    ]
+  },
   {
     name: 'public',
     icon: 'type_public',
@@ -150,15 +152,17 @@ export const fileStructure = [
       { name: 'email.ts', icon: 'type_typescript' }
     ]
   },
+  { name: '.dockerignore', icon: 'type_docker' },
+  { name: '.env', icon: 'type_ini' },
+  { name: '.env.sample', icon: 'type_shell' },
+  { name: '.eslintrc.json', icon: 'type_eslint' },
+  { name: '.gitignore', icon: 'type_git' },
+  { name: 'next-env.d.ts', icon: 'type_typescriptdef' },
+  { name: 'next.config.js', icon: 'type_next' },
+  { name: 'package.json', icon: 'type_npm' },
+  { name: 'postcss.config.js', icon: 'type_postcssconfig' },
+  { name: 'README.md', icon: 'type_markdown' },
   { name: 'tailwind.config.ts', icon: 'type_tailwind' },
   { name: 'tsconfig.json', icon: 'type_tsconfig' },
   { name: 'yarn.lock', icon: 'type_yarn' },
-  {
-    name: 'node_modules',
-    icon: 'type_node',
-    isFolder: true,
-    children: [
-      { name: 'random-package.garb', icon: 'type_garb' }
-    ]
-  }
 ];

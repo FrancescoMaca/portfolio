@@ -10,7 +10,9 @@ export default function FileExplorer() {
           Folders: portfolio
         </span>
         <div className='flex gap-2 ml-5'>
-          <button className='hover:bg-hover-dark rounded-md p-1 min-w-[28px]'>
+          <button className='hover:bg-hover-dark rounded-md p-1 min-w-[28px]'
+            onClick={createFile}
+          >
             <img src="/svg/ide/new-file.svg" alt="More Icon" title='' width={20} />
           </button>
           <button className='hover:bg-hover-dark rounded-md p-1 min-w-[28px]'>
@@ -32,4 +34,10 @@ export default function FileExplorer() {
       ))}
     </div>
   );
+}
+
+
+function createFile() {
+  console.log('creating file');
+  
 }
