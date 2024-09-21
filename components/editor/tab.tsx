@@ -1,6 +1,7 @@
 'use client'
 
 import { MouseEvent } from "react";
+import RainbowText from "../utils/rainbow-text";
 
 interface TabProps {
   name: string;
@@ -26,7 +27,7 @@ export default function Tab({ name, isActive, onClick, onClose }: TabProps) {
       flex items-center justify-between gap-4 px-4 py-2
       hover:bg-hover-dark focus:outline-none
       border-t-2 border-x-[0.5px] border-x-border-panel
-      whitespace-nowrap
+      whitespace-nowrap select-disable
       ${isActive ?
         'border-t-accent bg-editor text-white' :
         'border-t-dark hover:border-t-hover-dark'}
@@ -34,7 +35,10 @@ export default function Tab({ name, isActive, onClick, onClose }: TabProps) {
       onMouseDown={handleMiddleClick}
       onClick={onClick}
     >
-      {name}
+      {
+        isRoutingPath(name) ?
+        <RainbowText className={`whitespace-nowrap ${isActive ? '' : 'brightness-75'}`}>{name}</RainbowText> : name
+      }
       <div className={`hover:bg-hover-dark rounded-md p-1 ${isActive ? '' : 'invisible'}`}
         onClick={() => onClose(name)}
       >
@@ -45,3 +49,14 @@ export default function Tab({ name, isActive, onClick, onClose }: TabProps) {
     </button>
   )
 };
+
+const routingTabs: string[] = [
+  'home-page.tsx',
+  'project-page.tsx',
+  'company-page.tsx',
+  'contact-page.tsx',
+]
+
+function isRoutingPath(name: string) {
+  return routingTabs.includes(name)
+}

@@ -5,13 +5,13 @@ import { contactPage } from './contents/contact-page'
 
 export function getPageContent(name: string) {
   switch (name) {
-    case 'home.tsx':
+    case 'home-page.tsx':
       return homePage
-    case 'projects.tsx':
+    case 'project-page.tsx':
       return projectPage
-    case 'my-company.tsx':
+    case 'company-page.tsx':
       return companyPage
-    case 'textme.md':
+    case 'contact-page.tsx':
       return contactPage
     default:
       return `page not found :(\npage not found :(\n`
