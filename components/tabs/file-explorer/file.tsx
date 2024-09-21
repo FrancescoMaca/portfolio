@@ -7,11 +7,13 @@ interface FileProps {
   icon: string;
   isFolder?: boolean;
   isOpen?: boolean;
+  isLink?: boolean;
   level: number;
   onToggle?: () => void;
 }
 
-export default function File({ name, icon, isFolder = false, isOpen = false, level, onToggle }: FileProps) {
+export default function File({ name, icon, isFolder = false, isOpen = false,  isLink = false, level, onToggle }: FileProps) {
+  
   return (
     <div 
       className={`flex items-center py-1 cursor-pointer hover:bg-control-disable`} 
@@ -43,9 +45,11 @@ export default function File({ name, icon, isFolder = false, isOpen = false, lev
           {
             isFolder && Array.isArray(name) ?
               formatFolderName(name) :
-              isRoutingPath(name as string) ?
-              <RainbowText className='whitespace-nowrap'>{name}</RainbowText> :
-              <span className='whitespace-nowrap'>{name}</span>
+                isLink ?
+                <RainbowText className='whitespace-nowrap'>
+                  {name}
+                </RainbowText> :
+                <span className='whitespace-nowrap'>{name}</span>
           }
         </p>
       </div>
@@ -69,16 +73,4 @@ function formatFolderName(name: string[]) {
       }
     </>
   )
-}
-
-const routingPages: string[] = [
-  'app',
-  'page.tsx',
-  'project-page.tsx',
-  'company-page.tsx',
-  'contact-page.tsx',
-]
-
-function isRoutingPath(name: string) {
-  return routingPages.includes(name)
 }

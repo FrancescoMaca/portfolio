@@ -1,7 +1,12 @@
 'use client'
 import React, { useEffect, useState } from 'react';
 
-const RainbowText = ({ children, className }: { children: React.ReactNode, className: string }) => {
+interface RainbowTextProps {
+  children: React.ReactNode;
+  className: string;
+}
+
+const RainbowText = ({ children, className }: RainbowTextProps) => {
   return (
     <span
       className={`

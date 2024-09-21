@@ -2,19 +2,18 @@
 
 import SyntaxHighlighter from "react-syntax-highlighter/dist/esm/light-async";
 import { atomOneDark } from "react-syntax-highlighter/dist/esm/styles/hljs";
-import { getPageContent } from "./page-content/content-handler";
+import { getPageContent, getPageLanguage } from "./page-content/content-handler";
 import { CSSProperties } from "react";
 
 export default function TextEditor({ currentPage }: { currentPage: string }) {
-  
-  return (
+  return (  
     <div className="flex w-full h-full flex-col bg-editor text-white font-mono text-sm">
       <div className="flex-grow overflow-auto">
         <div className="flex h-full bg-red-400">
           <SyntaxHighlighter
             customStyle={editorStyle}
             lineNumberStyle={lineNumberStyle}
-            language='typescript'
+            language={getPageLanguage(currentPage)}
             style={atomOneDark}
             showLineNumbers={true}
           >

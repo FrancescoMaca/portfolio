@@ -4,7 +4,7 @@ export const fileStructure = [
     icon: 'type_docker',
     isFolder: true,
     children: [
-      { name: 'Dockerfile', icon: 'type_docker' }
+      { name: 'Dockerfile', icon: 'type_docker', isLink: true }
     ]
   },
   {
@@ -20,13 +20,14 @@ export const fileStructure = [
     icon: 'type_app',
     isFolder: true,
     isOpenByDefault: true,
+    isLink: true, // This is just an exception for the app/ directory
     children: [
       { name: 'globals.css', icon: 'type_css' },
       { name: 'layout.tsx', icon: 'type_reactts' },
-      { name: 'page.tsx', icon: 'type_reactts' },
-      { name: 'project-page.tsx', icon: 'type_reactts' },
-      { name: 'company-page.tsx', icon: 'type_reactts' },
-      { name: 'contact-page.tsx', icon: 'type_reactts' }
+      { name: 'page.tsx', icon: 'type_reactts', isLink: true },
+      { name: 'project-page.tsx', icon: 'type_reactts', isLink: true },
+      { name: 'company-page.tsx', icon: 'type_reactts', isLink: true },
+      { name: 'contact-page.tsx', icon: 'type_reactts', isLink: true }
     ]
   },
   {

@@ -10,7 +10,7 @@ import RunAndDebugTab from "./run-and-debug";
 import HighlightHandler from "../utils/highlight-panel-handler";
 
 export function ActiveTabComponent() {
-  const activeTab = useSelector((state: RootState) => state.toolbox.activeTab);
+  const activeTab = useSelector((state: RootState) => state.toolbox.activeItem);
 
   const renderComponent = () => {
     switch (activeTab.text) {
@@ -29,7 +29,7 @@ export function ActiveTabComponent() {
 
   return (
     <>
-      <Panel id="active-tab" minSize={22} maxSize={50} defaultSize={30} collapsedSize={0} collapsible={true}>
+      <Panel id="active-tab" minSize={15} maxSize={50} defaultSize={30} collapsedSize={0} collapsible={true}>
         {
           renderComponent()
         }

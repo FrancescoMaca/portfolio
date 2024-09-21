@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
 import File from './file';
+import { useDispatch } from 'react-redux';
+import { addTab } from '@/components/redux/slices/tab-slice';
 
 interface FileExplorerItemProps {
   item: {
@@ -8,16 +10,23 @@ interface FileExplorerItemProps {
     isFolder?: boolean;
     children?: FileExplorerItemProps['item'][];
     isOpenByDefault?: boolean;
+    isLink?: boolean;
   };
   level: number;
 }
 
 export default function FileExplorerItem({ item, level }: FileExplorerItemProps) {
   const [isOpen, setIsOpen] = useState(item.isOpenByDefault);
-
+  const dispatch = useDispatch()
+  
   const toggleOpen = () => {
     if (item.isFolder) {
       setIsOpen(!isOpen);
+    }
+
+    // If the item should open itself in the editor when clicked
+    if (!item.isFolder && item.isLink) {
+      dispatch(addTab({ name: item.name as string, isLink: item.isLink }))
     }
   };
 
@@ -28,6 +37,7 @@ export default function FileExplorerItem({ item, level }: FileExplorerItemProps)
         icon={item.icon}
         isFolder={item.isFolder}
         isOpen={item.isOpenByDefault}
+        isLink={item.isLink}
         level={level}
         onToggle={toggleOpen}
       />

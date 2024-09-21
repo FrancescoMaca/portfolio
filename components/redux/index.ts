@@ -1,13 +1,14 @@
+// components/redux/store.ts
 import { configureStore } from '@reduxjs/toolkit';
-import toolboxReducer from './slices/tab-slice'
+import tabReducer from './slices/tab-slice'
+import toolboxReducer from './slices/toolbox-slice'
 
-const store = configureStore({
+export const store = configureStore({
   reducer: {
-    toolbox: toolboxReducer,
+    tabs: tabReducer,
+    toolbox: toolboxReducer
   },
 });
 
 export type RootState = ReturnType<typeof store.getState>;
 export type AppDispatch = typeof store.dispatch;
-
-export default store;
