@@ -24,7 +24,7 @@ export default function Tab({ name, isActive, isLink, onClick, onClose }: TabPro
 
   return (
     <button className={`
-      flex items-center justify-between gap-4 px-4 py-2
+      flex items-center justify-between gap-2 px-4 py-2
       hover:bg-hover-dark focus:outline-none
       border-t-[3px] border-x-[0.5px] border-x-border-panel
       whitespace-nowrap select-disable
@@ -35,7 +35,8 @@ export default function Tab({ name, isActive, isLink, onClick, onClose }: TabPro
       onMouseDown={handleMiddleClick}
       onClick={onClick}
     >
-      {name}
+      <img src="svg/files/file_type_reactts.svg" width={16}/>
+      <span className="text-sm">{name}</span>
       <div className={`hover:bg-dark hover:bg-opacity-70 rounded-md p-1 ${isActive ? '' : 'invisible'}`}
         onClick={(e) => {
           e.stopPropagation()

@@ -6,6 +6,7 @@ import { Panel, PanelGroup } from "react-resizable-panels"
 import Toolbox from "@/components/toolbox"
 import Navbar from "@/components/navbar"
 import Editor from "@/components/editor"
+import Console from "@/components/console"
 
 export default function Default() {
   return (
@@ -20,9 +21,7 @@ export default function Default() {
               <Panel>
                 <PanelGroup direction="vertical">
                   <Editor />
-                  <Panel className="bg-dark text-white" defaultSize={10} minSize={15} maxSize={50} collapsedSize={0} collapsible={true}>
-                    Console
-                  </Panel>
+                  <Console />
                 </PanelGroup>
               </Panel>
             </PanelGroup>

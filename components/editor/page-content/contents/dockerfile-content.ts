@@ -1,4 +1,7 @@
-export const dockerfileContent = `
+import { PageContent } from "../content-handler";
+
+export const dockerfileContent: PageContent = {
+  content: `
 FROM node:18-alpine AS base
 
 # Install dependencies only when needed
@@ -62,3 +65,4 @@ ENV PORT 3000
 # server.js is created by next build from the standalone output
 CMD HOSTNAME="0.0.0.0" node server.js
 `
+}

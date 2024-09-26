@@ -26,7 +26,10 @@ export default function DefaultPage() {
           <span>Show all Commands</span>
           <span>New file</span>
           <span>Toggle Dark Theme</span>
-          <span>Close</span>
+          <div className="flex flex-col relative">
+            <span>Close</span>
+            <span className="text-[.75rem]">(the webpage, not the file :D)</span>
+          </div>
         </div>
         <div className="flex flex-col items-left gap-4">
           <span>{createKey(mainKey)} + {createKey('H')}</span>
@@ -35,8 +38,10 @@ export default function DefaultPage() {
           <span>{createKey(mainKey)} + {createKey('W')}</span>
         </div>
       </div>
-      <div className="absolute bottom-2 right-2 text-sm mt-10">
-        100% made with VS Code
+      <div className="absolute flex items-center bottom-2 right-2 text-sm mt-10">
+        <span>100% made with</span>
+        <img src="/svg/ide/vscode-logo.svg" alt="IDE logo" title="" width={32}/>
+        <span>VS Code</span>
       </div>
 
     </div>

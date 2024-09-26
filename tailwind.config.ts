@@ -35,9 +35,20 @@ const config: Config = {
         '4xl': '3rem',
       },
       animation: {
+        'fly-duck': 'fly-duck 2s linear forwards',
         'gradient-text': 'rainbow 1s linear infinite',
       },
       keyframes: {
+        'fly-duck': {
+          '0%': {
+            bottom: '0',
+            right: '-50%',
+          },
+          '100%': {
+            bottom: '100%',
+            right: '150%',
+          }
+        },
         rainbow: {
           '0%, 100%': {
             'background-position-x': '0%'
