@@ -36,7 +36,7 @@ export function ActiveTabComponent() {
 
   return (
     <>
-      <Panel id="active-tab" minSize={15} maxSize={50} defaultSize={30} collapsedSize={0} collapsible={true}>
+      <Panel id="active-tab" minSize={15} maxSize={50} defaultSize={25} collapsedSize={0} collapsible={true}>
         {
           sidebarContent[activeTab.text] ?? <FileExplorerTab />
         }

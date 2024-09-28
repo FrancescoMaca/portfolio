@@ -16,7 +16,7 @@ export default function Console() {
   ]
 
   return (
-    <Panel className="flex flex-col h-full">
+    <Panel className="flex flex-col h-full" defaultSize={20} maxSize={50} minSize={15} collapsedSize={0} collapsible>
       <div className="flex text-sm">
         {
           tabs.map((tabName, index) => 

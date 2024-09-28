@@ -66,7 +66,7 @@ export default function Editor() {
   
   return (
     <>
-      <Panel className="flex flex-col" minSize={30} defaultSize={35}>
+      <Panel className="flex flex-col" minSize={30} defaultSize={80}>
         {
           tabs.length > 0 ?
           <div className="flex items-center pr-10 text-text-unfocused overflow-y-hidden overflow-x-auto"
@@ -102,6 +102,16 @@ export default function Editor() {
             <TextEditor currentPage={tabs[activeTabIndex].name}/>
           </div>
         }
+        {/* <Notification
+          title={'U.F.O Detected'}
+          body='A duck process keeps running in the background burning valuable processing power. Do you want to kill the process?'
+          actionButton={'No, I got 64gb RAM'}
+          actionButtonCb={() => console.log('duck spared')}
+          secondaryButton='Take Duck Down'
+          secondaryButtonCb={() => console.log('duck killed')}
+          type={'warning'}
+          onClose={() => console.log('closeee')}
+        /> */}
       </Panel>
       <HighlightHandler horizontal />
     </>

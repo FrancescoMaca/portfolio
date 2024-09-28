@@ -23,7 +23,8 @@ const config: Config = {
         'text-unfocused': '#6A6A6A',
         'text-changed': '#D3C194',
         'selection-color': '#4160A3',
-        'line-number': '#717680'
+        'line-number': '#717680',
+        'notif-bg': '#252526'
       },
       fontSize: {
         'l': '4rem',
@@ -56,7 +57,7 @@ const config: Config = {
           '50%': {
             'background-position-x': '100%'
           }
-        }
+        },
       },
       backgroundImage: {
         'highlight-gradient': 'linear-gradient(to right, #B868E7, #7AD3E9)',

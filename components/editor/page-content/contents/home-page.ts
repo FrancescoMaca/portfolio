@@ -217,7 +217,9 @@ ${generateSimulatedMemoryDump(40)}
 // to check out my EXTREMELY secret projects that are up and 🏃.
 
 // Click the button below to run some VERY SAFE commands in the console
-console.do([[ACTION:runCommand]])
+console.do(
+  () => [[ACTION:runCommand]]
+)
 
 
 
@@ -226,7 +228,7 @@ console.do([[ACTION:runCommand]])
 
 function generateSimulatedMemoryDump(rows = 40, bytesPerRow = 16) {
   const words = ['Dark', 'Procastination', 'SckOvr', 'Delusion', 'Sadness', 'Why u here?'];
-  const symbols = '!@#$%^&*()_+-=[]{}|;:,.<>?';
+  const symbols = '!@#$%^&*()_+-=[]{}|;?';
   function getRandomChar() {
     const charType = Math.random();
 

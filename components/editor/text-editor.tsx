@@ -6,6 +6,10 @@ import { getEditorContent, getPageLanguage } from "./page-content/content-handle
 import { CSSProperties, useRef, useState } from "react";
 import { ToggleButton } from "../utils/toggle-button";
 import React from 'react'
+import { useDispatch } from "react-redux";
+import { showNotification } from "../redux/slices/notification-slice";
+import { generateUUID } from "../utils/helpers";
+import { setPendingCommand } from "../redux/slices/console-commands-slice";
 
 interface Action {
   name: string;
@@ -17,32 +21,43 @@ interface Action {
 const actions: Action[] = [
   { name: 'openImage', label: "[Open Image]", action: () => console.log('opening image')},
   { name: 'seeMore', label: "[See More]", action: () => console.log('seeing more')},
-  { name: 'runCommand', label: "[Run Command]", action: () => console.log('running command')},
+  { name: 'runCommand', label: "[Run Command]", action: undefined},
 ]
 
 export default function TextEditor({ currentPage }: { currentPage: string }) {
   const [goodFormat, setGoodFormat] = useState<boolean>(false)
   const content = getEditorContent(currentPage, goodFormat)
   const duckRef = useRef<HTMLImageElement>(null)
-  
+  const dispatch = useDispatch()
+
   const handleCommandClick = () => {
 
+    const cmd = `curl -s https://frankymaca.me | grep -o '"[^"]*/"' | sort -u`
+    
     // The duck is unavailable so just execute command
     if (!duckRef.current) {
-      
-      console.log('Executing command');
+      dispatch(setPendingCommand(cmd))
       return
     }
-    duckRef.current.classList.toggle('animate-fly-duck')
 
     // Was the animation already ran??
     if (duckRef.current.classList.contains('animate-fly-duck')) {
-      console.log('Executing command');
+      dispatch(setPendingCommand(cmd))
     }
     else {
-      // If the duck exist tho, its different,  Make it fly
+      duckRef.current.classList.add('animate-fly-duck')
 
-      // NotificationProvider.pushNotification('Duck Problem', 'Sorry for that, it just slipped away')
+      // If the duck exist tho, its different,  Make it fly
+      dispatch(showNotification({
+        id: generateUUID(),
+        title: 'U.F.O Detected',
+        body: 'A duck process keeps running in the background burning valuable processing power. Do you want to kill the process?',
+        actionButton: 'No, I got 64gb RAM',
+        actionButtonCb: 'spareDuck',
+        secondaryButton: 'Kill Duck',
+        secondaryButtonCb: 'killDuck',
+        type: 'warning',
+      }))
     }
   }
 

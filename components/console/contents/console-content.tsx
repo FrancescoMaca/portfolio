@@ -1,5 +1,9 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { consoleCommands } from '../commands';
+import { useSelector } from 'react-redux';
+import { RootState } from '@/components/redux';
+import { clearPendingCommand } from '@/components/redux/slices/console-commands-slice';
+import { useDispatch } from 'react-redux';
 
 type CommandStatus = 'none' | 'success' | 'error';
 
@@ -16,6 +20,9 @@ export default function ConsoleContent() {
   const [output, setOutput] = useState<CommandOutput[]>([])
   const inputRef = useRef<HTMLInputElement>(null)
   const consoleRef = useRef<HTMLDivElement>(null)
+  const pendingCommand = useSelector((state: RootState) => state.consoleCommands.pendingCommand)
+  const pendingCommandRef = useRef<string | null>(null)
+  const dispatch = useDispatch()
 
   const prompt = '○ francescomacaluso@Frankys-MacBook-Pro portfolio % '
 
@@ -34,14 +41,24 @@ export default function ConsoleContent() {
     if (consoleRef.current) {
       consoleRef.current.scrollTop = consoleRef.current.scrollHeight
     }
-  }, [output])
 
-  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setInput(e.target.value)
-  }
+    if (pendingCommand) {
+      pendingCommandRef.current = pendingCommand;
+      setInput(pendingCommand);
+      dispatch(clearPendingCommand());
+    }
+  }, [output, pendingCommand, dispatch])
 
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
+  useEffect(() => {
+    if (pendingCommandRef.current) {
+      handleSubmit();
+      pendingCommandRef.current = null;
+    }
+  }, [input])
+
+  const handleSubmit = (e?: React.FormEvent) => {
+    e?.preventDefault();
+        
     if (!input.trim()) {
       setOutput(prev => [...prev, { type: 'output', content: prompt, status: 'none' }])
       setInput('')
@@ -94,13 +111,9 @@ export default function ConsoleContent() {
     }
   };
 
-  const focusInput = () => {
-    inputRef.current?.focus();
-  };
-
   return (
     <div className="h-full text-white p-4 rounded-md flex flex-col cursor-text"
-      onClick={focusInput}
+      onClick={() => inputRef.current?.focus()}
       ref={consoleRef}
     >
       <div>
@@ -114,15 +127,15 @@ export default function ConsoleContent() {
           )
         }
       </div>
-      <form onSubmit={handleSubmit} className="flex items-center bg-red-500 text-sm">
+      <form onSubmit={handleSubmit} className="flex items-center text-sm">
         <span className="flex-shrink-0 mr-2">{getPrompt('none')}</span>
         <input
           ref={inputRef}
           type="text"
           value={input}
-          onChange={handleInputChange}
+          onChange={(e) => setInput(e.target.value)}
           onKeyDown={handleKeyDown}
-          className="flex-grow bg-red-950 text-sm p-0 outline-none border-0"
+          className="flex-grow text-sm bg-dark p-0 outline-none border-0"
           autoFocus
         />
       </form>
