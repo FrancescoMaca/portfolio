@@ -10,7 +10,7 @@ export interface PageContent {
   prettyContent?: string;
 }
 
-export function getPageContent(name: string, goodFormat: boolean) {
+export function getEditorContent(name: string, goodFormat: boolean) {
   let pageContent: PageContent = notFoundContent
   
   switch (name) {

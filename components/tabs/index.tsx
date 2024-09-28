@@ -12,6 +12,13 @@ import HighlightHandler from "../utils/highlight-panel-handler";
 export function ActiveTabComponent() {
   const activeTab = useSelector((state: RootState) => state.toolbox.activeItem);
 
+  const sidebarContent = {
+    'Folders': <FileExplorerTab />,
+    'Source Control': <SourceControlTab />,
+    'Extensions': <ExtensionTab />,
+    'Run and Debug': <RunAndDebugTab />,
+  }
+  
   const renderComponent = () => {
     switch (activeTab.text) {
       case 'Folders':
@@ -31,7 +38,7 @@ export function ActiveTabComponent() {
     <>
       <Panel id="active-tab" minSize={15} maxSize={50} defaultSize={30} collapsedSize={0} collapsible={true}>
         {
-          renderComponent()
+          sidebarContent[activeTab.text] ?? <FileExplorerTab />
         }
       </Panel>
       <HighlightHandler />

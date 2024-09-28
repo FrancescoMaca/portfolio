@@ -9,7 +9,7 @@ import HighlightHandler from '../utils/highlight-panel-handler';
 import { useDispatch } from 'react-redux';
 import { useSelector } from 'react-redux';
 import { RootState } from '../redux';
-import { addTab, closeTab, setActiveTab } from '../redux/slices/tab-slice';
+import { addTab, closeTab, setActiveTab } from '../redux/slices/editor-tab-slice';
 import ContextMenu from '../context-menu';
 
 export default function Editor() {

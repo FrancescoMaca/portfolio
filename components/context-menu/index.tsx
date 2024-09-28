@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import { useDispatch } from 'react-redux';
-import { closeAllTabs, closeOtherTabs, closeTab } from '../redux/slices/tab-slice';
+import { closeAllTabs, closeOtherTabs, closeTab } from '../redux/slices/editor-tab-slice';
 
 interface ContextMenuProps {
   x: number;

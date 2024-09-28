@@ -2,7 +2,7 @@
 
 import SyntaxHighlighter from "react-syntax-highlighter/dist/esm/light-async";
 import { atomOneDark } from "react-syntax-highlighter/dist/esm/styles/hljs";
-import { getPageContent, getPageLanguage } from "./page-content/content-handler";
+import { getEditorContent, getPageLanguage } from "./page-content/content-handler";
 import { CSSProperties, useRef, useState } from "react";
 import { ToggleButton } from "../utils/toggle-button";
 import React from 'react'
@@ -22,7 +22,7 @@ const actions: Action[] = [
 
 export default function TextEditor({ currentPage }: { currentPage: string }) {
   const [goodFormat, setGoodFormat] = useState<boolean>(false)
-  const content = getPageContent(currentPage, goodFormat)
+  const content = getEditorContent(currentPage, goodFormat)
   const duckRef = useRef<HTMLImageElement>(null)
   
   const handleCommandClick = () => {

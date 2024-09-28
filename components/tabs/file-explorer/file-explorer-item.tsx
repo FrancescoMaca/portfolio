@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import File from './file';
 import { useDispatch } from 'react-redux';
-import { addTab } from '@/components/redux/slices/tab-slice';
+import { addTab } from '@/components/redux/slices/editor-tab-slice';
 
 interface FileExplorerItemProps {
   item: {
