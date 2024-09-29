@@ -1,7 +1,5 @@
 import { PageContent } from "../content-handler";
 
-const sampleData = 'Hello, World! This is a sample text with some non-printable characterssome non-printable characterssome non-printable characterssome non-printable characterssome non-printable characterssome non-printable characterssome non-printable characters.\x00\x01\x02\x03';
-
 export const homePage: PageContent = {
   content: `
 // Francesco Macaluso's Portfolio

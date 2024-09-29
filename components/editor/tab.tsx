@@ -24,7 +24,7 @@ export default function Tab({ name, isActive, isLink, onClick, onClose }: TabPro
 
   return (
     <button className={`
-      flex items-center justify-between gap-2 px-4 py-2
+      flex items-center justify-between gap-2 px-5 py-2
       hover:bg-hover-dark focus:outline-none
       border-t-[3px] border-x-[0.5px] border-x-border-panel
       whitespace-nowrap select-disable

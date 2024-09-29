@@ -10,6 +10,8 @@ import { useDispatch } from "react-redux";
 import { showNotification } from "../redux/slices/notification-slice";
 import { generateUUID } from "../utils/helpers";
 import { setPendingCommand } from "../redux/slices/console-commands-slice";
+import { specificCmd } from "../console/commands/command-handler";
+import { addTab } from "../redux/slices/editor-tab-slice";
 
 interface Action {
   name: string;
@@ -19,9 +21,9 @@ interface Action {
 }
 
 const actions: Action[] = [
-  { name: 'openImage', label: "[Open Image]", action: () => console.log('opening image')},
+  { name: 'openImage', label: "[Open Image]", action: undefined },
   { name: 'seeMore', label: "[See More]", action: () => console.log('seeing more')},
-  { name: 'runCommand', label: "[Run Command]", action: undefined},
+  { name: 'runCommand', label: "[Run Command]", action: undefined },
 ]
 
 export default function TextEditor({ currentPage }: { currentPage: string }) {
@@ -32,17 +34,15 @@ export default function TextEditor({ currentPage }: { currentPage: string }) {
 
   const handleCommandClick = () => {
 
-    const cmd = `curl -s https://frankymaca.me | grep -o '"[^"]*/"' | sort -u`
-    
     // The duck is unavailable so just execute command
     if (!duckRef.current) {
-      dispatch(setPendingCommand(cmd))
+      dispatch(setPendingCommand(specificCmd.getWebsiteDirs))
       return
     }
 
     // Was the animation already ran??
     if (duckRef.current.classList.contains('animate-fly-duck')) {
-      dispatch(setPendingCommand(cmd))
+      dispatch(setPendingCommand(specificCmd.getWebsiteDirs))
     }
     else {
       duckRef.current.classList.add('animate-fly-duck')
@@ -61,17 +61,26 @@ export default function TextEditor({ currentPage }: { currentPage: string }) {
     }
   }
 
+  const handleOpenImage = () => {
+    dispatch(addTab({ name: 'francesco-macaluso.png', isLink: false }))
+  }
+
+  actions[0].action = handleOpenImage
   actions[2].action = handleCommandClick
-  return (  
+
+  return (
     <div className="relative flex w-full h-full flex-col bg-editor text-white font-mono text-sm overflow-hidden">
-      <img ref={duckRef} src="/pictures/duck.png" alt="A duck?" title="Duck"
-        className="absolute bottom-0 -right-[50%] scale-50 select-disable rotate-[30deg] z-50"
-      />
+      {
+        currentPage === 'page.tsx' &&
+        <img ref={duckRef} src="/pictures/duck.png" alt="A duck?" title="Duck"
+          className="absolute bottom-0 -right-[50%] scale-50 select-disable rotate-[30deg] z-50"
+        />
+      }
       <div className="absolute top-2 right-3 p-2 z-10 bg-editor rounded-md border-editor border">
         <ToggleButton onChange={() => setGoodFormat(!goodFormat)} label="Fellow Developer Mode"/>
       </div>
       <div className="flex-grow overflow-auto">
-        <div className="flex h-full">
+        <div className='flex h-full'>
           <SyntaxHighlighter
             customStyle={editorStyle}
             lineNumberStyle={lineNumberStyle}
@@ -101,6 +110,7 @@ const editorStyle: CSSProperties = {
 }
 
 const lineNumberStyle: CSSProperties = {
+  textAlign: 'right',
   color: '#717680'
 }
 

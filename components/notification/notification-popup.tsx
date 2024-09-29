@@ -16,7 +16,6 @@ export interface NotificationProps {
   onClose?: string;
 }
 
-
 export function Notification({
   id,
   title,

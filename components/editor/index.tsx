@@ -1,6 +1,6 @@
 'use client'
 import React, { MouseEvent, useCallback, useEffect, useState } from 'react';
-import { Panel } from "react-resizable-panels";
+import { Panel, PanelGroup } from "react-resizable-panels";
 import { getRandomFunnyFileName } from './page-content/new-tab-names';
 import Tab from './tab';
 import TextEditor from './text-editor';
@@ -11,6 +11,7 @@ import { useSelector } from 'react-redux';
 import { RootState } from '../redux';
 import { addTab, closeTab, setActiveTab } from '../redux/slices/editor-tab-slice';
 import ContextMenu from '../context-menu';
+import ImageViewer from './page-content/image-viewer';
 
 export default function Editor() {
   const dispatch = useDispatch()
@@ -98,20 +99,14 @@ export default function Editor() {
         {
           activeTabIndex === -1 ?
           <DefaultPage /> :
-          <div className="h-full overflow-y-auto">
-            <TextEditor currentPage={tabs[activeTabIndex].name}/>
-          </div>
+            tabs[activeTabIndex].name.endsWith('.png') ?
+              <div className="h-full overflow-y-auto">
+                <ImageViewer name={tabs[activeTabIndex].name} /> 
+              </div>:
+              <div className="h-full overflow-y-auto">
+                <TextEditor currentPage={tabs[activeTabIndex].name}/>
+              </div>
         }
-        {/* <Notification
-          title={'U.F.O Detected'}
-          body='A duck process keeps running in the background burning valuable processing power. Do you want to kill the process?'
-          actionButton={'No, I got 64gb RAM'}
-          actionButtonCb={() => console.log('duck spared')}
-          secondaryButton='Take Duck Down'
-          secondaryButtonCb={() => console.log('duck killed')}
-          type={'warning'}
-          onClose={() => console.log('closeee')}
-        /> */}
       </Panel>
       <HighlightHandler horizontal />
     </>

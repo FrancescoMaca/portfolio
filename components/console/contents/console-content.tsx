@@ -4,6 +4,7 @@ import { useSelector } from 'react-redux';
 import { RootState } from '@/components/redux';
 import { clearPendingCommand } from '@/components/redux/slices/console-commands-slice';
 import { useDispatch } from 'react-redux';
+import { isSpecificCommand } from '../commands/command-handler';
 
 type CommandStatus = 'none' | 'success' | 'error';
 
@@ -68,6 +69,12 @@ export default function ConsoleContent() {
     setOutput(prev => [...prev, { type: 'input', content: input, status: 'none' }]);
     setHistory(prev => [input, ...prev]);
     setHistoryIndex(-1);
+
+    if (isSpecificCommand(input)) {
+      console.log('command is unique');
+      setInput('');
+      return
+    }
 
     const [command, ...args] = input.trim().split(' ');
     const result = executeCommand(command, args);
