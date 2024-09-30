@@ -39,9 +39,9 @@ const my_journey = [
 ]
 
 const profiles: Map<string, string> = {
-  'github': 'FrancescoMaca',
-  'instagram': '@franky_maca',
-  'linkedin': 'francesco_macaluso'
+  'github': '[[ACTION:openGithub]]',
+  'instagram': '[[ACTION:openInstagram]]',
+  'linkedin': '[[ACTION:openLinkedin]]'
 }
 
 // 
@@ -90,9 +90,9 @@ const myJourney = [
 ]
 
 const profiles: Map<string, string> = {
-  'github': 'FrancescoMaca',
-  'instagram': '@franky_maca',
-  'linkedin': 'francesco_macaluso'
+  'github': '[[ACTION:openGithub]]', 
+  'instagram': '[[ACTION:openInstagram]]',
+  'linkedin': '[[ACTION:openLinkedin]]'
 }
 
 

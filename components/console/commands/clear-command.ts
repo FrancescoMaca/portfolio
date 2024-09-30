@@ -1,6 +1,7 @@
+import { CLICommand, CLICommandResult } from "./command-handler";
 
-export const clearCommand = {
+export const clearCommand: CLICommand = {
   description: 'Clears the console.',
   usage: 'clear',
-  action: () => 'CLEAR_CONSOLE'
+  action: () => { return { message: 'CLEAR', status: CLICommandResult.SUCCESS} }
 }

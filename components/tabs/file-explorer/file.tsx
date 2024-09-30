@@ -6,14 +6,14 @@ interface FileProps {
   name: string | string[];
   icon: string;
   isFolder?: boolean;
+  iconName: string;
   isOpen?: boolean;
   isLink?: boolean;
   level: number;
   onToggle?: () => void;
 }
 
-export default function File({ name, icon, isFolder = false, isOpen = false,  isLink = false, level, onToggle }: FileProps) {
-  
+export default function File({ name, icon, isFolder = false, isOpen = false, iconName, isLink = false, level, onToggle }: FileProps) {
   return (
     <div 
       className={`flex items-center py-1 cursor-pointer hover:bg-control-disable`} 
@@ -24,7 +24,7 @@ export default function File({ name, icon, isFolder = false, isOpen = false,  is
         {
           isFolder &&
           <img
-            src={`/svg/ide/chevron-${isOpen ? 'down' : 'right'}.svg`}
+            src={iconName}
             alt="Chevron Right"
             title=""
             width={20}

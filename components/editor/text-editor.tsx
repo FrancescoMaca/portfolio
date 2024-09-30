@@ -24,6 +24,9 @@ const actions: Action[] = [
   { name: 'openImage', label: "[Open Image]", action: undefined },
   { name: 'seeMore', label: "[See More]", action: () => console.log('seeing more')},
   { name: 'runCommand', label: "[Run Command]", action: undefined },
+  { name: 'openGithub', label: "FrancescoMaca", action: () => open('https://github.com/FrancescoMaca') },
+  { name: 'openInstagram', label: "@franky_maca", action: () => open('https://www.instagram.com/franky_maca/') },
+  { name: 'openLinkedin', label: "francesco-macaluso", action: () => open('https://www.linkedin.com/in/francesco-macaluso/') },
 ]
 
 export default function TextEditor({ currentPage }: { currentPage: string }) {

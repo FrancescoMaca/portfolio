@@ -37,6 +37,7 @@ export default function FileExplorerItem({ item, level }: FileExplorerItemProps)
         icon={item.icon}
         isFolder={item.isFolder}
         isOpen={item.isOpenByDefault}
+        iconName={`/svg/ide/chevron-${isOpen ? 'down' : 'right'}.svg`} // Gotta use this otherwise the component is not gonna re-render
         isLink={item.isLink}
         level={level}
         onToggle={toggleOpen}

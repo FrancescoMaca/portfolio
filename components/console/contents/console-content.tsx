@@ -4,21 +4,13 @@ import { useSelector } from 'react-redux';
 import { RootState } from '@/components/redux';
 import { clearPendingCommand } from '@/components/redux/slices/console-commands-slice';
 import { useDispatch } from 'react-redux';
-import { isSpecificCommand } from '../commands/command-handler';
-
-type CommandStatus = 'none' | 'success' | 'error';
-
-type CommandOutput = {
-  type: 'input' | 'output';
-  content: string;
-  status: CommandStatus;
-};
+import { CLICommand, CLICommandOutput, CLICommandResult, CLICommandResultDetails, CLICommandType } from '../commands/command-handler';
 
 export default function ConsoleContent() {
   const [input, setInput] = useState('')
   const [history, setHistory] = useState<string[]>([])
   const [_, setHistoryIndex] = useState(-1)
-  const [output, setOutput] = useState<CommandOutput[]>([])
+  const [output, setOutput] = useState<CLICommandOutput[]>([])
   const inputRef = useRef<HTMLInputElement>(null)
   const consoleRef = useRef<HTMLDivElement>(null)
   const pendingCommand = useSelector((state: RootState) => state.consoleCommands.pendingCommand)
@@ -26,17 +18,6 @@ export default function ConsoleContent() {
   const dispatch = useDispatch()
 
   const prompt = '○ francescomacaluso@Frankys-MacBook-Pro portfolio % '
-
-  const getPrompt = (status: CommandStatus) => {
-    const circle = status === 'success' ? '●' : '○'
-    const color = status === 'success' ? 'text-sky-500' : status === 'error' ? 'text-red-500' : 'text-white'
-    return (
-      <span>
-        <span className={color}>{circle}</span>
-        <span> francescomacaluso@Frankys-MacBook-Pro portfolio % </span>
-      </span>
-    );
-  };
 
   useEffect(() => {
     if (consoleRef.current) {
@@ -61,40 +42,23 @@ export default function ConsoleContent() {
     e?.preventDefault();
         
     if (!input.trim()) {
-      setOutput(prev => [...prev, { type: 'output', content: prompt, status: 'none' }])
+      setOutput(prev => [...prev, { type: CLICommandType.OUTPUT, content: prompt, status: CLICommandResult.NONE }])
       setInput('')
       return
     }
 
-    setOutput(prev => [...prev, { type: 'input', content: input, status: 'none' }]);
-    setHistory(prev => [input, ...prev]);
-    setHistoryIndex(-1);
-
-    if (isSpecificCommand(input)) {
-      console.log('command is unique');
+    const commandResult: CLICommandOutput = handleCommand(input)
+    if (commandResult.content === 'CLEAR') {
+      setOutput([])
       setInput('');
-      return
     }
-
-    const [command, ...args] = input.trim().split(' ');
-    const result = executeCommand(command, args);
-
-    if (result === 'CLEAR_CONSOLE') {
-      setOutput([]);
-    } else {
-      const status: CommandStatus = result.startsWith('zsh: command not found:') ? 'error' : 'success';
-      setOutput(prev => [...prev, { type: 'output', content: result, status: status }]);
+    else {
+      setOutput(prev => [...prev, { type: CLICommandType.INPUT, content: input, status: CLICommandResult.NONE }]);
+      setOutput(prev => [...prev, commandResult])
+      setHistory(prev => [input, ...prev]);
+      setHistoryIndex(-1);
+      setInput('');
     }
-
-    setInput('');
-  };
-
-  const executeCommand = (command: string, args: string[]): string => {
-    const cmd = consoleCommands[command as keyof typeof consoleCommands];
-    if (cmd) {
-      return cmd.action(args);
-    }
-    return `zsh: command not found: ${command}`;
   };
 
   const handleKeyDown = (e: React.KeyboardEvent) => {
@@ -127,7 +91,7 @@ export default function ConsoleContent() {
         {
           output.map((item, index) => (
             <div key={index} className="break-words whitespace-pre-wrap text-sm">
-              {item.type === 'input' ? getPrompt(output[index + 1]?.status || 'none') : ''}
+              {item.type === CLICommandType.INPUT ? getPrompt(output[index + 1].status) : ''}
               <span>{item.content}</span>
             </div>
             )
@@ -135,7 +99,7 @@ export default function ConsoleContent() {
         }
       </div>
       <form onSubmit={handleSubmit} className="flex items-center text-sm">
-        <span className="flex-shrink-0 mr-2">{getPrompt('none')}</span>
+        <span className="flex-shrink-0 mr-2">{getPrompt(CLICommandResult.NONE)}</span>
         <input
           ref={inputRef}
           type="text"
@@ -148,4 +112,47 @@ export default function ConsoleContent() {
       </form>
       </div>
   );
+}
+
+const getPrompt = (status: CLICommandResult) => {
+  const circle = status !== CLICommandResult.NONE ? '●' : '○'
+  let color = 'text-white'
+  
+  if (status === CLICommandResult.SUCCESS) {
+    color = 'text-sky-500'
+  }
+  else if (status === CLICommandResult.ERROR) {
+    color = 'text-red-500'
+  }
+
+  return (
+    <span>
+      <span className={color}>{circle}</span>
+      <span> francescomacaluso@Frankys-MacBook-Pro portfolio % </span>
+    </span>
+  );
+};
+
+function handleCommand(cmd: string): CLICommandOutput {
+
+  const [commandName, ...argsNames] = cmd.trim().split(' ')
+  const command: CLICommand | undefined = consoleCommands[commandName]
+
+  let res: CLICommandOutput = {
+    type: CLICommandType.OUTPUT,
+    content: `zsh: command not found: ${commandName}`,
+    status: CLICommandResult.ERROR
+  }
+  
+  if (command) {
+    const { message, status}: CLICommandResultDetails = command.action(argsNames)
+    
+    if (message === 'CLEAR') {
+      return { ...res, content: 'CLEAR' }
+    }
+
+    res = { ...res, content: message, status: status }
+  }
+
+  return { type: CLICommandType.OUTPUT, content: res.content, status: res.status }
 }
