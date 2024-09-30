@@ -5,7 +5,7 @@ import { Notification } from './notification-popup'
 
 export default function NotificationProvider() {
   const notifications = useSelector((state: RootState) => state.notification.notifications);
-
+  
   return (
     <div className="fixed bottom-10 right-10 flex flex-col-reverse gap-5 z-50">
       {notifications.map((notificationData, index) => (
@@ -20,6 +20,7 @@ export default function NotificationProvider() {
           onClose={notificationData.onClose}
           secondaryButton={notificationData.secondaryButton}
           secondaryButtonCb={notificationData.secondaryButtonCb}
+          hasCloseButton={notificationData.hasCloseButton ?? true}
         />
       ))}
     </div>

@@ -6,7 +6,10 @@ export const helpCommand: CLICommand = {
   usage: 'help',
   action: () => {
     return {
-      message: Object.entries(consoleCommands).map(([name, cmd]) => `${name}: ${cmd.description}`).join('\n'),
+      message: `
+${Object.entries(consoleCommands).map(([name, cmd]) => `${name}: ${cmd.description}`).join('\n')}      
+
+`,
       status: CLICommandResult.SUCCESS
     }
   }

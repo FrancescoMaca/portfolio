@@ -12,6 +12,7 @@ interface Notification {
   secondaryButton?: string;
   secondaryButtonCb: string; // *
   onClose?: string; // *
+  hasCloseButton?: boolean;
 }
 
 interface NotificationState {
@@ -27,7 +28,7 @@ const notificationSlice = createSlice({
   initialState,
   reducers: {
     showNotification: (state, action: PayloadAction<NotificationProps>) => {
-      state.notifications.unshift(action.payload)
+      state.notifications.unshift({...action.payload })
     },
     hideNotification: (state, action: PayloadAction<string>) => {
       state.notifications = state.notifications.filter(

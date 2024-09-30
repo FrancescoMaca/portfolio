@@ -12,6 +12,8 @@ import { RootState } from '../redux';
 import { addTab, closeTab, setActiveTab } from '../redux/slices/editor-tab-slice';
 import ContextMenu from '../context-menu';
 import ImageViewer from './page-content/image-viewer';
+import { showNotification } from '../redux/slices/notification-slice';
+import { generateUUID } from '../utils/helpers';
 
 export default function Editor() {
   const dispatch = useDispatch()
@@ -29,6 +31,19 @@ export default function Editor() {
     };
   }, [contextMenu]);
   
+  useEffect(() => {
+    // TODO: Add a cookie or smth to not make it appear again
+    dispatch(showNotification({
+      id: generateUUID(),
+      title: 'Some useful tips',
+      body: 'You can interact with some lines of code by hovering and clicking on them! Feel free to also navigate as if it was your IDE :0',
+      type: 'info',
+      actionButton: 'Thanks',
+      actionButtonCb: '',
+      secondaryButton: 'I don\'t care',
+      secondaryButtonCb: 'openSorryDialog'
+    }))
+  }, [])
   const handleDoubleClick = () => {
     dispatch(addTab({ name: getRandomFunnyFileName(), isLink: false }))
   };
