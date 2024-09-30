@@ -6,6 +6,7 @@ import consoleTabReducer from './slices/console-tab-slice'
 import notificationReducer from './slices/notification-slice'
 import consoleCommandsReducer from './slices/console-commands-slice'
 import eeReducer from './slices/ee-slice'
+import loadingReducer from './slices/webpage-loading-slice'
 
 export const store = configureStore({
   reducer: {
@@ -14,7 +15,8 @@ export const store = configureStore({
     consoleTabs: consoleTabReducer,
     consoleCommands: consoleCommandsReducer,
     notification: notificationReducer,
-    ee: eeReducer
+    ee: eeReducer,
+    loading: loadingReducer
   },
 });
 

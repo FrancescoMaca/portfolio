@@ -20,7 +20,7 @@ export default function ContextMenu({ x, y, onClose, tabName }: ContextMenuProps
 
   return (
     <div 
-      className="absolute bg-editor border border-border-panel rounded shadow-lg py-2 z-50"
+      className="absolute bg-editor border border-border-panel rounded shadow-lg py-2 z-40"
       style={{ top: y, left: x }}
     >
       {menuItems.map((item, index) => (

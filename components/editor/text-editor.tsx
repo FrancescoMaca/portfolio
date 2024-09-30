@@ -3,7 +3,7 @@
 import SyntaxHighlighter from "react-syntax-highlighter/dist/esm/light-async";
 import { atomOneDark } from "react-syntax-highlighter/dist/esm/styles/hljs";
 import { getEditorContent, getPageLanguage } from "./page-content/content-handler";
-import { CSSProperties, useRef, useState } from "react";
+import { CSSProperties, useEffect, useRef, useState } from "react";
 import { ToggleButton } from "../utils/toggle-button";
 import React from 'react'
 import { useDispatch } from "react-redux";
@@ -12,6 +12,7 @@ import { generateUUID } from "../utils/helpers";
 import { setPendingCommand } from "../redux/slices/console-commands-slice";
 import { specificCmd } from "../console/commands/command-handler";
 import { addTab } from "../redux/slices/editor-tab-slice";
+import { finishLoading } from "../redux/slices/webpage-loading-slice";
 
 interface Action {
   name: string;
@@ -76,7 +77,7 @@ export default function TextEditor({ currentPage }: { currentPage: string }) {
       {
         currentPage === 'page.tsx' &&
         <img ref={duckRef} src="/pictures/duck.png" alt="A duck?" title="Duck"
-          className="absolute bottom-0 -right-[50%] scale-50 select-disable rotate-[30deg] z-50"
+          className="absolute bottom-0 -right-[50%] scale-50 select-disable rotate-[30deg] z-40"
         />
       }
       <div className="absolute top-2 right-3 p-2 z-10 bg-editor rounded-md border-editor border">
@@ -118,9 +119,17 @@ const lineNumberStyle: CSSProperties = {
 }
 
 function CustomPreComponent({ children }: { children: React.ReactNode }) {
+  const dispatch = useDispatch()
+
+  // Removes the loading screen once everything is gone
+  useEffect(() => {
+    dispatch(finishLoading());
+  }, [dispatch]);
+  
   if (!(children as any).props) {
     return <span>Cannot load editor</span>
   }
+  
   const content: any[] = (children as any).props.children[1];
   
   const updatedContent = content.map((code) => {

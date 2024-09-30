@@ -38,6 +38,7 @@ const config: Config = {
       animation: {
         'fly-duck': 'fly-duck 2s linear forwards',
         'gradient-text': 'rainbow 1s linear infinite',
+        'loading-bar': 'loading 2s ease-in-out infinite'
       },
       keyframes: {
         'fly-duck': {
@@ -58,9 +59,15 @@ const config: Config = {
             'background-position-x': '100%'
           }
         },
+        loading: {
+          '0%': { width: '0%', marginLeft: '0%' },
+          '50%': { width: '100%', marginLeft: '0%' },
+          '100%': { width: '0%', marginLeft: '100%' },
+        }
       },
       backgroundImage: {
         'highlight-gradient': 'linear-gradient(to right, #B868E7, #7AD3E9)',
+        'loading-screen': 'radial-gradient(#121f3e, #181818)'
       }
     },
     fontFamily: {

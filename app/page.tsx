@@ -1,20 +1,21 @@
 'use client'
 
 import { ReduxProvider } from "@/components/redux/redux-provider"
-import { ActiveTabComponent } from "@/components/tabs"
 import { Panel, PanelGroup } from "react-resizable-panels"
+import { ActiveTabComponent } from "@/components/tabs"
 import Toolbox from "@/components/toolbox"
 import Navbar from "@/components/navbar"
 import Editor from "@/components/editor"
 import Console from "@/components/console"
 import NotificationProvider from "@/components/notification/notification-provider"
 import BottomBar from "@/components/bottom-bar"
+import LoadingScreen from "@/components/loading-screen"
 
 export default function Default() {
-  
   return (
     <ReduxProvider>
       <div className="h-screen">
+        <LoadingScreen />
         <PanelGroup direction="vertical">
           <Navbar/>
           <Panel>

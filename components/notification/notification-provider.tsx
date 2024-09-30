@@ -5,9 +5,9 @@ import { Notification } from './notification-popup'
 
 export default function NotificationProvider() {
   const notifications = useSelector((state: RootState) => state.notification.notifications);
-  
+
   return (
-    <div className="fixed bottom-10 right-10 flex flex-col-reverse gap-5 z-50">
+    <div className="fixed bottom-10 right-10 flex flex-col-reverse gap-5 z-40">
       {notifications.map((notificationData, index) => (
         <Notification
           key={index}
