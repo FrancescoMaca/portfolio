@@ -16,7 +16,7 @@ interface FileProps {
 export default function File({ name, icon, isFolder = false, isOpen = false, iconName, isLink = false, level, onToggle }: FileProps) {
   return (
     <div 
-      className={`flex items-center py-1 cursor-pointer hover:bg-control-disable`} 
+      className={`flex items-center py-1 ${name.includes('[errno 122]') ? 'cursor-not-allowed' : 'cursor-pointer'} hover:bg-control-disable`} 
       style={{ paddingLeft: `${(level * 16) + 12 + (isFolder ? 0 : 24)}px` }}
       onClick={onToggle}
     >

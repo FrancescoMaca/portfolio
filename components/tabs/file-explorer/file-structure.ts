@@ -142,7 +142,7 @@ export const fileStructure = [
         icon: 'type_images',
         isFolder: true,
         children: [
-          { name: 'resume-picture.webp', icon: 'type_image' }
+          { name: 'francesco-macaluso.png', icon: 'type_image', isLink: true }
         ]
       },
       { name: 'robots.txt', icon: 'type_robots' },
