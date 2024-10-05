@@ -24,9 +24,7 @@ export default function Console() {
           )
         }
       </div>
-      <div className="h-full overflow-y-auto">
-        { sidebarContent[activeTabIndex] }
-      </div>
+      { sidebarContent[activeTabIndex] }
     </Panel>
   )
 }

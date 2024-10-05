@@ -20,12 +20,14 @@ export default function ConsoleContent() {
   const prompt = '○ francescomacaluso@Frankys-MacBook-Pro portfolio % '
 
   useEffect(() => {
-    inputRef.current?.focus()
-
     if (pendingCommand) {
       pendingCommandRef.current = pendingCommand;
       setInput(pendingCommand);
       dispatch(clearPendingCommand());
+    }
+
+    if (consoleRef.current) {
+      consoleRef.current.scrollTop = consoleRef.current.scrollHeight
     }
   }, [output, pendingCommand, dispatch])
 
@@ -82,21 +84,19 @@ export default function ConsoleContent() {
   };
 
   return (
-    <div className="h-full text-white p-4 rounded-md flex flex-col cursor-text"
+    <div className="h-full overflow-y-auto text-white p-4 rounded-md flex flex-col cursor-text"
       onClick={() => inputRef.current?.focus()}
       ref={consoleRef}
     >
-      <div>
-        {
-          output.map((item, index) => (
-            <div key={index} className="break-words whitespace-pre-wrap text-sm">
-              {item.type === CLICommandType.INPUT ? getPrompt(output[index + 1].status) : ''}
-              <span>{item.content}</span>
-            </div>
-            )
+      {
+        output.map((item, index) => (
+          <div key={index} className="break-words whitespace-pre-wrap text-sm">
+            {item.type === CLICommandType.INPUT ? getPrompt(output[index + 1].status) : ''}
+            <span>{item.content}</span>
+          </div>
           )
-        }
-      </div>
+        )
+      }
       <form onSubmit={handleSubmit} className="flex items-center text-sm">
         <span className="flex-shrink-0 mr-2">{getPrompt(CLICommandResult.NONE)}</span>
         <input
@@ -126,7 +126,7 @@ const getPrompt = (status: CLICommandResult) => {
 
   return (
     <span>
-      <span className={color}>{circle}</span>
+      <span className={`${color} select-disable`}>{circle}</span>
       <span> francescomacaluso@Frankys-MacBook-Pro portfolio % </span>
     </span>
   );

@@ -13,22 +13,20 @@ import { setPendingCommand } from "../redux/slices/console-commands-slice";
 import { specificCmd } from "../console/commands/command-handler";
 import { addTab } from "../redux/slices/editor-tab-slice";
 import { finishLoading } from "../redux/slices/webpage-loading-slice";
+import TextWithIcon from "../utils/icon-hover";
+import UrlRenderer from "../utils/url-renderer";
 
-interface Action {
-  name: string;
-  label: string;
-  className?: string;
-  action: () => void;
+type ActionType = 'HOVER' | 'URL' | 'ACTION'
+type ActionHandler = (args: string[]) => React.ReactNode
+
+const actionHandlers: Record<ActionType, ActionHandler> = {
+  ACTION: (args) => renderAction(args),
+  URL: (args) => renderUrl(args),
+  HOVER: (args) => renderHover(args),
 }
 
-const linkActions: Action[] = [
-  { name: 'openImage', label: "[Open Image]", action: undefined },
-  { name: 'seeMore', label: "[See More]", action: () => console.log('seeing more')},
-  { name: 'runCommand', label: "[Run Command]", action: undefined },
-  { name: 'openGithub', label: "FrancescoMaca", action: () => open('https://github.com/FrancescoMaca') },
-  { name: 'openInstagram', label: "@franky_maca", action: () => open('https://www.instagram.com/franky_maca/') },
-  { name: 'openLinkedin', label: "francesco-macaluso", action: () => open('https://www.linkedin.com/in/francesco-macaluso/') },
-]
+
+const actions: { [key: string]: () => void | undefined } = { }
 
 export default function TextEditor({ currentPage }: { currentPage: string }) {
   const [goodFormat, setGoodFormat] = useState<boolean>(false)
@@ -36,18 +34,6 @@ export default function TextEditor({ currentPage }: { currentPage: string }) {
   const duckRef = useRef<HTMLImageElement>(null)
   const dispatch = useDispatch()
 
-  setInterval(() => {
-    dispatch(showNotification({
-      id: generateUUID(),
-      title: 'U.F.O Detected',
-      body: 'A duck process keeps running in the background burning valuable processing power. Do you want to kill the process?',
-      actionButton: 'No, I got 64gb RAM',
-      actionButtonCb: 'spareDuck',
-      secondaryButton: 'Kill Duck',
-      secondaryButtonCb: 'killDuck',
-      type: 'warning',
-    }))
-  }, 120000);
   const handleCommandClick = () => {
 
     // The duck is unavailable so just execute command
@@ -82,8 +68,8 @@ export default function TextEditor({ currentPage }: { currentPage: string }) {
     dispatch(addTab({ name: 'francesco-macaluso.png', isLink: false }))
   }
 
-  linkActions[0].action = handleOpenImage
-  linkActions[2].action = handleCommandClick
+  actions['openProfileImage'] = handleOpenImage
+  actions['runSecretCommand'] = handleCommandClick
 
   return (
     <div className="relative flex w-full h-full flex-col bg-editor text-white font-mono text-sm overflow-hidden">
@@ -150,18 +136,14 @@ function CustomPreComponent({ children }: { children: React.ReactNode }) {
       return code;
     }
 
-    const newChildren = code.props.children[0].split(/(\[\[ACTION:\w+\]\])/).map((part: string, index: number) => {
-      const actionMatch = part.match(/\[\[ACTION:(\w+)\]\]/);
+    const newChildren = code.props.children[0].split(/(\[\[.*?\]\])/).map((part: string) => {
+      const actionMatch = part.match(/\[\[([\w]+):(.+?)\]\]/);
       if (actionMatch) {
-        const actionName = actionMatch[1];
-        const action = linkActions.find(a => a.name === actionName);
-        if (action) {
-          return React.createElement('span', {
-            key: index,
-            onClick: action.action,
-            className: `cursor-pointer hover:underline ${action.className ? action.className : ''}`,
-            children: `${action.label}`
-          });
+        const actionType = actionMatch[1] as ActionType
+        const actionArgs = actionMatch[2].split(',').map(s => s.trim())
+        
+        if (actionType in actionHandlers) {
+          return actionHandlers[actionType](actionArgs)
         }
       }
       return part;
@@ -195,4 +177,25 @@ function updateObject(originalObject: any, newChildContent: any) {
       ]
     }
   };
+}
+
+function renderAction(args: string[]) {
+  return (
+    <span key={Math.random()}
+      onClick={actions[args[1]]}
+      className="hover:underline hover:text-accent cursor-pointer"
+    >
+      {args[0]}
+    </span>
+  )
+}
+
+function renderHover(args: string[]) {
+  return (
+    <TextWithIcon label={args[0]} icon={!!args[1] ? `/svg/other/${args[1]}.svg` : undefined}/>
+  )
+}
+
+function renderUrl(args: string[]) {
+  return <UrlRenderer label={args[0]} url={args[1]}/>
 }

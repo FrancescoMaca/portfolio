@@ -1,5 +1,8 @@
 import { PageContent } from "../content-handler";
 
+const githubUrl = 'https://github.com/FrancescoMaca'
+const instagramUrl = 'https://www.instagram.com/franky_maca/'
+const linkedinUrl = 'https://www.linkedin.com/in/francesco-macaluso/'
 export const homePage: PageContent = {
   content: `
 // Francesco Macaluso's Portfolio
@@ -16,16 +19,16 @@ const role = 'Student & Software Engineer'
 
 // This is me :>
 fetch('http://127.0.0.1:3000/get-profile-image')
-  .then(res => [[ACTION:openImage]])
+  .then(res => [[ACTION:[openImage],openProfileImage]])
   .catch(error => console.log('The server refused to look at you'))
 
 // My skills are like a tree - always growing and starving for balance! (you get it? tree as in the data structure! Ok sorry I'll stop)
 const skills = [
-  'Teamwork', 'Dedication', 'Analytical Skills',
-  'JavaScript', 'TypeScript', 'React', 'Node.js',
-  'C/C++/C#', 'Java', 'Flutter',
-  'Git', 'Docker', 'MongoDB', 'Firebase'
-  'Data Structures'
+  '[[HOVER:Teamwork]]', '[[HOVER:Dedication]]', '[[HOVER:Analytical Skills]]',
+  '[[HOVER:JavaScript,javascript]]', '[[HOVER:TypeScript,typescript]]', '[[HOVER:React,react]]', '[[HOVER:Node.js,nodejs]]',
+  '[[HOVER:C/C++/C#,clang]]', '[[HOVER:Java,java]]', '[[HOVER:Flutter,flutter]]',
+  '[[HOVER:Git,git]]', '[[HOVER:Docker,docker]]', '[[HOVER:MongoDB,mongodb]]', '[[HOVER:Firebase,firebase]]'
+  '[[HOVER:Data Structures,datastructure]]'
 ]
 
 skills.pop() // Sshhh
@@ -39,14 +42,14 @@ const my_journey = [
 ]
 
 const profiles: Map<string, string> = {
-  'github': '[[ACTION:openGithub]]',
-  'instagram': '[[ACTION:openInstagram]]',
-  'linkedin': '[[ACTION:openLinkedin]]'
+  'github': \`[[URL:[open my GitHub],${githubUrl}]]\`, 
+  'instagram': \`[[URL:[open my Instagram],${instagramUrl}]]\`,
+  'linkedin': \`[[URL:[open my Linkedin],${linkedinUrl}]]\`
 }
 
 // 
 // Wanna see more? 
-// Click [[ACTION:seeMore]]
+// Click [[ACTION:[seeMore],ciao]]
 // 
 console.log(\`Last updated: \${new Date().toISOString().split('T')[0]}\`) // ${new Date().toISOString().split('T')[0]}
 
@@ -67,7 +70,7 @@ const role = 'Student & Software Engineer' || 'Unemployed'
 
 // This is me :>
 fetch('http://127.0.0.1:3000/get-profile-image')
-  .then(res => [[ACTION:openImage]])
+  .then(res => [[ACTION:[openImage],openProfileImage]])
   .catch(error => console.log('The server refused to look at you'))
 
 // My skills are like a tree - always growing and starving for balance! (you get it? tree as in the data structure! Ok sorry I'll stop)
@@ -90,9 +93,9 @@ const myJourney = [
 ]
 
 const profiles: Map<string, string> = {
-  'github': '[[ACTION:openGithub]]', 
-  'instagram': '[[ACTION:openInstagram]]',
-  'linkedin': '[[ACTION:openLinkedin]]'
+  'github': \`[[URL:[open my GitHub],${githubUrl}]]\`, 
+  'instagram': \`[[URL:[open my Instagram],${instagramUrl}]]\`,
+  'linkedin': \`[[URL:[open my Linkedin],${linkedinUrl}]]\`
 }
 
 
@@ -216,7 +219,7 @@ ${generateSimulatedMemoryDump(40)}
 
 // Click the button below to run some VERY SAFE commands in the console
 console.do(
-  () => [[ACTION:runCommand]]
+  () => [[ACTION:[run_me_plz],runSecretCommand]]
 )
 
 
