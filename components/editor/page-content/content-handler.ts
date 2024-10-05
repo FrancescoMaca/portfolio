@@ -37,14 +37,3 @@ export function getEditorContent(name: string, goodFormat: boolean) {
     return pageContent.content
   }
 }
-
-export function getPageLanguage(name: string) {
-  switch(name.split('.').pop().toLowerCase()) {
-    case 'tsx':
-      return 'typescript'
-    case 'dockerfile':
-      return 'dockerfile'
-    default:
-      return 'plaintext'
-  }
-}

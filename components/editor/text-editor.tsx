@@ -2,13 +2,13 @@
 
 import SyntaxHighlighter from "react-syntax-highlighter/dist/esm/light-async";
 import { atomOneDark } from "react-syntax-highlighter/dist/esm/styles/hljs";
-import { getEditorContent, getPageLanguage } from "./page-content/content-handler";
+import { getEditorContent } from "./page-content/content-handler";
 import { CSSProperties, useEffect, useRef, useState } from "react";
 import { ToggleButton } from "../utils/toggle-button";
 import React from 'react'
 import { useDispatch } from "react-redux";
 import { showNotification } from "../redux/slices/notification-slice";
-import { generateUUID } from "../utils/helpers";
+import { generateUUID, getPageLanguage } from "../utils/helpers";
 import { setPendingCommand } from "../redux/slices/console-commands-slice";
 import { specificCmd } from "../console/commands/command-handler";
 import { addTab } from "../redux/slices/editor-tab-slice";
@@ -21,7 +21,7 @@ interface Action {
   action: () => void;
 }
 
-const actions: Action[] = [
+const linkActions: Action[] = [
   { name: 'openImage', label: "[Open Image]", action: undefined },
   { name: 'seeMore', label: "[See More]", action: () => console.log('seeing more')},
   { name: 'runCommand', label: "[Run Command]", action: undefined },
@@ -36,19 +36,32 @@ export default function TextEditor({ currentPage }: { currentPage: string }) {
   const duckRef = useRef<HTMLImageElement>(null)
   const dispatch = useDispatch()
 
+  setInterval(() => {
+    dispatch(showNotification({
+      id: generateUUID(),
+      title: 'U.F.O Detected',
+      body: 'A duck process keeps running in the background burning valuable processing power. Do you want to kill the process?',
+      actionButton: 'No, I got 64gb RAM',
+      actionButtonCb: 'spareDuck',
+      secondaryButton: 'Kill Duck',
+      secondaryButtonCb: 'killDuck',
+      type: 'warning',
+    }))
+  }, 120000);
   const handleCommandClick = () => {
 
     // The duck is unavailable so just execute command
     if (!duckRef.current) {
-      dispatch(setPendingCommand(specificCmd.getWebsiteDirs))
+      dispatch(setPendingCommand(specificCmd[2].command))
       return
     }
 
     // Was the animation already ran??
     if (duckRef.current.classList.contains('animate-fly-duck')) {
-      dispatch(setPendingCommand(specificCmd.getWebsiteDirs))
+      dispatch(setPendingCommand(specificCmd[2].command))
     }
     else {
+      duckRef.current.classList.remove('hidden')
       duckRef.current.classList.add('animate-fly-duck')
 
       // If the duck exist tho, its different,  Make it fly
@@ -69,15 +82,15 @@ export default function TextEditor({ currentPage }: { currentPage: string }) {
     dispatch(addTab({ name: 'francesco-macaluso.png', isLink: false }))
   }
 
-  actions[0].action = handleOpenImage
-  actions[2].action = handleCommandClick
+  linkActions[0].action = handleOpenImage
+  linkActions[2].action = handleCommandClick
 
   return (
     <div className="relative flex w-full h-full flex-col bg-editor text-white font-mono text-sm overflow-hidden">
       {
         currentPage === 'page.tsx' &&
         <img ref={duckRef} src="/pictures/duck.png" alt="A duck?" title="Duck"
-          className="absolute bottom-0 -right-[50%] scale-50 select-disable rotate-[30deg] z-40"
+          className="absolute bottom-0 -right-[50%] scale-50 select-disable rotate-[30deg] z-40 hidden"
         />
       }
       <div className="absolute top-2 right-3 p-2 z-10 bg-editor rounded-md border-editor border">
@@ -141,7 +154,7 @@ function CustomPreComponent({ children }: { children: React.ReactNode }) {
       const actionMatch = part.match(/\[\[ACTION:(\w+)\]\]/);
       if (actionMatch) {
         const actionName = actionMatch[1];
-        const action = actions.find(a => a.name === actionName);
+        const action = linkActions.find(a => a.name === actionName);
         if (action) {
           return React.createElement('span', {
             key: index,

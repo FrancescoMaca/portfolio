@@ -4,7 +4,7 @@ import { useSelector } from 'react-redux';
 import { RootState } from '@/components/redux';
 import { clearPendingCommand } from '@/components/redux/slices/console-commands-slice';
 import { useDispatch } from 'react-redux';
-import { CLICommand, CLICommandOutput, CLICommandResult, CLICommandResultDetails, CLICommandType } from '../commands/command-handler';
+import { CLICommand, CLICommandOutput, CLICommandResult, CLICommandResultDetails, CLICommandType, specificCmd } from '../commands/command-handler';
 
 export default function ConsoleContent() {
   const [input, setInput] = useState('')
@@ -20,9 +20,7 @@ export default function ConsoleContent() {
   const prompt = '○ francescomacaluso@Frankys-MacBook-Pro portfolio % '
 
   useEffect(() => {
-    if (consoleRef.current) {
-      consoleRef.current.scrollTop = consoleRef.current.scrollHeight
-    }
+    inputRef.current?.focus()
 
     if (pendingCommand) {
       pendingCommandRef.current = pendingCommand;
@@ -35,6 +33,7 @@ export default function ConsoleContent() {
     if (pendingCommandRef.current) {
       handleSubmit();
       pendingCommandRef.current = null;
+      inputRef.current?.focus()
     }
   }, [input])
 
@@ -134,6 +133,11 @@ const getPrompt = (status: CLICommandResult) => {
 };
 
 function handleCommand(cmd: string): CLICommandOutput {
+  const cmdObject = specificCmd.find(command => command.command === cmd)
+  
+  if (cmdObject) {
+    return { type: CLICommandType.OUTPUT, content: cmdObject.output, status: CLICommandResult.SUCCESS }
+  }
 
   const [commandName, ...argsNames] = cmd.trim().split(' ')
   const command: CLICommand | undefined = consoleCommands[commandName]
@@ -145,7 +149,7 @@ function handleCommand(cmd: string): CLICommandOutput {
   }
   
   if (command) {
-    const { message, status}: CLICommandResultDetails = command.action(argsNames)
+    const { message, status }: CLICommandResultDetails = command.action(argsNames)
     
     if (message === 'CLEAR') {
       return { ...res, content: 'CLEAR' }

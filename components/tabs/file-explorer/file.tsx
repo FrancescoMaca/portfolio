@@ -1,5 +1,5 @@
 'use client'
-import RainbowText from '@/components/utils/rainbow-text';
+// import RainbowText from '@/components/utils/rainbow-text';
 import React from 'react';
 
 interface FileProps {
@@ -45,10 +45,10 @@ export default function File({ name, icon, isFolder = false, isOpen = false, ico
           {
             isFolder && Array.isArray(name) ?
               formatFolderName(name) :
-                isLink ?
-                <RainbowText className='whitespace-nowrap'>
-                  {name}
-                </RainbowText> :
+                // isLink ?
+                // <RainbowText className='whitespace-nowrap'>
+                //   {name}
+                // </RainbowText> :
                 <span className='whitespace-nowrap'>{name}</span>
           }
         </p>

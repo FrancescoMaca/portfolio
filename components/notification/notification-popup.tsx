@@ -34,6 +34,7 @@ export function Notification({
   
   // This approach is not great, not terrible
   const callbackMap: Record<string, () => void> = {
+    '': () => {},
     'spareDuck': () => dispatch(setPendingCommand('hwmemsize=$(sysctl -n hw.memsize)')),
     'killDuck': () => dispatch(setPendingCommand('pkill -KILL duck.exe')),
     'closeNotification': () => {},
@@ -55,25 +56,12 @@ export function Notification({
       actionButton: 'Ok',
       actionButtonCb: "",
       secondaryButton: 'Ok',
-      secondaryButtonCb: ""
+      secondaryButtonCb: "",
+      hasCloseButton: false
     })), 500)
   }
 
   const handleOnClose = () => {
-    if (title === 'Ah-ah-ah') {
-      dispatch(showNotification({
-        id: generateUUID(),
-        title: 'Why trying so hard?',
-        body: 'Don\'t think I am not 3 steps ahead of you with being a total ******** :/',
-        type: 'error',
-        actionButton: 'Ok, sorry',
-        actionButtonCb: "",
-        secondaryButton: 'Ok',
-        secondaryButtonCb: "",
-        hasCloseButton: false
-      }))
-    }
-
     if (onClose) {
       callbackMap[onClose] && callbackMap[onClose]()
     }
@@ -82,7 +70,7 @@ export function Notification({
   };
 
   return (
-    <div className={`flex flex-col p-5 w-[25vw] bg-notif-bg text-text-normal text-sm shadow-[0px_0px_20px_5px_#00000044]`}>
+    <div className={`flex flex-col p-5 w-[25vw] min-w-fit bg-notif-bg text-text-normal text-sm shadow-[0px_0px_20px_5px_#00000044]`}>
       <div className="flex justify-between items-center">
         <div className="flex items-center gap-3">
           <img src={`/svg/ide/type-${type}.svg`} alt="Close Icon" width={24} className="select-disable" />
@@ -100,7 +88,9 @@ export function Notification({
         {
           actionButton &&
           <button className='p-2 shadow-dark shadow-sm rounded-none whitespace-nowrap bg-accent hover:brightness-125'
-            onClick={() => {              
+            onClick={() => {
+              console.log('calling primary action: ', actionButtonCb);
+              
               callbackMap[actionButtonCb] && callbackMap[actionButtonCb]()
               handleOnClose();
             }}
@@ -112,6 +102,7 @@ export function Notification({
           secondaryButton &&
           <button className="p-2 shadow-dark shadow-sm rounded-none bg-hover-dark hover:brightness-125 whitespace-nowrap"
             onClick={() => {
+              console.log('calling secondary action: ', secondaryButtonCb);
               callbackMap[secondaryButtonCb] && callbackMap[secondaryButtonCb]()
               handleOnClose();
             }}

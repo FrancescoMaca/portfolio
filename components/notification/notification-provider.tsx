@@ -7,7 +7,7 @@ export default function NotificationProvider() {
   const notifications = useSelector((state: RootState) => state.notification.notifications);
 
   return (
-    <div className="fixed bottom-10 right-10 flex flex-col-reverse gap-5 z-40">
+    <div className="fixed min-w-[320px] bottom-10 right-10 flex flex-col-reverse gap-5 z-40">
       {notifications.map((notificationData, index) => (
         <Notification
           key={index}

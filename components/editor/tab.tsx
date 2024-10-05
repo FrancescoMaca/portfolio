@@ -1,7 +1,7 @@
 'use client'
 
 import { MouseEvent, useState } from "react";
-import RainbowText from "../utils/rainbow-text";
+import { extToIcon } from "../utils/helpers";
 
 interface TabProps {
   name: string;
@@ -12,7 +12,7 @@ interface TabProps {
 }
 
 
-export default function Tab({ name, isActive, isLink, onClick, onClose }: TabProps) {
+export default function Tab({ name, isActive, onClick, onClose }: TabProps) {
   const handleMiddleClick = (e: MouseEvent) => {
     e.preventDefault()
 
@@ -21,6 +21,7 @@ export default function Tab({ name, isActive, isLink, onClick, onClose }: TabPro
       onClose(name)
     }
   }
+
 
   return (
     <button className={`
@@ -35,7 +36,7 @@ export default function Tab({ name, isActive, isLink, onClick, onClose }: TabPro
       onMouseDown={handleMiddleClick}
       onClick={onClick}
     >
-      <img src="svg/files/file_type_reactts.svg" width={16}/>
+      <img src={`svg/files/file_type_${extToIcon(name)}.svg`} width={16}/>
       <span className="text-sm">{name}</span>
       <div className={`hover:bg-dark hover:bg-opacity-70 rounded-md p-1 ${isActive ? '' : 'invisible'}`}
         onClick={(e) => {
