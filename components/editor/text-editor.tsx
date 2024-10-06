@@ -25,7 +25,6 @@ const actionHandlers: Record<ActionType, ActionHandler> = {
   HOVER: (args) => renderHover(args),
 }
 
-
 const actions: { [key: string]: () => void | undefined } = { }
 
 export default function TextEditor({ currentPage }: { currentPage: string }) {
@@ -192,10 +191,10 @@ function renderAction(args: string[]) {
 
 function renderHover(args: string[]) {
   return (
-    <TextWithIcon label={args[0]} icon={!!args[1] ? `/svg/other/${args[1]}.svg` : undefined}/>
+    <TextWithIcon key={Math.random()} label={args[0]} icon={!!args[1] ? `/svg/other/${args[1]}.svg` : undefined}/>
   )
 }
 
 function renderUrl(args: string[]) {
-  return <UrlRenderer label={args[0]} url={args[1]}/>
+  return <UrlRenderer key={Math.random()} label={args[0]} url={args[1]}/>
 }

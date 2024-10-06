@@ -10,9 +10,8 @@ export default function UrlRenderer({ label, url }: UrlRendererProps) {
   const [isHovering, setHovering] = useState(false)
 
   return (
-    <span key={Math.random()}
+    <span
       onClick={() => open(url)}
-      className=""
       onMouseEnter={() => setHovering(true)}
       onMouseLeave={() => setHovering(false)}
     >
@@ -28,5 +27,3 @@ export default function UrlRenderer({ label, url }: UrlRendererProps) {
     </span>
   )
 }
-// red: e06c75
-// comment: 5c6370

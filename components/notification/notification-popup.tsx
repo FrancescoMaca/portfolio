@@ -16,6 +16,7 @@ export interface NotificationProps {
   secondaryButtonCb: string;
   onClose?: string;
   hasCloseButton?: boolean;
+  timeout?: number;
 }
 
 export function Notification({
@@ -28,11 +29,14 @@ export function Notification({
   secondaryButtonCb,
   type,
   onClose,
-  hasCloseButton
+  hasCloseButton,
+  timeout
 }: NotificationProps) {
   const dispatch = useDispatch();
   
-  // This approach is not great, not terrible
+  console.log(id, title);
+  
+  // This approach is not great, not terri ble
   const callbackMap: Record<string, () => void> = {
     '': () => {},
     'spareDuck': () => dispatch(setPendingCommand('hwmemsize=$(sysctl -n hw.memsize)')),
@@ -60,6 +64,18 @@ export function Notification({
       hasCloseButton: false
     })), 500)
   }
+
+  useEffect(() => {
+    if (timeout) {
+      console.log('timeout created for', id, title, timeout);
+      
+      setTimeout(() => {
+        console.log('deleting ', id, title);
+        
+        handleOnClose()
+      }, timeout);
+    }
+  }, [])
 
   const handleOnClose = () => {
     if (onClose) {

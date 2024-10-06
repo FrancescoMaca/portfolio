@@ -75,11 +75,11 @@ fetch('http://127.0.0.1:3000/get-profile-image')
 
 // My skills are like a tree - always growing and starving for balance! (you get it? tree as in the data structure! Ok sorry I'll stop)
 const skills = [
-  'Teamwork', 'Dedication', 'Analytical Skills',
-  'JavaScript', 'TypeScript', 'React', 'Node.js',
-  'C/C++/C#', 'Java', 'Flutter',
-  'Git', 'Docker', 'MongoDB', 'Firebase'
-  'Data Structures'
+  '[[HOVER:Teamwork]]', '[[HOVER:Dedication]]', '[[HOVER:Analytical Skills]]',
+  '[[HOVER:JavaScript,javascript]]', '[[HOVER:TypeScript,typescript]]', '[[HOVER:React,react]]', '[[HOVER:Node.js,nodejs]]',
+  '[[HOVER:C/C++/C#,clang]]', '[[HOVER:Java,java]]', '[[HOVER:Flutter,flutter]]',
+  '[[HOVER:Git,git]]', '[[HOVER:Docker,docker]]', '[[HOVER:MongoDB,mongodb]]', '[[HOVER:Firebase,firebase]]'
+  '[[HOVER:Data Structures,datastructure]]'
 ]
 
 skills.pop() // Sshhh
@@ -101,7 +101,7 @@ const profiles: Map<string, string> = {
 
 //
 // Wanna see more?
-// Click [[ACTION:seeMore]]
+// Click [[ACTION:[seeMore],]]
 //
 console.log(\`Last updated: \${new Date().toISOString().split('T')[0]}\`) // ${new Date().toISOString().split('T')[0]}
 

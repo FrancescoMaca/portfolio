@@ -8,21 +8,26 @@ export default function NotificationProvider() {
 
   return (
     <div className="fixed min-w-[320px] bottom-10 right-10 flex flex-col-reverse gap-5 z-40">
-      {notifications.map((notificationData, index) => (
-        <Notification
-          key={index}
-          id={notificationData.id}
-          title={notificationData.title}
-          body={notificationData.body}
-          type={notificationData.type}
-          actionButton={notificationData.actionButton}
-          actionButtonCb={notificationData.actionButtonCb}
-          onClose={notificationData.onClose}
-          secondaryButton={notificationData.secondaryButton}
-          secondaryButtonCb={notificationData.secondaryButtonCb}
-          hasCloseButton={notificationData.hasCloseButton ?? true}
-        />
-      ))}
+      {
+        notifications.map((data) => {
+          return (
+            <Notification
+              key={Math.random()}
+              id={data.id}
+              title={data.title}
+              body={data.body}
+              type={data.type}
+              actionButton={data.actionButton}
+              actionButtonCb={data.actionButtonCb}
+              onClose={data.onClose}
+              secondaryButton={data.secondaryButton}
+              secondaryButtonCb={data.secondaryButtonCb}
+              hasCloseButton={data.hasCloseButton ?? true}
+              timeout={data.timeout}
+            />
+          )
+        })
+      }
     </div>
   );
 }

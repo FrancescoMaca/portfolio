@@ -10,7 +10,6 @@
   },
   "dependencies": {
     "@reduxjs/toolkit": "^2.2.5",
-    "@types/": "webscopeio/react-console",
     "@types/sfcookies": "^1.0.5",
     "flowbite": "^2.5.1",
     "flowbite-react": "^0.10.1",
