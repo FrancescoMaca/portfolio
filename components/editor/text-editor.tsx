@@ -8,13 +8,15 @@ import { ToggleButton } from "../utils/toggle-button";
 import React from 'react'
 import { useDispatch } from "react-redux";
 import { showNotification } from "../redux/slices/notification-slice";
-import { generateUUID, getPageLanguage } from "../utils/helpers";
+import { extToIcon, generateUUID, getPageLanguage } from "../utils/helpers";
 import { setPendingCommand } from "../redux/slices/console-commands-slice";
 import { specificCmd } from "../console/commands/command-handler";
 import { addTab } from "../redux/slices/editor-tab-slice";
 import { finishLoading } from "../redux/slices/webpage-loading-slice";
 import TextWithIcon from "../utils/icon-hover";
 import UrlRenderer from "../utils/url-renderer";
+import { getFilePath } from "../tabs/file-explorer/file-structure";
+import { bake_cookie, read_cookie } from "sfcookies";
 
 type ActionType = 'HOVER' | 'URL' | 'ACTION'
 type ActionHandler = (args: string[]) => React.ReactNode
@@ -42,13 +44,14 @@ export default function TextEditor({ currentPage }: { currentPage: string }) {
     }
 
     // Was the animation already ran??
-    if (duckRef.current.classList.contains('animate-fly-duck')) {
+    if (read_cookie('duck-played') === 'yes') {
       dispatch(setPendingCommand(specificCmd[2].command))
     }
     else {
       duckRef.current.classList.remove('hidden')
       duckRef.current.classList.add('animate-fly-duck')
 
+      bake_cookie('duck-played', 'yes')
       // If the duck exist tho, its different,  Make it fly
       dispatch(showNotification({
         id: generateUUID(),
@@ -81,8 +84,22 @@ export default function TextEditor({ currentPage }: { currentPage: string }) {
       <div className="absolute top-2 right-3 p-2 z-10 bg-editor rounded-md border-editor border">
         <ToggleButton onChange={() => setGoodFormat(!goodFormat)} label="Fellow Developer Mode"/>
       </div>
-      <div className="flex-grow overflow-auto">
-        <div className='flex h-full'>
+      <div className="flex-grow overflow-auto px-[10px]">
+        <div className='h-full'>
+          <div className="flex pl-3 pt-1 pb-0.5 select-disable">
+            {
+              getFilePath(currentPage).map(dir => (
+                <span className="flex" key={Math.random()}>
+                  <span className="hover:bg-hover-dark rounded-md px-1 text-text-unfocused">{dir}</span>
+                  <img src="/svg/ide/chevron-right.svg" alt=">" title="" />
+                </span>
+              ))
+            }
+            <span className="flex gap-1">
+              <img src={`svg/files/file_type_${extToIcon(currentPage)}.svg`} width={16} title=""/>
+              <span className="hover:bg-hover-dark rounded-md px-1 text-text-normal">{currentPage}</span>
+            </span>
+          </div>
           <SyntaxHighlighter
             customStyle={editorStyle}
             lineNumberStyle={lineNumberStyle}
@@ -104,7 +121,7 @@ const editorStyle: CSSProperties = {
   width: '100%',
   height: '100%',
   backgroundColor: '#1E1E1E',
-  padding: '10px 30px',
+  // padding: '10px 30px',
   color: '#cccccc',
   WebkitUserSelect: 'none',
   MozUserSelect: 'none',

@@ -13,6 +13,9 @@ interface TabProps {
 
 
 export default function Tab({ name, isActive, onClick, onClose }: TabProps) {
+
+  const [isHovered, setIsHovered] = useState(false);
+
   const handleMiddleClick = (e: MouseEvent) => {
     e.preventDefault()
 
@@ -35,17 +38,19 @@ export default function Tab({ name, isActive, onClick, onClose }: TabProps) {
       `}
       onMouseDown={handleMiddleClick}
       onClick={onClick}
+      onMouseEnter={() => setIsHovered(true)}
+      onMouseLeave={() => setIsHovered(false)}
     >
       <img src={`svg/files/file_type_${extToIcon(name)}.svg`} width={16}/>
       <span className="text-sm">{name}</span>
-      <div className={`hover:bg-dark hover:bg-opacity-70 rounded-md p-1 ${isActive ? '' : 'invisible'}`}
+      <div className={`hover:bg-hover-dark hover:brightness-125 rounded-md p-1 ${isHovered || isActive ? 'visible' : 'invisible'}`}
         onClick={(e) => {
           e.stopPropagation()
           onClose(name)
         }}
       >
         <img src="/svg/ide/close.svg" alt="Close Icon" title="" width={20}
-          className="min-w-[20px]"
+          className={`min-w-[20px] ${isActive ? '' : 'brightness-50'}`}
         />
       </div>
     </button>

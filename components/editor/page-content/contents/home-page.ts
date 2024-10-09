@@ -26,7 +26,7 @@ fetch('http://127.0.0.1:3000/get-profile-image')
 const skills = [
   '[[HOVER:Teamwork]]', '[[HOVER:Dedication]]', '[[HOVER:Analytical Skills]]',
   '[[HOVER:JavaScript,javascript]]', '[[HOVER:TypeScript,typescript]]', '[[HOVER:React,react]]', '[[HOVER:Node.js,nodejs]]',
-  '[[HOVER:C/C++/C#,clang]]', '[[HOVER:Java,java]]', '[[HOVER:Flutter,flutter]]',
+  '[[HOVER:C,clang]]/[[HOVER:C++,cpp]]/[[HOVER:C#,csharp]]', '[[HOVER:Java,java]]', '[[HOVER:Flutter,flutter]]',
   '[[HOVER:Git,git]]', '[[HOVER:Docker,docker]]', '[[HOVER:MongoDB,mongodb]]', '[[HOVER:Firebase,firebase]]'
   '[[HOVER:Data Structures,datastructure]]'
 ]

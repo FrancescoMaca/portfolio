@@ -38,7 +38,8 @@ const config: Config = {
       animation: {
         'fly-duck': 'fly-duck 2s linear forwards',
         'gradient-text': 'rainbow 1s linear infinite',
-        'loading-bar': 'loading 2s ease-in-out infinite'
+        'loading-bar': 'loading 2s ease-in-out infinite',
+        'fade-out': 'fade-out 1.5s linear forwards'
       },
       keyframes: {
         'fly-duck': {
@@ -63,6 +64,14 @@ const config: Config = {
           '0%': { width: '0%', marginLeft: '0%' },
           '50%': { width: '100%', marginLeft: '0%' },
           '100%': { width: '0%', marginLeft: '100%' },
+        },
+        'fade-out': {
+          '0%, 80%': {
+            'opacity': '1',
+          },
+          '100%': {
+            'opacity': '0',
+          },
         }
       },
       backgroundImage: {

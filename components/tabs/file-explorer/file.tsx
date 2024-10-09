@@ -13,7 +13,7 @@ interface FileProps {
   onToggle?: () => void;
 }
 
-export default function File({ name, icon, isFolder = false, isOpen = false, iconName, isLink = false, level, onToggle }: FileProps) {
+export default function File({ name, icon, isFolder = false, isOpen = false, iconName, level, onToggle }: FileProps) {
   return (
     <div 
       className={`flex items-center py-1 ${name.includes('[errno 122]') ? 'cursor-not-allowed' : 'cursor-pointer'} hover:bg-control-disable`} 
@@ -44,12 +44,8 @@ export default function File({ name, icon, isFolder = false, isOpen = false, ico
         <p className="text-sm">
           {
             isFolder && Array.isArray(name) ?
-              formatFolderName(name) :
-                // isLink ?
-                // <RainbowText className='whitespace-nowrap'>
-                //   {name}
-                // </RainbowText> :
-                <span className='whitespace-nowrap'>{name}</span>
+              formatFolderName(name) : 
+              <span className='whitespace-nowrap'>{name}</span>
           }
         </p>
       </div>

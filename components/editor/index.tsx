@@ -1,6 +1,6 @@
 'use client'
 import React, { MouseEvent, useCallback, useEffect, useState } from 'react';
-import { Panel, PanelGroup } from "react-resizable-panels";
+import { Panel } from "react-resizable-panels";
 import { getRandomFunnyFileName } from './page-content/new-tab-names';
 import Tab from './tab';
 import TextEditor from './text-editor';
@@ -44,6 +44,7 @@ export default function Editor() {
       secondaryButtonCb: 'openSorryDialog'
     }))
   }, [])
+
   const handleDoubleClick = () => {
     dispatch(addTab({ name: getRandomFunnyFileName(), isLink: false }))
   };
@@ -116,7 +117,7 @@ export default function Editor() {
           <DefaultPage /> :
             tabs[activeTabIndex].name.endsWith('.png') ?
               <div className="h-full overflow-y-auto">
-                <ImageViewer name={tabs[activeTabIndex].name} /> 
+                <ImageViewer name={tabs[activeTabIndex].name} />
               </div>:
               <div className="h-full overflow-y-auto">
                 <TextEditor currentPage={tabs[activeTabIndex].name}/>

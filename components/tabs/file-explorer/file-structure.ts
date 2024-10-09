@@ -171,3 +171,31 @@ export const fileStructure = [
   { name: 'tsconfig.json', icon: 'type_tsconfig' },
   { name: 'yarn.lock', icon: 'type_yarn' },
 ];
+
+// AI generated
+export function getFilePath(fileName: string): string[] {
+  function searchFile(structure: any[], currentPath: string[] = []): string[] | null {
+    for (const item of structure) {
+      let newPath = [...currentPath];
+      
+      if (Array.isArray(item.name)) {
+        newPath = [...newPath, ...item.name];
+      } else if (typeof item.name === 'string') {
+        newPath = [...newPath, item.name];
+      }
+
+      if (item.name === fileName || (typeof item.name === 'string' && item.name.toLowerCase() === fileName.toLowerCase())) {
+        return newPath.slice(0, -1); // Return path without the file name
+      }
+
+      if (item.children) {
+        const result = searchFile(item.children, newPath);
+        if (result) return result;
+      }
+    }
+    return null;
+  }
+
+  const result = searchFile(fileStructure);
+  return result || [];
+}

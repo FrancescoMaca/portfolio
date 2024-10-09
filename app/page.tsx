@@ -10,10 +10,14 @@ import Console from "@/components/console"
 import NotificationProvider from "@/components/notification/notification-provider"
 import BottomBar from "@/components/bottom-bar"
 import LoadingScreen from "@/components/loading-screen"
+import { delete_cookie } from "sfcookies"
 
 export default function Default() {
   return (
     <ReduxProvider>
+      <button className='absolute bottom-10 right-10 bg-text-normal rounded-md p-1 z-[999]' onClick={resetCookies}>
+        Reset cookies
+      </button>
       <div className="h-screen">
         <LoadingScreen />
         <PanelGroup direction="vertical">
@@ -36,4 +40,9 @@ export default function Default() {
       </div>
     </ReduxProvider>
   )
+}
+
+function resetCookies() {
+  delete_cookie('duck-played')
+  delete_cookie('open-profile-image')
 }
