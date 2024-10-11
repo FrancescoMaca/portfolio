@@ -7,8 +7,8 @@ interface CLISpecificCommand {
 
 export const specificCmd: CLISpecificCommand[] = [
   {
-    command: 'hwmemsize=$(sysctl -n hw.memsize)',
-    output: ""
+    command: 'top -l 1 | grep "PhysMem"',
+    output: "PhysMem: 17G used (3955M wired, 6841M compressor), 212M unused."
   },
   {
     command: 'pkill -KILL duck.exe',

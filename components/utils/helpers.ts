@@ -1,3 +1,4 @@
+import SyntaxHighlighter from "react-syntax-highlighter";
 
 const charset = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!@#$%^&*()_+[]{}|;:,.<>?';
 
@@ -7,31 +8,45 @@ export function generateUUID(): string {
   });
 }
 
+
+const extensionLanguageMap = {
+  'tsx': 'typescript',
+  'ts': 'typescript',
+  'dockerfile': 'dockerfile',
+  'json': 'json',
+  'js': 'javascript',
+  'gitignore': 'ini',
+  'env': 'ini',
+  'sample': 'ini',
+  'lock': 'ini',
+}
+
 export function getPageLanguage(filename: string): string {
   const ext = filename.split('.').pop().toLowerCase()
+  
+  return extensionLanguageMap[ext] ?? 'plaintext'
+}
 
-  switch(ext) {
-    case 'tsx':
-      return 'typescript'
-    case 'dockerfile':
-      return 'dockerfile'
-    default:
-      return 'plaintext'
-  }
+const extensionIconMap = {
+  'tsx': 'reactts',
+  'dockerfile': 'docker',
+  'js': 'js',
+  'dockerignore': 'docker',
+}
+
+const specialIconMap = {
+  'next.config.js': 'next'
 }
 
 export function extToIcon(filename: string): string {
 
+  if (specialIconMap[filename]) {
+    return specialIconMap[filename]
+  }
+
   const ext = filename.split('.').pop().toLowerCase()
   
-  switch(ext) {
-    case 'tsx':
-      return 'reactts'
-    case 'dockerfile':
-      return 'docker'
-    default:
-      return 'text'
-  }
+  return extensionIconMap[ext] ?? 'text'
 }
 
 export function formatCLIDate(): string {

@@ -1,4 +1,7 @@
-import type { Config } from 'tailwindcss'
+import { PageContent } from "../content-handler";
+
+export const tailwindConfigContent: PageContent = {
+  content: `import type { Config } from 'tailwindcss'
 
 const config: Config = {
   content: [
@@ -89,3 +92,6 @@ const config: Config = {
 }
 
 export default config
+
+`
+}

@@ -26,7 +26,7 @@ export default function FileExplorerItem({ item, level }: FileExplorerItemProps)
 
     // If the item should open itself in the editor when clicked
     if (!item.isFolder && item.isLink) {
-      dispatch(addTab({ name: item.name as string, isLink: item.isLink }))
+      dispatch(addTab(item.name as string))
     }
   };
 

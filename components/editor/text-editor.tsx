@@ -2,7 +2,7 @@
 
 import SyntaxHighlighter from "react-syntax-highlighter/dist/esm/light-async";
 import { atomOneDark } from "react-syntax-highlighter/dist/esm/styles/hljs";
-import { getEditorContent } from "./page-content/content-handler";
+import { contentHasPrettyOption, getEditorContent } from "./page-content/content-handler";
 import { CSSProperties, useEffect, useRef, useState } from "react";
 import { ToggleButton } from "../utils/toggle-button";
 import React from 'react'
@@ -67,7 +67,7 @@ export default function TextEditor({ currentPage }: { currentPage: string }) {
   }
 
   const handleOpenImage = () => {
-    dispatch(addTab({ name: 'francesco-macaluso.png', isLink: false }))
+    dispatch(addTab('francesco-macaluso.png'))
   }
 
   actions['openProfileImage'] = handleOpenImage
@@ -81,23 +81,26 @@ export default function TextEditor({ currentPage }: { currentPage: string }) {
           className="absolute bottom-0 -right-[50%] scale-50 select-disable rotate-[30deg] z-40 hidden"
         />
       }
-      <div className="absolute top-2 right-3 p-2 z-10 bg-editor rounded-md border-editor border">
-        <ToggleButton onChange={() => setGoodFormat(!goodFormat)} label="Fellow Developer Mode"/>
-      </div>
+      {
+        contentHasPrettyOption(currentPage) && 
+        <div className="absolute top-2 right-3 p-2 z-10 bg-editor rounded-md border-editor border">
+          <ToggleButton onChange={() => setGoodFormat(!goodFormat)} label="Fellow Developer Mode"/>
+        </div>
+      }
       <div className="flex-grow overflow-auto px-[10px]">
         <div className='h-full'>
           <div className="flex pl-3 pt-1 pb-0.5 select-disable">
             {
               getFilePath(currentPage).map(dir => (
                 <span className="flex" key={Math.random()}>
-                  <span className="hover:bg-hover-dark rounded-md px-1 text-text-unfocused">{dir}</span>
+                  <span className="rounded-md px-1 text-text-unfocused hover:text-text-normal">{dir}</span>
                   <img src="/svg/ide/chevron-right.svg" alt=">" title="" />
                 </span>
               ))
             }
             <span className="flex gap-1">
               <img src={`svg/files/file_type_${extToIcon(currentPage)}.svg`} width={16} title=""/>
-              <span className="hover:bg-hover-dark rounded-md px-1 text-text-normal">{currentPage}</span>
+              <span className="rounded-md px-1 text-text-unfocused hover:text-text-normal">{currentPage}</span>
             </span>
           </div>
           <SyntaxHighlighter
@@ -121,7 +124,6 @@ const editorStyle: CSSProperties = {
   width: '100%',
   height: '100%',
   backgroundColor: '#1E1E1E',
-  // padding: '10px 30px',
   color: '#cccccc',
   WebkitUserSelect: 'none',
   MozUserSelect: 'none',

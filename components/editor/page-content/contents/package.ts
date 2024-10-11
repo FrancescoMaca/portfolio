@@ -1,6 +1,9 @@
-{
-  "name": "portfolio",
-  "version": "0.1.0",
+import { PageContent } from "../content-handler";
+
+export const packageContent: PageContent = {
+  content: `{
+  "name": "My Pretty VS Code Portfolio",
+  "version": "1.0.0",
   "private": true,
   "scripts": {
     "dev": "next dev",
@@ -17,7 +20,6 @@
     "next": "13.5.6",
     "react": "^18",
     "react-dom": "^18",
-    "react-hotkeys-hook": "^4.5.1",
     "react-redux": "^9.1.2",
     "react-resizable-panels": "^2.1.3",
     "react-syntax-highlighter": "^15.5.0",
@@ -38,4 +40,6 @@
     "tailwindcss": "^3",
     "typescript": "^5"
   }
+}
+`
 }

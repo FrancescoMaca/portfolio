@@ -6,7 +6,6 @@ import { extToIcon } from "../utils/helpers";
 interface TabProps {
   name: string;
   isActive: boolean;
-  isLink: boolean;
   onClick: () => void;
   onClose: (name: string) => void;
 }
@@ -24,7 +23,6 @@ export default function Tab({ name, isActive, onClick, onClose }: TabProps) {
       onClose(name)
     }
   }
-
 
   return (
     <button className={`

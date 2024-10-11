@@ -1,6 +1,6 @@
 'use client'
 // import RainbowText from '@/components/utils/rainbow-text';
-import React from 'react';
+import React, { useState } from 'react';
 
 interface FileProps {
   name: string | string[];
@@ -14,11 +14,13 @@ interface FileProps {
 }
 
 export default function File({ name, icon, isFolder = false, isOpen = false, iconName, level, onToggle }: FileProps) {
+  const [openState, setOpenState] = useState(isOpen)
+
   return (
     <div 
       className={`flex items-center py-1 ${name.includes('[errno 122]') ? 'cursor-not-allowed' : 'cursor-pointer'} hover:bg-control-disable`} 
       style={{ paddingLeft: `${(level * 16) + 12 + (isFolder ? 0 : 24)}px` }}
-      onClick={onToggle}
+      onClick={() => {onToggle(); setOpenState(!openState)}}
     >
       <div className="flex mr-2">
         {
@@ -33,7 +35,7 @@ export default function File({ name, icon, isFolder = false, isOpen = false, ico
           />
         }
         <img 
-          src={`/svg/files/${isFolder ? 'folder_' : 'file_'}${icon}${isOpen ? '_opened' : ''}.svg`} 
+          src={`/svg/files/${isFolder ? 'folder_type_' : 'file_type_'}${icon}${isFolder && openState ? '_opened' : ''}.svg`} 
           alt={isFolder ? "Folder Icon" : "File Icon"} 
           width={20}
           height={20}

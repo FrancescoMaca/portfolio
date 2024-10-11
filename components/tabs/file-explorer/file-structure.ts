@@ -1,38 +1,38 @@
 export const fileStructure = [
   {
     name: ['.docker', 'deployment', 'react', 'frontend'],
-    icon: 'type_docker',
+    icon: 'docker',
     isFolder: true,
     children: [
-      { name: 'Dockerfile', icon: 'type_docker', isLink: true }
+      { name: 'Dockerfile', icon: 'docker', isLink: true }
     ]
   },
   {
     name: ['.github', 'workflows'],
-    icon: 'type_github',
+    icon: 'github',
     isFolder: true,
     children: [
-      { name: 'deploy.yml', icon: 'type_yaml' }
+      { name: 'deploy.yml', icon: 'yaml' }
     ]
   },
   {
     name: 'app',
-    icon: 'type_app',
+    icon: 'app',
     isFolder: true,
     isOpenByDefault: true,
     isLink: true, // This is just an exception for the app/ directory
     children: [
-      { name: 'globals.css', icon: 'type_css' },
-      { name: 'layout.tsx', icon: 'type_reactts' },
-      { name: 'page.tsx', icon: 'type_reactts', isLink: true },
-      { name: 'project-page.tsx', icon: 'type_reactts', isLink: true },
-      { name: 'company-page.tsx', icon: 'type_reactts', isLink: true },
-      { name: 'contact-page.tsx', icon: 'type_reactts', isLink: true }
+      { name: 'globals.css', icon: 'css' },
+      { name: 'layout.tsx', icon: 'reactts' },
+      { name: 'page.tsx', icon: 'reactts', isLink: true },
+      { name: 'project-page.tsx', icon: 'reactts', isLink: true },
+      { name: 'company-page.tsx', icon: 'reactts', isLink: true },
+      { name: 'contact-page.tsx', icon: 'reactts', isLink: true }
     ]
   },
   {
     name: 'components',
-    icon: 'type_component',
+    icon: 'component',
     isFolder: true,
     children: [
       { name: 'editor', icon: 'default', isFolder: true, children: [] },
@@ -41,22 +41,22 @@ export const fileStructure = [
         icon: 'default',
         isFolder: true,
         children: [
-          { name: 'index.tsx', icon: 'type_reactts' }
+          { name: 'index.tsx', icon: 'reactts' }
         ]
       },
       {
         name: 'redux',
-        icon: 'type_light_redux',
+        icon: 'light_redux',
         isFolder: true,
         children: [
-          { name: 'index.ts', icon: 'type_typescript' },
-          { name: 'redux-provider.tsx', icon: 'type_reactts' },
+          { name: 'index.ts', icon: 'typescript' },
+          { name: 'redux-provider.tsx', icon: 'reactts' },
           {
             name: 'slices',
-            icon: 'type_light_redux',
+            icon: 'light_redux',
             isFolder: true,
             children: [
-              { name: 'tab-slice.ts', icon: 'type_typescript' }
+              { name: 'tab-slice.ts', icon: 'typescript' }
             ]
           }
         ]
@@ -66,20 +66,20 @@ export const fileStructure = [
         icon: 'default',
         isFolder: true,
         children: [
-          { name: 'extensions.tsx', icon: 'type_reactts' },
+          { name: 'extensions.tsx', icon: 'reactts' },
           {
             name: 'file-explorer',
             icon: 'default',
             isFolder: true,
             children: [
-              { name: 'file-explorer-item.tsx', icon: 'type_reactts' },
-              { name: 'file.tsx', icon: 'type_reactts' }
+              { name: 'file-explorer-item.tsx', icon: 'reactts' },
+              { name: 'file.tsx', icon: 'reactts' }
             ]
           },
-          { name: 'file-explorer.tsx', icon: 'type_reactts' },
-          { name: 'index.tsx', icon: 'type_reactts' },
-          { name: 'run-and-debug.tsx', icon: 'type_reactts' },
-          { name: 'source-control.tsx', icon: 'type_reactts' }
+          { name: 'file-explorer.tsx', icon: 'reactts' },
+          { name: 'index.tsx', icon: 'reactts' },
+          { name: 'run-and-debug.tsx', icon: 'reactts' },
+          { name: 'source-control.tsx', icon: 'reactts' }
         ]
       },
       {
@@ -87,23 +87,23 @@ export const fileStructure = [
         icon: 'default',
         isFolder: true,
         children: [
-          { name: 'index.tsx', icon: 'type_reactts' },
-          { name: 'toolbox-item.tsx', icon: 'type_reactts' }
+          { name: 'index.tsx', icon: 'reactts' },
+          { name: 'toolbox-item.tsx', icon: 'reactts' }
         ]
       }
     ]
   },
   {
     name: 'node_modules',
-    icon: 'type_node',
+    icon: 'node',
     isFolder: true,
     children: [
-      { name: 'Disk quota exceeded [errno 122]', icon: 'type_error' }
+      { name: 'Disk quota exceeded [errno 122]', icon: 'error' }
     ]
   },
   {
     name: 'public',
-    icon: 'type_public',
+    icon: 'public',
     isFolder: true,
     children: [
       {
@@ -111,41 +111,41 @@ export const fileStructure = [
         icon: 'default',
         isFolder: true,
         children: [
-          { name: 'Francesco Macaluso - Resume.pdf', icon: 'type_pdf' }
+          { name: 'Francesco Macaluso - Resume.pdf', icon: 'pdf' }
         ]
       },
       {
         name: 'favicon',
-        icon: 'type_favicon',
+        icon: 'favicon',
         isFolder: true,
         children: [
-          { name: 'favicon-128.png', icon: 'type_image' },
-          { name: 'favicon-192.png', icon: 'type_image' },
-          { name: 'favicon-196.png', icon: 'type_image' },
-          { name: 'favicon-256.png', icon: 'type_image' },
-          { name: 'favicon-32.png', icon: 'type_image' },
-          { name: 'favicon-512.png', icon: 'type_image' },
-          { name: 'favicon-64.png', icon: 'type_image' }
+          { name: 'favicon-128.png', icon: 'image' },
+          { name: 'favicon-192.png', icon: 'image' },
+          { name: 'favicon-196.png', icon: 'image' },
+          { name: 'favicon-256.png', icon: 'image' },
+          { name: 'favicon-32.png', icon: 'image' },
+          { name: 'favicon-512.png', icon: 'image' },
+          { name: 'favicon-64.png', icon: 'image' }
         ]
       },
       {
         name: 'font',
-        icon: 'type_fonts',
+        icon: 'fonts',
         isFolder: true,
         children: [
-          { name: 'menlo-regular.ttf', icon: 'type_font' }
+          { name: 'menlo-regular.ttf', icon: 'font' }
         ]
       },
-      { name: 'manifest.json', icon: 'type_manifest' },
+      { name: 'manifest.json', icon: 'manifest' },
       {
         name: 'pictures',
-        icon: 'type_images',
+        icon: 'images',
         isFolder: true,
         children: [
-          { name: 'francesco-macaluso.png', icon: 'type_image', isLink: true }
+          { name: 'francesco-macaluso.png', icon: 'image', isLink: true }
         ]
       },
-      { name: 'robots.txt', icon: 'type_robots' },
+      { name: 'robots.txt', icon: 'robots' },
       { name: 'svg', icon: 'default', isFolder: true, children: [] }
     ]
   },
@@ -154,22 +154,22 @@ export const fileStructure = [
     icon: 'default',
     isFolder: true,
     children: [
-      { name: 'email.ts', icon: 'type_typescript' }
+      { name: 'email.ts', icon: 'typescript' }
     ]
   },
-  { name: '.dockerignore', icon: 'type_docker' },
-  { name: '.env', icon: 'type_ini' },
-  { name: '.env.sample', icon: 'type_shell' },
-  { name: '.eslintrc.json', icon: 'type_eslint' },
-  { name: '.gitignore', icon: 'type_git' },
-  { name: 'next-env.d.ts', icon: 'type_typescriptdef' },
-  { name: 'next.config.js', icon: 'type_next' },
-  { name: 'package.json', icon: 'type_npm' },
-  { name: 'postcss.config.js', icon: 'type_postcssconfig' },
-  { name: 'README.md', icon: 'type_markdown' },
-  { name: 'tailwind.config.ts', icon: 'type_tailwind' },
-  { name: 'tsconfig.json', icon: 'type_tsconfig' },
-  { name: 'yarn.lock', icon: 'type_yarn' },
+  { name: '.dockerignore', icon: 'docker', isLink: true },
+  { name: '.env', icon: 'ini', isLink: true },
+  { name: '.env.sample', icon: 'shell', isLink: true  },
+  { name: '.eslintrc.json', icon: 'eslint', isLink: true  },
+  { name: '.gitignore', icon: 'git', isLink: true  },
+  { name: 'next-env.d.ts', icon: 'typescriptdef', isLink: true  },
+  { name: 'next.config.js', icon: 'next', isLink: true  },
+  { name: 'package.json', icon: 'npm', isLink: true  },
+  { name: 'postcss.config.js', icon: 'postcssconfig', isLink: true  },
+  { name: 'README.md', icon: 'markdown', isLink: true  },
+  { name: 'tailwind.config.ts', icon: 'tailwind', isLink: true  },
+  { name: 'tsconfig.json', icon: 'tsconfig', isLink: true  },
+  { name: 'yarn.lock', icon: 'yarn', isLink: true  },
 ];
 
 // AI generated

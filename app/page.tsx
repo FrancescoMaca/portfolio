@@ -11,10 +11,12 @@ import NotificationProvider from "@/components/notification/notification-provide
 import BottomBar from "@/components/bottom-bar"
 import LoadingScreen from "@/components/loading-screen"
 import { delete_cookie } from "sfcookies"
+import ShortcutManager from "@/components/utils/shortcut-manager"
 
 export default function Default() {
   return (
     <ReduxProvider>
+      <ShortcutManager />
       <button className='absolute bottom-10 right-10 bg-text-normal rounded-md p-1 z-[999]' onClick={resetCookies}>
         Reset cookies
       </button>
@@ -45,4 +47,5 @@ export default function Default() {
 function resetCookies() {
   delete_cookie('duck-played')
   delete_cookie('open-profile-image')
+  delete_cookie('help-tooltip')
 }

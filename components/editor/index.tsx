@@ -14,6 +14,7 @@ import ContextMenu from '../context-menu';
 import ImageViewer from './page-content/image-viewer';
 import { showNotification } from '../redux/slices/notification-slice';
 import { generateUUID } from '../utils/helpers';
+import { bake_cookie, read_cookie } from 'sfcookies';
 
 export default function Editor() {
   const dispatch = useDispatch()
@@ -32,21 +33,24 @@ export default function Editor() {
   }, [contextMenu]);
   
   useEffect(() => {
-    // TODO: Add a cookie or smth to not make it appear again
-    dispatch(showNotification({
-      id: generateUUID(),
-      title: 'Some useful tips',
-      body: 'You can interact with some lines of code by hovering and clicking on them! Feel free to also navigate as if it was your IDE :0',
-      type: 'info',
-      actionButton: 'Thanks',
-      actionButtonCb: '',
-      secondaryButton: 'I don\'t care',
-      secondaryButtonCb: 'openSorryDialog'
-    }))
+    if (read_cookie('help-tooltip') !== 'yes') {
+      bake_cookie('help-tooltip', 'yes')
+
+      dispatch(showNotification({
+        id: generateUUID(),
+        title: 'Some useful tips',
+        body: 'You can interact with some lines of code by hovering and clicking on them! Feel free to also navigate as if it was your IDE :0',
+        type: 'info',
+        actionButton: 'Thanks',
+        actionButtonCb: '',
+        secondaryButton: 'I don\'t care',
+        secondaryButtonCb: 'openSorryDialog'
+      }))
+    }
   }, [])
 
   const handleDoubleClick = () => {
-    dispatch(addTab({ name: getRandomFunnyFileName(), isLink: false }))
+    dispatch(addTab(getRandomFunnyFileName()))
   };
 
   const handleCloseTab = (name: string) => {
@@ -93,9 +97,8 @@ export default function Editor() {
             {tabs.map((tab, i) => (
               <Tab
                 key={i}
-                name={tab.name}
+                name={tab}
                 isActive={i === activeTabIndex}
-                isLink={tab.isLink}
                 onClick={() => dispatch(setActiveTab(i))}
                 onClose={handleCloseTab}
               />
@@ -106,7 +109,7 @@ export default function Editor() {
                   x={contextMenu.x}
                   y={contextMenu.y}
                   onClose={() => setContextMenu(null)}
-                  tabName={tabs[activeTabIndex].name}
+                  tabName={tabs[activeTabIndex]}
                 />
               )
             }
@@ -115,12 +118,12 @@ export default function Editor() {
         {
           activeTabIndex === -1 ?
           <DefaultPage /> :
-            tabs[activeTabIndex].name.endsWith('.png') ?
+            tabs[activeTabIndex].endsWith('.png') ?
               <div className="h-full overflow-y-auto">
-                <ImageViewer name={tabs[activeTabIndex].name} />
+                <ImageViewer name={tabs[activeTabIndex]} />
               </div>:
               <div className="h-full overflow-y-auto">
-                <TextEditor currentPage={tabs[activeTabIndex].name}/>
+                <TextEditor currentPage={tabs[activeTabIndex]}/>
               </div>
         }
       </Panel>

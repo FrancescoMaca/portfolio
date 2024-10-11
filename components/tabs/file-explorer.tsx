@@ -64,9 +64,11 @@ export default function FileExplorer() {
           </button>
         </div>
       </div>
-      {fileStructure.map((item, index) => (
-        <FileExplorerItem key={index} item={item} level={0} />
-      ))}
+      <div className='overflow-y-auto overflow-x-hidden'>
+        {fileStructure.map((item, index) => (
+          <FileExplorerItem key={index} item={item} level={0} />
+        ))}
+      </div>
     </div>
   );
 }
