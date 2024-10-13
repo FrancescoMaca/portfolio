@@ -7,8 +7,8 @@ export default function ImageViewer({ name }) {
   const [isCracked, setIsCracked] = useState<boolean>(false)
 
   useEffect(() => {
-    if (name === 'francesco-macaluso.png' && read_cookie('open-profile-image') !== 'yes') {
-      bake_cookie('open-profile-image', 'yes')
+    if (name === 'francesco-macaluso.png' && read_cookie('open-profile-image')) {
+      bake_cookie('open-profile-image', '')
       setIsCracked(true)
     }
     
@@ -38,7 +38,7 @@ export default function ImageViewer({ name }) {
       {
         isCracked &&
         <img src="/pictures/cracked-glass.png" alt="Cracked glass" title="" 
-          className="absolute top-0 left-0 pointer-events-none animate-fade-out z-40"
+          className="absolute top-1/2 -translate-x-2/3 left-1/2 -translate-y-1/2 w-1/2 h-1/2 pointer-events-none animate-fade-out z-40"
         />
       }
       <img 

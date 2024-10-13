@@ -44,14 +44,14 @@ export default function TextEditor({ currentPage }: { currentPage: string }) {
     }
 
     // Was the animation already ran??
-    if (read_cookie('duck-played') === 'yes') {
+    if (!read_cookie('duck-played')) {
       dispatch(setPendingCommand(specificCmd[2].command))
     }
     else {
       duckRef.current.classList.remove('hidden')
       duckRef.current.classList.add('animate-fly-duck')
 
-      bake_cookie('duck-played', 'yes')
+      bake_cookie('duck-played', '')
       // If the duck exist tho, its different,  Make it fly
       dispatch(showNotification({
         id: generateUUID(),

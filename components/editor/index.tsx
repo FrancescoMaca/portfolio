@@ -33,8 +33,8 @@ export default function Editor() {
   }, [contextMenu]);
   
   useEffect(() => {
-    if (read_cookie('help-tooltip') !== 'yes') {
-      bake_cookie('help-tooltip', 'yes')
+    if (read_cookie('help-tooltip')) {
+      bake_cookie('help-tooltip', '')
 
       dispatch(showNotification({
         id: generateUUID(),

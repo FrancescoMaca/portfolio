@@ -18,21 +18,6 @@ export function ActiveTabComponent() {
     'Extensions': <ExtensionTab />,
     'Run and Debug': <RunAndDebugTab />,
   }
-  
-  const renderComponent = () => {
-    switch (activeTab.text) {
-      case 'Folders':
-        return <FileExplorerTab />;
-      case 'Source Control':
-        return <SourceControlTab />;
-      case 'Extensions':
-        return <ExtensionTab />;
-      case 'Run and Debug':
-        return <RunAndDebugTab />;
-      default:
-        return <FileExplorerTab />;
-    }
-  }
 
   return (
     <>

@@ -16,6 +16,7 @@ interface FileExplorerItemProps {
 }
 
 export default function FileExplorerItem({ item, level }: FileExplorerItemProps) {
+  // Must be used a useState to re-render the component
   const [isOpen, setIsOpen] = useState(item.isOpenByDefault);
   const dispatch = useDispatch()
   
@@ -37,7 +38,7 @@ export default function FileExplorerItem({ item, level }: FileExplorerItemProps)
         icon={item.icon}
         isFolder={item.isFolder}
         isOpen={item.isOpenByDefault}
-        iconName={`/svg/ide/chevron-${isOpen ? 'down' : 'right'}.svg`} // Gotta use this otherwise the component is not gonna re-render
+        iconName={`/svg/ide/chevron-${isOpen ? 'down' : 'right'}.svg`}
         isLink={item.isLink}
         level={level}
         onToggle={toggleOpen}

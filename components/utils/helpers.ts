@@ -1,5 +1,3 @@
-import SyntaxHighlighter from "react-syntax-highlighter";
-
 const charset = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!@#$%^&*()_+[]{}|;:,.<>?';
 
 export function generateUUID(): string {

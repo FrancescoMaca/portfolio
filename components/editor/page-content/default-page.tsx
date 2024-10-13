@@ -11,12 +11,6 @@ export default function DefaultPage() {
       setMainKey('⌘')
       setAltKey('⌥')
     }
-    
-    window.addEventListener('keydown', handleKeyDown);
-
-    return () => {
-      window.removeEventListener('keydown', handleKeyDown)
-    }
   }, [])
 
   return (
@@ -34,7 +28,7 @@ export default function DefaultPage() {
         <div className="flex flex-col items-left gap-4">
           <span>{createKey(mainKey)} + {createKey('H')}</span>
           <span>{createKey(altKey)} + {createKey('N')}</span>
-          <span>{createKey(altKey)} + {createKey('D')}</span>
+          <span>{createKey(altKey)} + {createKey('T')}</span>
           <span>{createKey(mainKey)} + {createKey('W')}</span>
         </div>
       </div>
@@ -54,11 +48,6 @@ function createKey(ch: string) {
       {ch}
     </span>
   )
-}
-
-function handleKeyDown(e: KeyboardEvent) {
-  console.log(e.altKey, e.key);
-  
 }
 
 function detectOS() {

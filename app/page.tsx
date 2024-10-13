@@ -17,7 +17,7 @@ export default function Default() {
   return (
     <ReduxProvider>
       <ShortcutManager />
-      <button className='absolute bottom-10 right-10 bg-text-normal rounded-md p-1 z-[999]' onClick={resetCookies}>
+      <button className='absolute top-10 right-10 bg-text-normal rounded-md p-1 z-[999]' onClick={resetCookies}>
         Reset cookies
       </button>
       <div className="h-screen">

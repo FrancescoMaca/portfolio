@@ -34,8 +34,6 @@ export function Notification({
 }: NotificationProps) {
   const dispatch = useDispatch();
   
-  console.log(id, title);
-  
   // This approach is not great, not terri ble
   const callbackMap: Record<string, () => void> = {
     '': () => {},
@@ -67,11 +65,7 @@ export function Notification({
 
   useEffect(() => {
     if (timeout) {
-      console.log('timeout created for', id, title, timeout);
-      
       setTimeout(() => {
-        console.log('deleting ', id, title);
-        
         handleOnClose()
       }, timeout);
     }
@@ -105,8 +99,6 @@ export function Notification({
           actionButton &&
           <button className='p-2 shadow-dark shadow-sm rounded-none whitespace-nowrap bg-accent hover:brightness-125'
             onClick={() => {
-              console.log('calling primary action: ', actionButtonCb);
-              
               callbackMap[actionButtonCb] && callbackMap[actionButtonCb]()
               handleOnClose();
             }}
@@ -118,7 +110,6 @@ export function Notification({
           secondaryButton &&
           <button className="p-2 shadow-dark shadow-sm rounded-none bg-hover-dark hover:brightness-125 whitespace-nowrap"
             onClick={() => {
-              console.log('calling secondary action: ', secondaryButtonCb);
               callbackMap[secondaryButtonCb] && callbackMap[secondaryButtonCb]()
               handleOnClose();
             }}
