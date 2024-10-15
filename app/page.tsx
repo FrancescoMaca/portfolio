@@ -24,7 +24,7 @@ export default function Default() {
         <LoadingScreen />
         <PanelGroup direction="vertical">
           <Navbar/>
-          <Panel>
+          <Panel defaultSize={100}>
             <PanelGroup direction="horizontal">
               <Toolbox />
               <ActiveTabComponent />

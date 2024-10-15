@@ -15,6 +15,8 @@ import ImageViewer from './page-content/image-viewer';
 import { showNotification } from '../redux/slices/notification-slice';
 import { generateUUID } from '../utils/helpers';
 import { bake_cookie, read_cookie } from 'sfcookies';
+import Markdown from 'react-markdown';
+import MarkdownEditor from './page-content/md-viewer';
 
 export default function Editor() {
   const dispatch = useDispatch()
@@ -116,18 +118,40 @@ export default function Editor() {
           </div> : <></>
         }
         {
-          activeTabIndex === -1 ?
-          <DefaultPage /> :
-            tabs[activeTabIndex].endsWith('.png') ?
-              <div className="h-full overflow-y-auto">
-                <ImageViewer name={tabs[activeTabIndex]} />
-              </div>:
-              <div className="h-full overflow-y-auto">
-                <TextEditor currentPage={tabs[activeTabIndex]}/>
-              </div>
+          displayFile(tabs[activeTabIndex])
+          // activeTabIndex === -1 ?
+          // <DefaultPage /> :
+          //   tabs[activeTabIndex].endsWith('.png') ?
+          //     <div className="h-full overflow-y-auto">
+          //       <ImageViewer name={tabs[activeTabIndex]} />
+          //     </div>:
+          //     <div className="h-full overflow-y-auto">
+          //       <TextEditor currentPage={tabs[activeTabIndex]}/>
+          //     </div>
         }
       </Panel>
       <HighlightHandler horizontal />
     </>
   );
+}
+
+function displayFile(file?: string) {
+
+  if (!file) {
+    return <DefaultPage />
+  }
+
+  const editor = {
+    'png': <ImageViewer name={file} />,
+    'md': <MarkdownEditor name={file}/>
+  }
+
+  const ext = file.split('.').pop()
+
+  
+  return (
+    <div className='h-full overflow-y-auto'>
+      { editor[ext] ?? <TextEditor currentPage={file} /> }
+    </div>
+  )
 }

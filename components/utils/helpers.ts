@@ -17,6 +17,7 @@ const extensionLanguageMap = {
   'env': 'ini',
   'sample': 'ini',
   'lock': 'ini',
+  'md': 'markdown'
 }
 
 export function getPageLanguage(filename: string): string {

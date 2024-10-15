@@ -31,6 +31,10 @@ html {
   background: #4D4D4D;
 }
 
+::-webkit-scrollbar-corner {
+  background: #00000000;
+}
+
 /* Tailwind problems as always :D */
 input, textarea {
   --tw-ring-shadow: 0 0 #000 !important;
