@@ -17,7 +17,8 @@ const extensionLanguageMap = {
   'env': 'ini',
   'sample': 'ini',
   'lock': 'ini',
-  'md': 'markdown'
+  'md': 'markdown',
+  'yml': 'yaml'
 }
 
 export function getPageLanguage(filename: string): string {
@@ -31,10 +32,21 @@ const extensionIconMap = {
   'dockerfile': 'docker',
   'js': 'js',
   'dockerignore': 'docker',
+  'md': 'markdown',
+  'yml': 'yaml',
 }
 
 const specialIconMap = {
-  'next.config.js': 'next'
+  'next.config.js': 'next',
+  '.eslintrc.json': 'eslint',
+  '.gitignore': 'git',
+  '.env': 'ini',
+  '.env.sample': 'shell',
+  'next-env.d.ts': 'typescriptdef',
+  'package.json': 'npm',
+  'tailwind.config.ts': 'tailwind',
+  'tsconfig.json': 'tsconfig',
+  'yarn.lock': 'yarn',
 }
 
 export function extToIcon(filename: string): string {

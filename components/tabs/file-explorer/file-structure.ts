@@ -12,7 +12,7 @@ export const fileStructure = [
     icon: 'github',
     isFolder: true,
     children: [
-      { name: 'deploy.yml', icon: 'yaml' }
+      { name: 'deploy.yml', icon: 'yaml', isLink: true }
     ]
   },
   {

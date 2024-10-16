@@ -1,9 +1,9 @@
 import HighlightHandler from "@/components/utils/highlight-panel-handler"
-import { getPanelElement, ImperativePanelHandle, Panel, PanelGroup, PanelProps } from "react-resizable-panels"
+import { ImperativePanelHandle, Panel, PanelGroup } from "react-resizable-panels"
 import TextEditor from "../text-editor"
 import { getEditorContent } from "./content-handler"
 import MarkdownPreview from '@uiw/react-markdown-preview'
-import { useEffect, useRef } from "react"
+import { useRef } from "react"
 
 interface MarkdownEditorProps {
   name: string
@@ -13,8 +13,10 @@ export default function MarkdownEditor({ name }: MarkdownEditorProps) {
 
   const previewRef = useRef<ImperativePanelHandle>(null)
 
-  const openPreview = () => {
-    previewRef.current.expand()
+  const togglePreview = () => {
+    previewRef.current.isCollapsed() ? 
+      previewRef.current.expand() :
+      previewRef.current.collapse()
   }
 
   return (
@@ -24,7 +26,7 @@ export default function MarkdownEditor({ name }: MarkdownEditorProps) {
           className="relative"
         >
           <button className="absolute top-2 right-5 p-1 rounded-md bg-editor hover:bg-hover-dark z-10"
-            onClick={openPreview}
+            onClick={togglePreview}
           >
             <img src="/svg/ide/preview.svg" alt="Preview Icon" title="" width={24}/>
           </button>

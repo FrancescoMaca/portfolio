@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import FileExplorerItem from './file-explorer/file-explorer-item';
 import { fileStructure } from './file-explorer/file-structure';
 import { useDispatch } from 'react-redux';
@@ -32,10 +32,21 @@ const folderCreationNotification: NotificationProps = {
 
 export default function FileExplorer() {
   const dispatch = useDispatch()
+  const [isRefreshing, setRefreshing] = useState<boolean>(false);
+  const [collapsedAll, setCollapsedAll] = useState<boolean>(false);
 
   const createFile = () => dispatch(showNotification({ ...fileCreationNotification, id: generateUUID() }))
   const createFolder = () => dispatch(showNotification({ ...folderCreationNotification, id: generateUUID()}))
-  
+  const refresh = () => {
+    setRefreshing(true)
+    setTimeout(() => {
+      setRefreshing(false)
+    }, Math.floor(Math.random() * 500));
+  }
+  const collapseAll = () => {
+    setCollapsedAll(!collapsedAll)
+  }
+
   return (
     <div className="flex flex-col h-full pt-2 pb-10 bg-dark text-white select-disable">
       <div className='flex justify-between items-center px-3 mb-2'>
@@ -53,20 +64,23 @@ export default function FileExplorer() {
           >
             <img src="/svg/ide/new-folder.svg" alt="More Icon" title='' width={20} />
           </button>
-          <button className='hover:bg-hover-dark rounded-md p-1 min-w-[28px]'>
-            <img src="/svg/ide/refresh.svg" alt="More Icon" title='' width={20} />
+          <button className='hover:bg-hover-dark rounded-md p-1 min-w-[28px]'
+            onClick={refresh}
+          >
+            <img src={`/svg/ide/${isRefreshing ? 'loading' : 'refresh'}.svg`} alt="More Icon" title='' width={20}
+              className={`${isRefreshing ? 'animate-spin' : ''}`}
+            />
           </button>
-          <button className='hover:bg-hover-dark rounded-md p-1 min-w-[28px]'>
+          <button className='hover:bg-hover-dark rounded-md p-1 min-w-[28px]'
+            onClick={collapseAll}
+          >
             <img src="/svg/ide/collapse-all.svg" alt="More Icon" title='' width={20} />
-          </button>
-          <button className='hover:bg-hover-dark rounded-md p-1 min-w-[28px]'>
-            <img src="/svg/ide/more.svg" alt="More Icon" title='' width={20} />
           </button>
         </div>
       </div>
       <div className='overflow-y-auto overflow-x-hidden'>
         {fileStructure.map((item, index) => (
-          <FileExplorerItem key={index} item={item} level={0} />
+          <FileExplorerItem key={index} item={item} level={0} allCollapsed={collapsedAll} />
         ))}
       </div>
     </div>

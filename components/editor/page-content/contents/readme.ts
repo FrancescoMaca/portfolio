@@ -2,71 +2,77 @@ import { PageContent } from "../content-handler";
 
 export const readmeContent: PageContent = {
   content: `
-<div align="center">
-  <img src="https://github-readme-stats.vercel.app/api/top-langs?username=FrancescoMaca&locale=en&hide_title=false&layout=compact&card_width=320&langs_count=6&theme=react&hide_border=true&order=2" height="150" alt="languages graph"  />
-  <img src="https://streak-stats.demolab.com?user=FrancescoMaca&locale=en&mode=daily&theme=react&hide_border=true&border_radius=5&date_format=j%20M%5B%20Y%5D&order=3" height="150" alt="streak graph"  />
-</div>
+# 👋 Hey there, I'm Francesco!
 
-###
+> Turning caffeine into code since [REDACTED]
 
-<div align="center">
-  <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/typescript/typescript-original.svg" height="40" alt="typescript logo"  />
-  <img width="12" />
-  <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg" height="40" alt="react logo"  />
-  <img width="12" />
-  <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/redux/redux-original.svg" height="40" alt="redux logo"  />
-  <img width="12" />
-  <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/c/c-original.svg" height="40" alt="c logo"  />
-  <img width="12" />
-  <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/csharp/csharp-original.svg" height="40" alt="csharp logo"  />
-  <img width="12" />
-  <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/flutter/flutter-original.svg" height="40" alt="flutter logo"  />
-  <img width="12" />
-  <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/firebase/firebase-plain.svg" height="40" alt="firebase logo"  />
-  <img width="12" />
-  <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mongodb/mongodb-original.svg" height="40" alt="mongodb logo"  />
-  <img width="12" />
-  <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/java/java-original.svg" height="40" alt="java logo"  />
-</div>
+## 🎭 Who am I?
 
-###
+- 🦸‍♂️ By day: A mild-mannered developer
+- 🦹‍♂️ By night: Also a developer (I really like coding, okay?)
 
-<div align="center">
-  <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/vscode/vscode-original.svg" height="40" alt="vscode logo"  />
-  <img width="12" />
-  <img src="https://skillicons.dev/icons?i=figma" height="40" alt="figma logo"  />
-  <img width="12" />
-  <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/apple/apple-original.svg" height="40" alt="apple logo"  />
-</div>
+## 💡 Things I occasionally think about
 
-###
+1. Why isn't there a \`!important!\` in CSS?
+2. If I were a sorting algorithm, would I be bubble sort? (Please say no)
+3. Is P = NP? (Spoiler: Maybe?)
 
-<p align="left"></p>
+## 🎲 Random facts about me
 
-###
+| Fact | Rating |
+|------|--------|
+| Can touch type | ⭐⭐⭐⭐⭐ |
+| Can juggle | ⭐⭐ |
+| Can juggle while typing | ❌ |
 
-<div align="center">
-  <a href="https://www.linkedin.com/in/francesco-macaluso/" target="_blank">
-    <img src="https://raw.githubusercontent.com/maurodesouza/profile-readme-generator/master/src/assets/icons/social/linkedin/default.svg" width="52" height="40" alt="linkedin logo"  />
-  </a>
-  <a href="https://discord.com/users/384023949471645696" target="_blank">
-    <img src="https://raw.githubusercontent.com/maurodesouza/profile-readme-generator/master/src/assets/icons/social/discord/default.svg" width="52" height="40" alt="discord logo"  />
-  </a>
-  <a href="https://www.instagram.com/franky_maca/" target="_blank">
-    <img src="https://raw.githubusercontent.com/maurodesouza/profile-readme-generator/master/src/assets/icons/social/instagram/default.svg" width="52" height="40" alt="instagram logo"  />
-  </a>
-  <a href="https://www.paypal.com/donate/?business=ER2EMYGMCM83U&no_recurring=1&item_name=Thank+you+very+much+%3A%29&currency_code=USD" target="_blank">
-    <img src="https://raw.githubusercontent.com/maurodesouza/profile-readme-generator/master/src/assets/icons/social/paypal/default.svg" width="52" height="40" alt="paypal logo"  />
-  </a>
-</div>
+## 📜 My Programming Manifesto
 
-###
+\`\`\`cpp
+while (true) {
+  if (coffee->isEmpty()) {
+    coffee->refill();
+  } else {
+    code();
+  }
+}
+\`\`\`
 
-<img align="left" height="200" src="https://i.ibb.co/gdgFxML/pfp.png"  />
+## 🏆 Achievements
 
-###
+- [ ] Wrote "Hello, World!" in a _**SAFE**_ C++ program
+- [x] Understood JavaScript's \`this\` keyword (This is a flex)
+- [x] Found the perfect VS Code theme (until ${getNextWeekDate()})
+- [ ] Completed a project without adding "just one more feature"
 
-<img src="https://raw.githubusercontent.com/FrancescoMaca/FrancescoMaca/output/snake.svg" alt="Snake animation" />
+## 📚 Favorite Quotes
 
-###`
+> "There are only two hard things in Computer Science: cache invalidation and naming things."
+> 
+> \- Phil Karlton
+
+> "Why do programmers prefer dark mode? Because light attracts bugs!"
+> 
+> \- Anonymous
+
+---
+
+Remember: In case of fire, git commit, git push, then leave the building!
+
+
+`
+}
+
+function getNextWeekDate(): string {
+  const today = new Date();
+  const nextWeek = new Date(today.getTime() + 7 * 24 * 60 * 60 * 1000);
+  
+  const day = nextWeek.getDate().toString().padStart(2, '0');
+  const monthNames = [
+    'January', 'February', 'March', 'April', 'May', 'June', 
+    'July', 'August', 'September', 'October', 'November', 'December'
+  ];
+  const month = monthNames[nextWeek.getMonth()].substr(0, 3);
+  const year = nextWeek.getFullYear();
+
+  return `${day} ${month} ${year}`;
 }

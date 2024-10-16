@@ -17,6 +17,7 @@ import { tsConfigContent } from './contents/ts-config'
 import { readmeContent } from './contents/readme'
 import { tailwindConfigContent } from './contents/tailwind-config'
 import { postcssContent } from './contents/postcss'
+import { deployContent } from './contents/deploy'
 
 export interface PageContent {
   content: string;
@@ -41,7 +42,8 @@ const contentMap: Record<string, PageContent> = {
   'README.md': readmeContent,
   'tailwind.config.ts': tailwindConfigContent,
   'tsconfig.json': tsConfigContent,
-  'yarn.lock': yarnLockContent
+  'yarn.lock': yarnLockContent,
+  'deploy.yml': deployContent
 }
 
 export function getEditorContent(name: string, goodFormat: boolean): string {

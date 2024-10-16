@@ -119,15 +119,6 @@ export default function Editor() {
         }
         {
           displayFile(tabs[activeTabIndex])
-          // activeTabIndex === -1 ?
-          // <DefaultPage /> :
-          //   tabs[activeTabIndex].endsWith('.png') ?
-          //     <div className="h-full overflow-y-auto">
-          //       <ImageViewer name={tabs[activeTabIndex]} />
-          //     </div>:
-          //     <div className="h-full overflow-y-auto">
-          //       <TextEditor currentPage={tabs[activeTabIndex]}/>
-          //     </div>
         }
       </Panel>
       <HighlightHandler horizontal />
@@ -147,7 +138,6 @@ function displayFile(file?: string) {
   }
 
   const ext = file.split('.').pop()
-
   
   return (
     <div className='h-full overflow-y-auto'>

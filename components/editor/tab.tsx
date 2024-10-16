@@ -10,7 +10,6 @@ interface TabProps {
   onClose: (name: string) => void;
 }
 
-
 export default function Tab({ name, isActive, onClick, onClose }: TabProps) {
 
   const [isHovered, setIsHovered] = useState(false);

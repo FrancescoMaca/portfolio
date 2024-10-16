@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import File from './file';
 import { useDispatch } from 'react-redux';
 import { addTab } from '@/components/redux/slices/editor-tab-slice';
@@ -13,12 +13,19 @@ interface FileExplorerItemProps {
     isLink?: boolean;
   };
   level: number;
+  allCollapsed: boolean;
 }
 
-export default function FileExplorerItem({ item, level }: FileExplorerItemProps) {
+export default function FileExplorerItem({ item, level, allCollapsed }: FileExplorerItemProps) {
   // Must be used a useState to re-render the component
   const [isOpen, setIsOpen] = useState(item.isOpenByDefault);
   const dispatch = useDispatch()
+  
+  useEffect(() => {
+    if (item.isFolder) {
+      setIsOpen(!allCollapsed);
+    }
+  }, [allCollapsed, item.isFolder]);
   
   const toggleOpen = () => {
     if (item.isFolder) {
@@ -46,7 +53,7 @@ export default function FileExplorerItem({ item, level }: FileExplorerItemProps)
       {isOpen && item.children && (
         <div>
           {item.children.map((child, index) => (
-            <FileExplorerItem key={index} item={child} level={level + 1}/>
+            <FileExplorerItem key={index} item={child} level={level + 1} allCollapsed={allCollapsed}/>
           ))}
         </div>
       )}
