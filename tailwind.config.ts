@@ -76,11 +76,13 @@ const config: Config = {
       },
       backgroundImage: {
         'highlight-gradient': 'linear-gradient(to right, #B868E7, #7AD3E9)',
-        'loading-screen': 'radial-gradient(#121f3e, #181818)'
+        'loading-screen': 'radial-gradient(#121f3e, #181818)',
+        'me': 'url("/pictures/me.webp")'
       }
     },
     fontFamily: {
       'text': 'Melno',
+      'ide': 'RutanTrial',
     }
   },
   plugins: [

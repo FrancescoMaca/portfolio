@@ -1,3 +1,4 @@
+import { formatDate } from "@/components/utils/helpers";
 import { PageContent } from "../content-handler";
 
 export const readmeContent: PageContent = {
@@ -41,7 +42,7 @@ while (true) {
 
 - [ ] Wrote "Hello, World!" in a _**SAFE**_ C++ program
 - [x] Understood JavaScript's \`this\` keyword (This is a flex)
-- [x] Found the perfect VS Code theme (until ${getNextWeekDate()})
+- [x] Found the perfect VS Code theme (until ${formatDate(new Date(Date.now() + 7 * 24 * 60 * 60 * 1000))})
 - [ ] Completed a project without adding "just one more feature"
 
 ## 📚 Favorite Quotes
@@ -60,19 +61,4 @@ Remember: In case of fire, git commit, git push, then leave the building!
 
 
 `
-}
-
-function getNextWeekDate(): string {
-  const today = new Date();
-  const nextWeek = new Date(today.getTime() + 7 * 24 * 60 * 60 * 1000);
-  
-  const day = nextWeek.getDate().toString().padStart(2, '0');
-  const monthNames = [
-    'January', 'February', 'March', 'April', 'May', 'June', 
-    'July', 'August', 'September', 'October', 'November', 'December'
-  ];
-  const month = monthNames[nextWeek.getMonth()].substr(0, 3);
-  const year = nextWeek.getFullYear();
-
-  return `${day} ${month} ${year}`;
 }

@@ -9,6 +9,20 @@
   src: url('../public/font/menlo-regular.ttf') format('truetype');
 }
 
+@font-face {
+  font-family: 'RutanTrial';
+  font-style: bold;
+  font-weight: 600;
+  src: url('../public/font/rutan-trial-bold.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'RutanTrial';
+  font-style: normal;
+  font-weight: 400;
+  src: url('../public/font/rutan-trial-regular.ttf') format('truetype');
+}
+
 html {
   scroll-behavior: smooth;
 }

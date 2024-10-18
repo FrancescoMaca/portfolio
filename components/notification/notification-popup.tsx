@@ -93,7 +93,17 @@ export function Notification({
           </button>
         }
       </div>
-      <p className="pb-5 pt-2">{body} </p>
+      <p className="pb-5 pt-2">
+        {
+          body.split('`').map((part, index) => 
+            index % 2 === 0 ?
+              part :
+              <span key={index} className="bg-hover-dark text-text-changed px-1 rounded-md">
+                {part}
+              </span>
+          )
+        }
+      </p>
       <div className="flex gap-5 self-end">
         {
           actionButton &&

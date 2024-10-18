@@ -23,7 +23,7 @@ export default function FileExplorerItem({ item, level, allCollapsed }: FileExpl
   
   useEffect(() => {
     if (item.isFolder) {
-      setIsOpen(!allCollapsed);
+      setIsOpen(allCollapsed);
     }
   }, [allCollapsed, item.isFolder]);
   
