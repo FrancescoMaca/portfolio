@@ -1,5 +1,5 @@
 'use client'
-import { useState } from "react";
+import { MutableRefObject, useState } from "react";
 import { useDispatch } from "react-redux";
 import { showNotification } from "../redux/slices/notification-slice";
 import { generateUUID } from "../utils/helpers";
@@ -7,17 +7,29 @@ import { SourceControlDropdown } from "./source-control/dropdown-entry";
 import { CommitDropdown } from "./source-control/commit-dropdown";
 import { RemotesDropdown } from "./source-control/remotes-dropdown";
 import { ContributionDropdown } from "./source-control/contributions-dropdown";
+import { getPanelElement, ImperativePanelHandle } from "react-resizable-panels";
 
-const dropdowns = [
-  { title: 'commits', content: <CommitDropdown /> },
-  { title: 'remotes', content: <RemotesDropdown /> },
-  { title: 'contributors', content: <ContributionDropdown /> },
-]
-
-export default function SourceControl() {
+export default function SourceControl({ parentPanelRef }: { parentPanelRef: MutableRefObject<ImperativePanelHandle>}) {
   const dispatch = useDispatch()
   const [isRefreshing, setRefreshing] = useState<boolean>(false);
   const [expandedSection, setExpandedSection] = useState<string | null>(null);
+
+  const onCardHover = () => {
+    const percentage = (100 * 360) / (window.innerWidth - 64) 
+    
+    if (parentPanelRef.current.getSize() < percentage) {
+      const panelhtml = getPanelElement(parentPanelRef.current.getId())
+      panelhtml.classList.add('transition-all')
+      parentPanelRef.current.resize(percentage)
+      setTimeout(() => panelhtml.classList.remove('transition-all'), 300)
+    }
+  }
+
+  const dropdowns = [
+    { title: 'commits', content: <CommitDropdown expanded={expandedSection === 'commits'} /> },
+    { title: 'contributors', content: <ContributionDropdown expanded={expandedSection === 'contributors'} onCardHover={onCardHover}/> },
+    { title: 'remotes', content: <RemotesDropdown expanded={expandedSection === 'remotes'} /> },
+  ]
 
   const refresh = () => {
     setRefreshing(true)
@@ -25,6 +37,7 @@ export default function SourceControl() {
       setRefreshing(false)
     }, Math.floor(Math.random() * 500));
   }
+
   const commit = () => {
     dispatch(showNotification({
       id: generateUUID(),
@@ -72,9 +85,7 @@ export default function SourceControl() {
             isExpanded={expandedSection === section.title}
             onToggle={() => handleToggle(section.title)}
           >
-            <div className='h-full overflow-auto'>
-              {section.content}
-            </div>
+            {section.content}
           </SourceControlDropdown>
         ))
       }

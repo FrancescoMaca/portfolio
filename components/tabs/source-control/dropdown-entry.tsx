@@ -45,11 +45,9 @@ export function SourceControlDropdown({ title, children, isExpanded, onToggle }:
           <span>{title}</span>
         </span>
       </div>
-      {isExpanded && (
-        <div className="flex-grow overflow-y-auto min-h-0">
-          {children}
-        </div>
-      )}
+      <div className={`flex-grow overflow-y-auto min-h-0 overflow-hidden transition-transform ${isExpanded ? 'h-full' : 'h-0'} duration-150 ease-in-out`}>
+        {children}
+      </div>
     </div>
   );
 }

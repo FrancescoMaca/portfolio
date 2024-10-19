@@ -15,7 +15,6 @@ import ImageViewer from './page-content/image-viewer';
 import { showNotification } from '../redux/slices/notification-slice';
 import { generateUUID } from '../utils/helpers';
 import { bake_cookie, read_cookie } from 'sfcookies';
-import Markdown from 'react-markdown';
 import MarkdownEditor from './page-content/md-viewer';
 
 export default function Editor() {
@@ -23,7 +22,6 @@ export default function Editor() {
   const { tabs, activeTabIndex } = useSelector((state: RootState) => state.tabs)
   const [clickTimeout, setClickTimeout] = useState(null);
   const [contextMenu, setContextMenu] = useState(null);
-
   useEffect(() => {
     const handleOutsideClick = () => setContextMenu(null);
     if (contextMenu) {

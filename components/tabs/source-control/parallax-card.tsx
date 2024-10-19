@@ -3,13 +3,16 @@ import { darkenScreen } from '@/components/redux/slices/ide-controls-slice'
 import Tilt from 'react-parallax-tilt'
 import { useDispatch } from 'react-redux'
 
-export default function ParallaxCard() {
+export default function ParallaxCard({onCardHover}: { onCardHover: () => void }) {
   const dispatch = useDispatch()
 
   return (
-    <div className='relative w-full min-w-[350px] max-w-[500px] p-10 overflow-visible z-[100]'>
+    <div className='relative w-full min-w-[380px] max-w-[500px] p-10 overflow-visible z-[100]'>
       <Tilt 
-        onEnter={() => dispatch(darkenScreen(true))}
+        onEnter={() => {
+          onCardHover()
+          dispatch(darkenScreen(true))}
+        }
         onLeave={() => dispatch(darkenScreen(false))}
         glareEnable 
         glarePosition='all' 
@@ -64,16 +67,16 @@ export default function ParallaxCard() {
             </div>
 
             <div className='bg-dark/10 p-3 rounded-md backdrop-blur-sm'>
-              <div className='flex justify-between text-sm'>
+              <div className='flex justify-between text-sm whitespace-nowrap'>
                 <span className='text-zinc-600'>Service Period:</span>
-                <span className=''>2021 - Present</span>
+                <span className='pl-2'>2021 - Present</span>
               </div>
             </div>
           </div>
 
           <div className='absolute bottom-1 left-1/2 -translate-x-1/2'>
             <div className='text-center'>
-              <div className='text-control-disable font-mono'>ID: GH-2024-FM-1337</div>
+              <div className='text-control-disable font-mono whitespace-nowrap'>ID: GH-2024-FM-1337</div>
             </div>
           </div>
         </div>

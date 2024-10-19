@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import { Commit, fetchGitHubCommits } from "./commit-finder";
 import { formatRelativeTime } from "@/components/utils/helpers";
 
-export function CommitDropdown() {
+export function CommitDropdown({ expanded }: { expanded: boolean }) {
   const [commits, setCommits] = useState<Commit[]>([]);
   const [loading, setLoading] = useState(true);
   
@@ -32,8 +32,8 @@ export function CommitDropdown() {
   }
 
   return (
-    <div className="h-full flex flex-col">
-      <ul className="flex-grow overflow-y-auto">
+    <div className={`flex flex-col overflow-hidden ${expanded ? 'h-full' : 'h-0'} transition-all duration-500`}>
+      <ul className="overflow-y-auto">
         {commits.map((commit: Commit, index: number) => {
           const [title, ...messageParts] = commit.commit.message.split('\n').map(part => part.trim())
           return (
@@ -112,7 +112,7 @@ function CommitEntry({ sha, commitTitle, author, commitMessage, date }: CommitEn
             </a>
           </div>
           <span className="text-white py-1 px-2 rounded-md bg-hover-dark">
-            { 
+            {
               !commitMessage || commitMessage.length === 0 ?
                 'No messages attached to this commit' : commitMessage
             }
@@ -122,3 +122,7 @@ function CommitEntry({ sha, commitTitle, author, commitMessage, date }: CommitEn
     </div>
   )
 }
+/**
+ * 
+ * <div className={`overflow-hidden ${expanded ? 'h-full' : 'h-0'} transition-all duration-700`}></div>
+ */

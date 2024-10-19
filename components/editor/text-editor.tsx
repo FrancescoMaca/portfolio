@@ -1,7 +1,6 @@
 'use client'
 
 import SyntaxHighlighter from "react-syntax-highlighter/dist/esm/light-async";
-import { atomOneDark } from "react-syntax-highlighter/dist/esm/styles/hljs";
 import { contentHasPrettyOption, getEditorContent } from "./page-content/content-handler";
 import { CSSProperties, useEffect, useRef, useState } from "react";
 import { ToggleButton } from "../utils/toggle-button";
@@ -17,6 +16,8 @@ import TextWithIcon from "../utils/icon-hover";
 import UrlRenderer from "../utils/url-renderer";
 import { getFilePath } from "../tabs/file-explorer/file-structure";
 import { bake_cookie, read_cookie } from "sfcookies";
+import { useSelector } from "react-redux";
+import { RootState } from "../redux";
 
 type ActionType = 'HOVER' | 'URL' | 'ACTION'
 type ActionHandler = (args: string[]) => React.ReactNode
@@ -33,6 +34,7 @@ export default function TextEditor({ currentPage }: { currentPage: string }) {
   const [goodFormat, setGoodFormat] = useState<boolean>(false)
   const content = getEditorContent(currentPage, goodFormat)
   const duckRef = useRef<HTMLImageElement>(null)
+  const theme = useSelector((state: RootState) => state.ideControls.theme)
   const dispatch = useDispatch()
 
   const handleCommandClick = () => {
@@ -112,7 +114,7 @@ export default function TextEditor({ currentPage }: { currentPage: string }) {
             customStyle={editorStyle}
             lineNumberStyle={lineNumberStyle}
             language={getPageLanguage(currentPage)}
-            style={atomOneDark}
+            style={theme}
             showLineNumbers={true}
             PreTag={CustomPreComponent}
           >

@@ -1,8 +1,15 @@
 import { useState } from "react";
-import { ComingMoreExtEntry, ExtensionEntry } from "./extensions/extension-entry";
+import { ComingMoreExtEntry, ExtensionEntry, ExtensionEntryProps } from "./extensions/extension-entry";
+import { changeTheme, undoLastThemeChange } from "../redux/slices/ide-controls-slice";
 
-const extensions = [
-  { name: 'Change Theme', description: 'Changes the code theme color in the IDE'},
+const extensions: ExtensionEntryProps[] = [
+  { 
+    name: 'Atelier Cave Dark Theme',
+    description: 'Changes the theme to Atelier Cave Dark in the IDE',
+    icon: 'palette',
+    action: () => changeTheme('atelierCaveDark'),
+    undoAction: () => undoLastThemeChange()
+  },
 ]
 
 export default function Extension() {
@@ -33,10 +40,14 @@ export default function Extension() {
       </div>
       <div className="h-full overflow-y-auto overflow-x-hidden">
         {
-          extensions.map(ext => 
+          extensions.map((ext, index) => 
             <ExtensionEntry
+              key={index}
               name={ext.name}
               description={ext.description}
+              icon={ext.icon}
+              action={ext.action}
+              undoAction={ext.undoAction}
             />
           )
         }
