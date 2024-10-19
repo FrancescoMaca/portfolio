@@ -41,6 +41,24 @@ const tabSlice = createSlice({
         }
       }
     },
+    focusNextTab: (state) => {
+      if (state.tabs.length === 1 || state.tabs.length === 0) {
+        return
+      }
+
+      state.activeTabIndex = 
+        state.activeTabIndex + 1 >= state.tabs.length ?
+          0 : state.activeTabIndex + 1
+    },
+    focusPreviousTab: (state) => {
+      if (state.tabs.length === 1 || state.tabs.length === 0) {
+        return
+      }
+
+      state.activeTabIndex = 
+        state.activeTabIndex - 1 < 0 ?
+          state.tabs.length - 1 : state.activeTabIndex - 1
+    },
     setActiveTab: (state, action: PayloadAction<number>) => {
       state.activeTabIndex = action.payload;
     },
@@ -58,5 +76,5 @@ const tabSlice = createSlice({
   },
 });
 
-export const { addTab, closeTab, setActiveTab, closeOtherTabs, closeAllTabs } = tabSlice.actions;
+export const { addTab, closeTab, setActiveTab, closeOtherTabs, closeAllTabs, focusNextTab, focusPreviousTab } = tabSlice.actions;
 export default tabSlice.reducer;

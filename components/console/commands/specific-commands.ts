@@ -1,6 +1,7 @@
 'use client'
 
 import { CLICommand, CLICommandResult } from "./command-handler"
+import { killProcess, runningProcesses } from "./ps-command"
 
 export const killDuckCommand: CLICommand = {
   description: 'Kills a process.',
@@ -13,17 +14,26 @@ export const killDuckCommand: CLICommand = {
       }
     }
 
-    const sig = args[0].substring(1)
-    if (!['HUP','KILL','TERM'].includes(sig)) {
+    if (!args[0].startsWith('-')) {
       return {
-        message: `Signal ${sig} not recognized`,
+        message: `Signal ${args[0]} not recognized\nusage: pkill -<HUP|KILL|TERM> <process_name>`,
         status: CLICommandResult.ERROR
       }
     }
 
-    if (args[1] === 'duck.exe') {
+    const sig = args[0].substring(1)
+    if (!['HUP','KILL','TERM'].includes(sig)) {
       return {
-        message: 'Process duck.exe terminated',
+        message: `Signal ${sig} not recognized\nusage: pkill -<HUP|KILL|TERM> <process_name>`,
+        status: CLICommandResult.ERROR
+      }
+    }
+
+    if (runningProcesses.find(proc => proc.name === args[1])) {
+      killProcess(args[1])
+      
+      return {
+        message: `Process ${args[1]} was stopped successfully`,
         status: CLICommandResult.SUCCESS
       }
     }
@@ -35,7 +45,7 @@ export const killDuckCommand: CLICommand = {
     }
     else {
       return {
-        message: 'You cannot kill ' + args[1],
+        message: 'Process ' + args[1] + ' not running. Try running \'ps\' to see running processes',
         status: CLICommandResult.ERROR
       }
     }

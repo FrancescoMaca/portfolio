@@ -11,10 +11,6 @@ export const specificCmd: CLISpecificCommand[] = [
     output: "PhysMem: 17G used (3955M wired, 6841M compressor), 212M unused."
   },
   {
-    command: 'pkill -KILL duck.exe',
-    output: "Process duck.exe was stopped successfully"
-  },
-  {
     command: `curl -s https://frankymaca.me | grep -o '"[^"]*/"' | sort -u`,
     output: `--${formatCLIDate()}--  https://frankymaca.me/
 Resolving frankymaca.me (frankymaca.me)... 127.0.0.1

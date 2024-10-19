@@ -5,11 +5,15 @@ interface PInfo {
   description: string;
 }
 
-const runningProcesses: PInfo[] = [
+export let runningProcesses: PInfo[] = [
   { name: 'duck.exe', description: 'Very interesting background duck process' },
-  { name:'vscode.exe', description: 'Basically the kernel of all this' },
-  { name:'franky.exe', description: 'The root user process'}
+  { name: 'vscode.exe', description: 'Basically the kernel of all this' },
+  { name: 'franky.exe', description: 'The root user process'}
 ]
+
+export function killProcess(pName: string) {
+  runningProcesses = runningProcesses.filter(p => p.name !== pName)
+}
 
 export const psCommand: CLICommand = {
   description: "Shows all the running processes",

@@ -38,7 +38,8 @@ export default function Tab({ name, isActive, onClick, onClose }: TabProps) {
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
     >
-      <img src={`svg/files/file_type_${extToIcon(name)}.svg`} width={16}/>
+
+      <img src={`svg/files/file_type_${extToIcon(name)}.svg`} width={16} height={16} alt="File Icon" loading='lazy' />
       <span className="text-sm">{name}</span>
       <div className={`hover:bg-hover-dark hover:brightness-125 rounded-md p-1 ${isHovered || isActive ? 'visible' : 'invisible'}`}
         onClick={(e) => {

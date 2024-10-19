@@ -47,9 +47,10 @@ const profiles: Map<string, string> = {
   'linkedin': \`[[URL:[open my Linkedin],${linkedinUrl}]]\`
 }
 
+
 // 
 // Wanna see more? 
-// Click [[ACTION:[seeMore],ciao]]
+// Click [[ACTION:[seeMore],seeMore]]
 // 
 console.log(\`Last updated: \${new Date().toISOString().split('T')[0]}\`) // ${new Date().toISOString().split('T')[0]}
 
@@ -101,7 +102,7 @@ const profiles: Map<string, string> = {
 
 //
 // Wanna see more?
-// Click [[ACTION:[seeMore],]]
+// Click [[ACTION:[seeMore],seeMore]]
 //
 console.log(\`Last updated: \${new Date().toISOString().split('T')[0]}\`) // ${new Date().toISOString().split('T')[0]}
 

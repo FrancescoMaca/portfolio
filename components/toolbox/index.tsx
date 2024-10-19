@@ -7,8 +7,6 @@ const topToolboxItems: ToolboxItemData[] = [
   { text: 'Source Control', icon: 'source-control' },
   { text: 'Run and Debug', icon: 'debug-alt' },
   { text: 'Extensions', icon: 'extensions' },
-  { text: 'Remote Explorer', icon: 'vm-connect' },
-  { text: 'Search', icon: 'search' },
 ]
 
 const bottomToolboxItems: ToolboxItemData[] = [

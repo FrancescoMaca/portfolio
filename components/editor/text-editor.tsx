@@ -70,8 +70,13 @@ export default function TextEditor({ currentPage }: { currentPage: string }) {
     dispatch(addTab('francesco-macaluso.png'))
   }
 
+  const handleSeeMore = () => {
+    dispatch(addTab('project-page.tsx'))
+  }
+
   actions['openProfileImage'] = handleOpenImage
   actions['runSecretCommand'] = handleCommandClick
+  actions['seeMore'] = handleSeeMore
 
   return (
     <div className="relative flex w-full h-full flex-col bg-editor text-white font-mono text-sm overflow-hidden">

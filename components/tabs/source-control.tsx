@@ -17,7 +17,7 @@ const dropdowns = [
 export default function SourceControl() {
   const dispatch = useDispatch()
   const [isRefreshing, setRefreshing] = useState<boolean>(false);
-  const [expandedSection, setExpandedSection] = useState<string | null>('commits');
+  const [expandedSection, setExpandedSection] = useState<string | null>(null);
 
   const refresh = () => {
     setRefreshing(true)
