@@ -3,14 +3,32 @@
 @tailwind utilities;
 
 @font-face {
-  font-family: 'Josefin Sans';
+  font-family: 'Melno';
   font-style: normal;
   font-weight: 400;
-  src: url('../public/font/JosefinSans-Regular.ttf') format('truetype');
+  src: url('../public/font/menlo-regular.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'RutanTrial';
+  font-style: bold;
+  font-weight: 600;
+  src: url('../public/font/rutan-trial-bold.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'RutanTrial';
+  font-style: normal;
+  font-weight: 400;
+  src: url('../public/font/rutan-trial-regular.ttf') format('truetype');
 }
 
 html {
   scroll-behavior: smooth;
+}
+
+::selection {
+  background-color: #4160A377;
 }
 
 /* For WebKit (Chrome, Safari) */
@@ -20,15 +38,26 @@ html {
 }
 
 ::-webkit-scrollbar-track {
-  background: #3F3F3F;
+  background: #00000000;
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #C7C7C7;
-  border-radius: 10px 400px;
+  background: #4D4D4D;
+}
+
+::-webkit-scrollbar-corner {
+  background: #00000000;
 }
 
 /* Tailwind problems as always :D */
 input, textarea {
   --tw-ring-shadow: 0 0 #000 !important;
+}
+
+.select-disable {
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -o-user-select: none;
+  user-select: none;
 }

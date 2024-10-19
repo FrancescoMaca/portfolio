@@ -1,10 +1,8 @@
 import './globals.css'
-import Footer from '@/components/shared/Footer'
-import Navbar from '@/components/shared/Navbar'
 import { Metadata } from 'next'
 
 export const metadata: Metadata = {
-  title: 'Francesco { Code Artist }',
+  title: 'Francesco VS Code',
   description: 'This is my personal portfolio, to show who I am to the World Wide Web.',
   viewport: 'width=device-width, initial-scale=1.0',
   icons: {
@@ -30,9 +28,7 @@ export default function RootLayout({children}: {children: React.ReactNode}) {
   return (
     <html lang="en">
       <body className='relative bg-dark font-text overscroll-none'>
-        <Navbar/>
         {children}
-        <Footer/>
       </body>
     </html>
   )
