@@ -1,5 +1,6 @@
 'use client'
 import { darkenScreen } from '@/components/redux/slices/ide-controls-slice'
+import Image from 'next/image'
 import Tilt from 'react-parallax-tilt'
 import { useDispatch } from 'react-redux'
 
@@ -25,7 +26,7 @@ export default function ParallaxCard({onCardHover}: { onCardHover: () => void })
         <div className='relative pb-5 rounded-md bg-gradient-to-br from-zinc-300 via-zinc-200 to-zinc-400 shadow-xl border border-zinc-500 z-[400]'>
           <div className='absolute top-0 left-0 w-full p-3 bg-gradient-to-r from-zinc-800 via-zinc-700 to-zinc-800 text-zinc-200 rounded-t-md'>
             <div className='flex items-center space-x-3'>
-              <img src="/pictures/gh-profile.png" alt="Avatar" className='rounded-full border-2 border-zinc-400 min-w-[40px]' width={40} />
+              <Image src="/pictures/gh-profile.png" alt="Avatar" className='rounded-full border-2 border-zinc-400 min-w-[40px]' width={40} height={40} />
               <div>
                 <h3 className='font-bold tracking-wide'>Francesco Macaluso</h3>
                 <a href="https://github.com/FrancescoMaca" target='_blank'

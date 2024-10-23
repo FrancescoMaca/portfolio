@@ -5,7 +5,6 @@ import ToolboxItem, { ToolboxItemData } from "./toolbox-item"
 const topToolboxItems: ToolboxItemData[] = [
   { text: 'Folders', icon: 'files' },
   { text: 'Source Control', icon: 'source-control' },
-  { text: 'Run and Debug', icon: 'debug-alt' },
   { text: 'Extensions', icon: 'extensions' },
 ]
 

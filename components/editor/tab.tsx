@@ -2,6 +2,7 @@
 
 import { MouseEvent, useState } from "react";
 import { extToIcon } from "../utils/helpers";
+import Image from "next/image";
 
 interface TabProps {
   name: string;
@@ -39,7 +40,7 @@ export default function Tab({ name, isActive, onClick, onClose }: TabProps) {
       onMouseLeave={() => setIsHovered(false)}
     >
 
-      <img src={`svg/files/file_type_${extToIcon(name)}.svg`} width={16} height={16} alt="File Icon" loading='lazy' />
+      <Image src={`svg/files/file_type_${extToIcon(name)}.svg`} width={16} height={16} alt="File Icon" loading='lazy' />
       <span className="text-sm">{name}</span>
       <div className={`hover:bg-hover-dark hover:brightness-125 rounded-md p-1 ${isHovered || isActive ? 'visible' : 'invisible'}`}
         onClick={(e) => {
@@ -47,7 +48,7 @@ export default function Tab({ name, isActive, onClick, onClose }: TabProps) {
           onClose(name)
         }}
       >
-        <img src="/svg/ide/close.svg" alt="Close Icon" title="" width={20}
+        <Image src="/svg/ide/close.svg" alt="Close Icon" title="" width={20} height={20}
           className={`min-w-[20px] ${isActive ? '' : 'brightness-50'}`}
         />
       </div>

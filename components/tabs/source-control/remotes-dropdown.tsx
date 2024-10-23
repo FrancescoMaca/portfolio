@@ -1,8 +1,8 @@
 'use client'
 import { useEffect, useState } from "react"
 import { getGitHubProfileAndRepoInfo, GitHubBranch, GitHubUser, GitHubRepo } from "./commit-finder"
-import { SourceControlDropdown } from "./dropdown-entry"
-import { formatDate, formatRelativeTime } from "@/components/utils/helpers"
+import { formatRelativeTime } from "@/components/utils/helpers"
+import Image from "next/image"
 
 export function RemotesDropdown({ expanded }: { expanded: boolean }) {
 
@@ -28,7 +28,7 @@ export function RemotesDropdown({ expanded }: { expanded: boolean }) {
   if (loading) {
     return (
       <div className="animate-spin">
-        <img src="/svg/ide/loading.svg" alt="Loading icon" title="" />
+        <Image src="/svg/ide/loading.svg" alt="Loading icon" title="" width={20} height={20} />
       </div>
     )
   }
@@ -38,10 +38,10 @@ export function RemotesDropdown({ expanded }: { expanded: boolean }) {
       <div className="flex px-5 py-1 gap-2 overflow-hidden text-text-normal hover:bg-hover-dark"
         onClick={() => isExpanded(!subExpanded)}
       >
-        <img src={`/svg/ide/chevron-${subExpanded ? 'down' : 'right'}.svg`} alt="" width={20}
+        <Image src={`/svg/ide/chevron-${subExpanded ? 'down' : 'right'}.svg`} alt="" width={20} height={20}
           className="min-w-[20px]"
         />
-        <img src={userInfo.avatar_url} alt="Avatar User" title="" width={20}
+        <Image src={userInfo.avatar_url} alt="Avatar User" title="" width={20} height={20}
           className="min-w-[20px]"
         />
         <span className="whitespace-nowrap overflow-hidden text-ellipsis block">
@@ -56,8 +56,9 @@ export function RemotesDropdown({ expanded }: { expanded: boolean }) {
               border-l border-l-border-input hover:bg-hover-dark
               ${index === branches.length - 1 ? ' rounded-bl-xl mb-2' : ''}
             `}>
-              <img src="/svg/ide/git-merge.svg" alt="Git Branch Icon" title=""
+              <Image src="/svg/ide/git-merge.svg" alt="Git Branch Icon" title=""
                 width={20}
+                height={20}
                 className="rotate-180 scale-x-[-1] min-w-[20px]"
               />
               <span>{branch.name}</span>

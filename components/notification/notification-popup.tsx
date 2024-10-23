@@ -4,6 +4,7 @@ import { hideNotification, showNotification } from "../redux/slices/notification
 import { useEffect } from "react";
 import { setPendingCommand } from "../redux/slices/console-commands-slice";
 import { generateUUID } from "../utils/helpers";
+import Image from "next/image";
 
 export interface NotificationProps {
   id: string;
@@ -63,14 +64,6 @@ export function Notification({
     })), 500)
   }
 
-  useEffect(() => {
-    if (timeout) {
-      setTimeout(() => {
-        handleOnClose()
-      }, timeout);
-    }
-  }, [])
-
   const handleOnClose = () => {
     if (onClose) {
       callbackMap[onClose] && callbackMap[onClose]()
@@ -79,17 +72,26 @@ export function Notification({
     dispatch(hideNotification(id));
   };
 
+  useEffect(() => {
+    if (timeout) {
+      setTimeout(() => {
+        handleOnClose()
+      }, timeout);
+    }
+  }, [timeout, handleOnClose])
+
+
   return (
     <div className={`flex flex-col p-5 w-[25vw] min-w-fit bg-notif-bg text-text-normal text-sm shadow-[0px_0px_20px_5px_#00000044]`}>
       <div className="flex justify-between items-center">
         <div className="flex items-center gap-3">
-          <img src={`/svg/ide/type-${type}.svg`} alt="Close Icon" width={24} className="select-disable" />
+          <Image src={`/svg/ide/type-${type}.svg`} alt="Close Icon" width={24} height={24} className="select-disable" />
           <span>{title}</span>
         </div>
         {
           hasCloseButton &&
           <button onClick={handleOnClose} className="hover:bg-hover-dark rounded-md">
-            <img src='/svg/ide/close.svg' alt="Close Icon" width={24} />
+            <Image src='/svg/ide/close.svg' alt="Close Icon" width={24} height={24} />
           </button>
         }
       </div>

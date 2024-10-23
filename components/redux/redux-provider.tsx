@@ -2,7 +2,8 @@
 
 import { Provider } from 'react-redux'
 import { ReactNode } from 'react'
-import { store } from '.'
+import { persistor, store } from '.'
+import { PersistGate } from 'redux-persist/integration/react'
 
 export function ReduxProvider({ children }: { children: ReactNode }) {
 
@@ -11,5 +12,11 @@ export function ReduxProvider({ children }: { children: ReactNode }) {
     return <div>Error: Redux store is not available</div>
   }
   
-  return <Provider store={store}>{children}</Provider>
+  return (
+    <Provider store={store}>
+      <PersistGate loading={null} persistor={persistor}>
+        {children}
+      </PersistGate>
+    </Provider>
+  )
 }

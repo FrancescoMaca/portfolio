@@ -4,6 +4,7 @@ import TextEditor from "../text-editor"
 import { getEditorContent } from "./content-handler"
 import MarkdownPreview from '@uiw/react-markdown-preview'
 import { useRef } from "react"
+import Image from "next/image"
 
 interface MarkdownEditorProps {
   name: string
@@ -28,15 +29,16 @@ export default function MarkdownEditor({ name }: MarkdownEditorProps) {
           <button className="absolute top-2 right-5 p-1 rounded-md bg-editor hover:bg-hover-dark z-10"
             onClick={togglePreview}
           >
-            <img src="/svg/ide/preview.svg" alt="Preview Icon" title="" width={24}/>
+            <Image src="/svg/ide/preview.svg" alt="Preview Icon" title="" width={24} height={24}/>
           </button>
           <TextEditor currentPage={name} />
         </Panel>
         <HighlightHandler />
         <Panel ref={previewRef} minSize={30} defaultSize={30} collapsedSize={0} collapsible>
-          <MarkdownPreview className="p-10 h-full !bg-editor text-text-normal overflow-y-auto"
-            source={getEditorContent(name, false)}>
-          </MarkdownPreview>
+          <MarkdownPreview 
+            className="p-10 h-full !bg-editor text-text-normal overflow-y-auto"
+            source={getEditorContent(name, false)}
+          />
         </Panel>
       </PanelGroup>
     </>

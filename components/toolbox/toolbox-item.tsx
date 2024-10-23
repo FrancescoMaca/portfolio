@@ -5,11 +5,16 @@ import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../redux";
 import { setActiveToolboxItem } from "../redux/slices/toolbox-slice";
 import { fetchGitHubCommits } from "../tabs/source-control/commit-finder";
+import { showNotification } from "../redux/slices/notification-slice";
+import { generateUUID } from "../utils/helpers";
+import Image from "next/image";
 
 export interface ToolboxItemData {
   text: string;
   icon: string;
 }
+
+const disabledItems = [ 'Account', 'Settings' ]
 
 export default function ToolboxItem({ item }: { item: ToolboxItemData }) {
   const dispatch = useDispatch()
@@ -34,18 +39,34 @@ export default function ToolboxItem({ item }: { item: ToolboxItemData }) {
     }
 
     return () => clearTimeout(timeoutId);
-  }, [isHovered]);
+  }, [isHovered, item.text]);
   
   return (
     <button className="relative p-4 select-disable"
-      onClick={() => dispatch(setActiveToolboxItem(item))}
+      onClick={() => {
+        if (disabledItems.includes(item.text)) {
+          dispatch(showNotification({
+            id: generateUUID(),
+            title: "Not yet created...",
+            body: "Sorry but this panel is not yet created :(",
+            type: "warning",
+            actionButton: "Ok I'll wait",
+            actionButtonCb: "",
+            secondaryButtonCb: ""
+          }))
+        }
+        else {
+          dispatch(setActiveToolboxItem(item))}
+        }
+      }
       onMouseEnter={() => setHovered(true)}
       onMouseLeave={() => setHovered(false)}
     >
-      <img src={`/svg/ide/${item.icon}${item.text === activeItem.text || isHovered ? '.svg' : '-inactive.svg'}`}
+      <Image src={`/svg/ide/${item.icon}${item.text === activeItem.text || isHovered ? '.svg' : '-inactive.svg'}`}
         alt="Toolbox Icon"
         title=""
         width={32}
+        height={32}
       />
       {
         notifCount > 0 &&

@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { ComingMoreExtEntry, ExtensionEntry, ExtensionEntryProps } from "./extensions/extension-entry";
 import { changeTheme, undoLastThemeChange } from "../redux/slices/ide-controls-slice";
+import Image from "next/image";
 
 const extensions: ExtensionEntryProps[] = [
   { 
@@ -32,7 +33,7 @@ export default function Extension() {
           <button className='hover:bg-hover-dark rounded-md p-1 min-w-[28px]'
             onClick={refresh}
           >
-            <img src={`/svg/ide/${isRefreshing ? 'loading' : 'refresh'}.svg`} alt="Refresh Icon" title='' width={20}
+            <Image src={`/svg/ide/${isRefreshing ? 'loading' : 'refresh'}.svg`} alt="Refresh Icon" title='' width={20} height={20}
               className={`${isRefreshing ? 'animate-spin' : ''}`}
             />
           </button>

@@ -1,4 +1,5 @@
 'use client'
+import Image from "next/image";
 import { useCallback, useEffect, useRef, useState } from "react"
 
 interface TextWithIconProps {
@@ -50,7 +51,7 @@ export default function TextWithIcon({ label, icon }: TextWithIconProps) {
           }}
         >
           <div className={`${isHovering ? 'opacity-100' : 'opacity-0'} transition-opacity duration-300`}>
-            <img src={icon} alt="Skill Icon" className="min-w-[128px] rounded-md" width={128} height={128} />
+            <Image src={icon} alt="Skill Icon" className="min-w-[128px] rounded-md" width={128} height={128} />
           </div>
         </div>
       )}

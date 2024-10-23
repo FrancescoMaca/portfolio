@@ -30,24 +30,15 @@ export default function ConsoleContent() {
       consoleRef.current.scrollTop = consoleRef.current.scrollHeight
     }
   }, [output, pendingCommand, dispatch])
-
-  useEffect(() => {
-    if (pendingCommandRef.current) {
-      handleSubmit();
-      pendingCommandRef.current = null;
-      inputRef.current?.focus()
-    }
-  }, [input])
-
   const handleSubmit = (e?: React.FormEvent) => {
     e?.preventDefault();
-        
+    
     if (!input.trim()) {
       setOutput(prev => [...prev, { type: CLICommandType.OUTPUT, content: prompt, status: CLICommandResult.NONE }])
       setInput('')
       return
     }
-
+    
     const commandResult: CLICommandOutput = handleCommand(input)
     if (commandResult.content === 'CLEAR') {
       setOutput([])
@@ -60,7 +51,16 @@ export default function ConsoleContent() {
       setHistoryIndex(-1);
       setInput('');
     }
-  };
+  }
+  
+  useEffect(() => {
+    if (pendingCommandRef.current) {
+      handleSubmit();
+      pendingCommandRef.current = null;
+      inputRef.current?.focus()
+    }
+  }, [input, handleSubmit])
+  
 
   const handleKeyDown = (e: React.KeyboardEvent) => {
     
@@ -81,7 +81,7 @@ export default function ConsoleContent() {
         return newIndex;
       });
     }
-  };
+  }
 
   return (
     <div className="h-full overflow-y-auto text-white p-4 rounded-md flex flex-col cursor-text"

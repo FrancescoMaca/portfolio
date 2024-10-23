@@ -8,6 +8,7 @@ import { CommitDropdown } from "./source-control/commit-dropdown";
 import { RemotesDropdown } from "./source-control/remotes-dropdown";
 import { ContributionDropdown } from "./source-control/contributions-dropdown";
 import { getPanelElement, ImperativePanelHandle } from "react-resizable-panels";
+import Image from "next/image";
 
 export default function SourceControl({ parentPanelRef }: { parentPanelRef: MutableRefObject<ImperativePanelHandle>}) {
   const dispatch = useDispatch()
@@ -65,12 +66,12 @@ export default function SourceControl({ parentPanelRef }: { parentPanelRef: Muta
           <button className='hover:bg-hover-dark rounded-md p-1 min-w-[28px]'
             onClick={commit}
           >
-            <img src="/svg/ide/check.svg" alt="Check Icon" title='' width={20} />
+            <Image src="/svg/ide/check.svg" alt="Check Icon" title='' width={20} height={20} />
           </button>
           <button className='hover:bg-hover-dark rounded-md p-1 min-w-[28px]'
             onClick={refresh}
           >
-            <img src={`/svg/ide/${isRefreshing ? 'loading' : 'refresh'}.svg`} alt="More Icon" title='' width={20}
+            <Image src={`/svg/ide/${isRefreshing ? 'loading' : 'refresh'}.svg`} alt="More Icon" title='' width={20} height={20}
               className={`${isRefreshing ? 'animate-spin' : ''}`}
             />
           </button>

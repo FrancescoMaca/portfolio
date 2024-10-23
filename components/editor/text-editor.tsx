@@ -18,6 +18,7 @@ import { getFilePath } from "../tabs/file-explorer/file-structure";
 import { bake_cookie, read_cookie } from "sfcookies";
 import { useSelector } from "react-redux";
 import { RootState } from "../redux";
+import Image from "next/image";
 
 type ActionType = 'HOVER' | 'URL' | 'ACTION'
 type ActionHandler = (args: string[]) => React.ReactNode
@@ -41,13 +42,15 @@ export default function TextEditor({ currentPage }: { currentPage: string }) {
 
     // The duck is unavailable so just execute command
     if (!duckRef.current) {
-      dispatch(setPendingCommand(specificCmd[2].command))
+      dispatch(setPendingCommand(specificCmd[1].command))
       return
     }
 
     // Was the animation already ran??
     if (!read_cookie('duck-played')) {
-      dispatch(setPendingCommand(specificCmd[2].command))
+      console.log(specificCmd);
+      
+      dispatch(setPendingCommand(specificCmd[1].command))
     }
     else {
       duckRef.current.classList.remove('hidden')
@@ -76,15 +79,18 @@ export default function TextEditor({ currentPage }: { currentPage: string }) {
     dispatch(addTab('project-page.tsx'))
   }
 
-  actions['openProfileImage'] = handleOpenImage
-  actions['runSecretCommand'] = handleCommandClick
-  actions['seeMore'] = handleSeeMore
+  useEffect(() => {
+    actions['openProfileImage'] = handleOpenImage
+    actions['runSecretCommand'] = handleCommandClick
+    actions['seeMore'] = handleSeeMore
+
+  }, [actions, handleOpenImage, handleCommandClick, handleSeeMore])
 
   return (
     <div className="relative flex w-full h-full flex-col bg-editor text-white font-mono text-sm overflow-hidden">
       {
         currentPage === 'page.tsx' &&
-        <img ref={duckRef} src="/pictures/duck.png" alt="A duck?" title="Duck"
+        <Image ref={duckRef} src="/pictures/duck.png" alt="A duck?" title="Duck" width={350} height={350}
           className="absolute bottom-0 -right-[50%] scale-50 select-disable rotate-[30deg] z-40 hidden"
         />
       }
@@ -101,12 +107,12 @@ export default function TextEditor({ currentPage }: { currentPage: string }) {
               getFilePath(currentPage).map(dir => (
                 <span className="flex" key={Math.random()}>
                   <span className="rounded-md px-1 text-text-unfocused hover:text-text-normal">{dir}</span>
-                  <img src="/svg/ide/chevron-right.svg" alt=">" title="" />
+                  <Image src="/svg/ide/chevron-right.svg" alt=">" title="" width={20} height={20} />
                 </span>
               ))
             }
             <span className="flex gap-1">
-              <img src={`svg/files/file_type_${extToIcon(currentPage)}.svg`} width={16} title=""/>
+              <Image src={`svg/files/file_type_${extToIcon(currentPage)}.svg`} alt="File Icon" width={16} height={16} title=""/>
               <span className="rounded-md px-1 text-text-unfocused hover:text-text-normal">{currentPage}</span>
             </span>
           </div>

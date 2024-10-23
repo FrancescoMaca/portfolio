@@ -16,12 +16,14 @@ import { showNotification } from '../redux/slices/notification-slice';
 import { generateUUID } from '../utils/helpers';
 import { bake_cookie, read_cookie } from 'sfcookies';
 import MarkdownEditor from './page-content/md-viewer';
+import { PdfViewer } from './page-content/pdf-viewer';
 
 export default function Editor() {
   const dispatch = useDispatch()
   const { tabs, activeTabIndex } = useSelector((state: RootState) => state.tabs)
   const [clickTimeout, setClickTimeout] = useState(null);
   const [contextMenu, setContextMenu] = useState(null);
+
   useEffect(() => {
     const handleOutsideClick = () => setContextMenu(null);
     if (contextMenu) {
@@ -47,7 +49,7 @@ export default function Editor() {
         secondaryButtonCb: 'openSorryDialog'
       }))
     }
-  }, [])
+  }, [dispatch])
 
   const handleDoubleClick = () => {
     dispatch(addTab(getRandomFunnyFileName()))
@@ -76,12 +78,7 @@ export default function Editor() {
   const handleContextMenu = useCallback((e: MouseEvent) => {
     e.preventDefault();
     setContextMenu(
-      contextMenu === null
-        ? {
-            x: e.pageX,
-            y: e.pageY,
-          }
-        : null,
+      contextMenu === null ? { x: e.pageX, y: e.pageY } : null,
     );
   }, [contextMenu]);
   
@@ -132,7 +129,8 @@ function displayFile(file?: string) {
 
   const editor = {
     'png': <ImageViewer name={file} />,
-    'md': <MarkdownEditor name={file}/>
+    'md': <MarkdownEditor name={file}/>,
+    'pdf': <PdfViewer name={file} />
   }
 
   const ext = file.split('.').pop()

@@ -1,4 +1,5 @@
 'use client'
+import Image from "next/image"
 import { useEffect, useState } from "react"
 
 
@@ -34,7 +35,7 @@ export default function DefaultPage() {
       </div>
       <div className="absolute flex items-center bottom-2 right-2 text-sm mt-10">
         <span>100% made with</span>
-        <img src="/svg/ide/vscode-logo.svg" alt="IDE logo" title="" width={32}/>
+        <Image src="/svg/ide/vscode-logo.svg" alt="IDE logo" title="" width={32} height={32} />
         <span>VS Code</span>
       </div>
 

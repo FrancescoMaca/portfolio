@@ -1,6 +1,7 @@
 'use client'
 import { useSelector } from "react-redux";
 import { RootState } from "../redux";
+import Image from "next/image";
 
 export default function BottomBar() {
   const notifications = useSelector((state: RootState) => state.notification.notifications);
@@ -16,9 +17,11 @@ export default function BottomBar() {
       </div>
       <div className="flex">
         <BottomBarEntry>
-          <img src={`/svg/ide/bell${mustNotify ? '-dot' : ''}.svg`} alt="Empty Notification List"
+          <Image src={`/svg/ide/bell${mustNotify ? '-dot' : ''}.svg`} alt="Empty Notification List"
             title={`${mustNotify ? `There are ${notifications.length} notification${notifications.length > 1 ? 's' : ''} to see` : 'No new notifications'}`}
-            width={18} />
+            width={18} 
+            height={18} 
+          />
         </BottomBarEntry>
         <BottomBarEntry icon="/svg/ide/rss.svg">
           <span>Go Live</span>
@@ -41,12 +44,12 @@ function BottomBarEntry({ children, icon, right, hoverDisable}: BottomBarEntryPr
     <div className={`flex items-center gap-2 p-2 bg-dark ${hoverDisable ? '' : 'hover:bg-hover-dark'}`}>
       {
         icon && !right &&
-        <img src={icon} alt="BB Icon" title="" width={20}/>
+        <Image src={icon} alt="BB Icon" title="" width={20} height={20} />
       }
       {children}
       {
         icon && right &&
-        <img src={icon} alt="BB Icon" title="" width={20}/>
+        <Image src={icon} alt="BB Icon" title="" width={20} height={20} />
       }
     </div>
   )

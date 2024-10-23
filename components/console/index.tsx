@@ -10,21 +10,36 @@ export default function Console() {
   const { tabs, activeTabIndex } = useSelector((state: RootState) => state.consoleTabs)
 
   const sidebarContent = [
-    <ProblemContent />,
-    <OutputContent />,
-    <ConsoleContent />
+    <ProblemContent key={Math.random()} />,
+    <OutputContent key={Math.random()} />,
+    <ConsoleContent key={Math.random()} />
   ]
 
   return (
-    <Panel className="flex flex-col h-full" defaultSize={20} maxSize={50} minSize={15} collapsedSize={0} collapsible>
+    <Panel 
+      className="flex flex-col h-full" 
+      defaultSize={20} 
+      maxSize={50} 
+      minSize={15} 
+      collapsedSize={0} 
+      collapsible
+    >
       <div className="flex text-sm">
-        {
-          tabs.map((tabName, index) => 
-            <ConsoleTab key={index} name={tabName.toUpperCase()} index={index} />
-          )
-        }
+        {tabs.map((tabName, index) => (
+          <ConsoleTab 
+            key={index} 
+            name={tabName.toUpperCase()} 
+            index={index} 
+          />
+        ))}
       </div>
-      { sidebarContent[activeTabIndex] }
+      {
+        sidebarContent.map((content, index) => (
+          <div key={index} className={`${index === activeTabIndex ? 'block' : 'hidden'} overflow-y-auto`}>
+            {content}
+          </div>
+        ))
+      }
     </Panel>
-  )
+  );
 }

@@ -3,7 +3,6 @@
 import { ReduxProvider } from "@/components/redux/redux-provider"
 import { Panel, PanelGroup } from "react-resizable-panels"
 import { ActiveTabComponent } from "@/components/tabs"
-import { delete_cookie } from "sfcookies"
 import Toolbox from "@/components/toolbox"
 import Navbar from "@/components/navbar"
 import Editor from "@/components/editor"
@@ -19,9 +18,6 @@ export default function Default() {
     <ReduxProvider>
       <ShortcutManager />
       <IDEControls />
-      {/* <button className='absolute top-10 right-10 bg-text-normal rounded-md p-1 z-[999]' onClick={resetCookies}>
-        Reset cookies
-      </button> */}
       <div className="h-screen">
         <LoadingScreen />
         <PanelGroup direction="vertical">
@@ -44,10 +40,4 @@ export default function Default() {
       </div>
     </ReduxProvider>
   )
-}
-
-function resetCookies() {
-  delete_cookie('duck-played')
-  delete_cookie('open-profile-image')
-  delete_cookie('help-tooltip')
 }

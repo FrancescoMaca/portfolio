@@ -20,7 +20,7 @@ export default function UrlRenderer({ label, url }: UrlRendererProps) {
         isHovering &&
         <span>
           <span className={`text-[#e06c75]`}> $&#123; </span>
-          <span className={`text-[#5c6370]`}>/* {<span className="underline">{url}</span>} */</span>
+          <span className={`text-[#5c6370]`}>{'/* '}{<span className="underline">{url}</span>}{' */'}</span>
           <span className={`text-[#e06c75]`}> &#125;</span>
         </span>
       }

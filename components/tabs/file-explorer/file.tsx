@@ -1,4 +1,5 @@
 'use client'
+import Image from 'next/image';
 // import RainbowText from '@/components/utils/rainbow-text';
 import React, { useState } from 'react';
 
@@ -25,7 +26,7 @@ export default function File({ name, icon, isFolder = false, isOpen = false, ico
       <div className="flex mr-2">
         {
           isFolder &&
-          <img
+          <Image
             src={iconName}
             alt="Chevron Right"
             title=""
@@ -34,7 +35,7 @@ export default function File({ name, icon, isFolder = false, isOpen = false, ico
             className='min-w-[20px] min-h-[20px] mr-1'
           />
         }
-        <img 
+        <Image 
           src={`/svg/files/${isFolder ? 'folder_type_' : 'file_type_'}${icon}${isFolder && openState ? '_opened' : ''}.svg`} 
           alt={isFolder ? "Folder Icon" : "File Icon"} 
           width={20}

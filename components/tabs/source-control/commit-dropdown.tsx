@@ -2,6 +2,7 @@
 import { useEffect, useState } from "react";
 import { Commit, fetchGitHubCommits } from "./commit-finder";
 import { formatRelativeTime } from "@/components/utils/helpers";
+import Image from "next/image";
 
 export function CommitDropdown({ expanded }: { expanded: boolean }) {
   const [commits, setCommits] = useState<Commit[]>([]);
@@ -26,7 +27,7 @@ export function CommitDropdown({ expanded }: { expanded: boolean }) {
   if (loading) {
     return (
       <div className="animate-spin">
-        <img src="/svg/ide/loading.svg" alt="Loading icon" title="" />
+        <Image src="/svg/ide/loading.svg" alt="Loading icon" title="" width={20} height={20}/>
       </div>
     )
   }
@@ -73,10 +74,11 @@ function CommitEntry({ sha, commitTitle, author, commitMessage, date }: CommitEn
     >
       <div className="relative">
         <div className="flex items-center">
-          <img src={`/svg/ide/chevron-${expanded ? 'down' : 'right'}.svg`}
+          <Image src={`/svg/ide/chevron-${expanded ? 'down' : 'right'}.svg`}
             alt={expanded ? "Chevron down" : "Chevron right"}
             title=""
             width={20}
+            height={20}
             className="min-w-[20px]"
           />
           <span className="ml-2 text-text-normal whitespace-nowrap overflow-hidden text-ellipsis block">
@@ -89,7 +91,7 @@ function CommitEntry({ sha, commitTitle, author, commitMessage, date }: CommitEn
         {
           hovered &&
           <div className="absolute right-0 top-0 h-full flex items-center justify-center">
-            <img src="/svg/ide/globe.svg" alt="Globe Icon" title="" width={24}
+            <Image src="/svg/ide/globe.svg" alt="Globe Icon" title="" width={24} height={24}
               className="p-0.5 rounded-md bg-hover-dark hover:brightness-125"
               onClick={() => {
                 open(`https://github.com/FrancescoMaca/portfolio/commit/${sha}`)
@@ -122,7 +124,3 @@ function CommitEntry({ sha, commitTitle, author, commitMessage, date }: CommitEn
     </div>
   )
 }
-/**
- * 
- * <div className={`overflow-hidden ${expanded ? 'h-full' : 'h-0'} transition-all duration-700`}></div>
- */

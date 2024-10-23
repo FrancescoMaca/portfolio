@@ -1,4 +1,5 @@
 'use client'
+import Image from 'next/image';
 import React, { useState, useRef, useEffect } from 'react';
 
 export interface SourceControlDropdownProps {
@@ -34,11 +35,12 @@ export function SourceControlDropdown({ title, children, isExpanded, onToggle }:
         onClick={handleClick}
         ref={ddHeadRef}
       >
-        <img 
+        <Image 
           src={`/svg/ide/chevron-${isExpanded ? 'down' : 'right'}.svg`} 
           alt={isExpanded ? "Chevron down" : "Chevron right"} 
           title=""
           width={20}
+          height={20}
           className="min-w-[20px]"
         />
         <span className="uppercase text-white font-bold">

@@ -18,7 +18,7 @@ const extensionLanguageMap = {
   'sample': 'ini',
   'lock': 'ini',
   'md': 'markdown',
-  'yml': 'yaml'
+  'yml': 'yaml',
 }
 
 export function getPageLanguage(filename: string): string {
@@ -34,6 +34,10 @@ const extensionIconMap = {
   'dockerignore': 'docker',
   'md': 'markdown',
   'yml': 'yaml',
+  'png': 'image',
+  'svg': 'image',
+  'jpg': 'image',
+  'pdf': 'pdf'
 }
 
 const specialIconMap = {

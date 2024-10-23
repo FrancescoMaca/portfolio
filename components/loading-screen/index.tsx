@@ -3,6 +3,7 @@
 import { useSelector } from "react-redux";
 import { RootState } from "../redux";
 import { useState } from "react";
+import Image from "next/image";
 
 export default function LoadingScreen() {
   const isLoading = useSelector((state: RootState) => state.loading)
@@ -17,7 +18,7 @@ export default function LoadingScreen() {
       onTransitionEnd={() => setRender(false)}
     >
       <div className="">
-        <img src="/svg/ide/vscode-logo.svg" alt="VS Code Icon" title="" width={256} />
+        <Image src="/svg/ide/vscode-logo.svg" alt="VS Code Icon" title="" width={256} height={256}  />
       </div>
       <div className="w-64 h-2 bg-gray-700 rounded-full overflow-hidden">
         <div className="h-full bg-blue-500 rounded-full animate-loading-bar"></div>

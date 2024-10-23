@@ -1,4 +1,5 @@
 import { RootState } from "@/components/redux";
+import Image from "next/image";
 import { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import { useSelector } from "react-redux";
@@ -25,10 +26,12 @@ export function ExtensionEntry({ name, description, icon, action, undoAction }: 
       {
         icon &&
         <div className="flex items-center justify-center w-20 h-20 shrink-0">
-          <img 
+          <Image 
             src={`/svg/extensions/${icon}.svg`} 
             alt="Extension Icon"
             className="w-full h-full object-contain rounded-md"
+            width={80}
+            height={80}
           />
         </div>
       }
@@ -36,7 +39,7 @@ export function ExtensionEntry({ name, description, icon, action, undoAction }: 
         <div className="flex justify-between items-center w-full">
           <span className="font-bold text-white truncate pr-4">{name}</span>
           <div className="flex gap-2 items-center shrink-0">
-            <img src="/svg/ide/history.svg" alt="Time Icon" width={16} height={16} />
+            <Image src="/svg/ide/history.svg" alt="Time Icon" width={16} height={16} />
             <span>{Math.floor(Math.random() * 300)}ms</span>
           </div>
         </div>
@@ -47,7 +50,7 @@ export function ExtensionEntry({ name, description, icon, action, undoAction }: 
 
         <div className="flex justify-between items-center w-full">
           <div className="flex gap-2 items-center min-w-0">
-            <img src="/svg/ide/verified.svg" alt="Verified Badge" width={16} height={16} className="min-w-[16px]" />
+            <Image src="/svg/ide/verified.svg" alt="Verified Badge" width={16} height={16} className="min-w-[16px]" />
             <span className="truncate">FrancescoMaca</span>
           </div>
           <button className={`px-1 ${isDefaultTheme ? 'bg-accent' : 'bg-red-600'} rounded-md shrink-0 ml-2`}
@@ -71,7 +74,7 @@ export function ExtensionEntry({ name, description, icon, action, undoAction }: 
 export function ComingMoreExtEntry() {
   return (
     <p className="flex flex-col px-3 py-2 text-text-normal truncate">
-      <span className="text-white">Don't worry!</span>
+      <span className="text-white">Don&apos;t worry!</span>
       <span>
         More extensions are coming whenever I feel like!
       </span>
