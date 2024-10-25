@@ -59,7 +59,7 @@ export default function SourceControl({ parentPanelRef }: { parentPanelRef: Muta
   return (
     <div className="flex flex-col h-full pt-2 bg-dark text-white select-disable">
       <div className='flex justify-between items-center px-3 mb-2'>
-        <span className='uppercase text-text-normal text-sm whitespace-nowrap overflow-hidden text-ellipsis block'>
+        <span className='uppercase text-text-normal text-xs md:text-sm whitespace-nowrap overflow-hidden text-ellipsis block'>
           source control
         </span>
         <div className='flex gap-2 ml-5'>

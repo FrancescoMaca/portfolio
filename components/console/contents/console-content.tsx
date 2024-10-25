@@ -90,14 +90,14 @@ export default function ConsoleContent() {
     >
       {
         output.map((item, index) => (
-          <div key={index} className="break-words whitespace-pre-wrap text-sm">
+          <div key={index} className="break-words whitespace-pre-wrap text-xs md:text-sm">
             {item.type === CLICommandType.INPUT ? getPrompt(output[index + 1].status) : ''}
             <span>{item.content}</span>
           </div>
           )
         )
       }
-      <form onSubmit={handleSubmit} className="flex items-center text-sm">
+      <form onSubmit={handleSubmit} className="flex items-center text-xs md:text-sm">
         <span className="flex-shrink-0 mr-2">{getPrompt(CLICommandResult.NONE)}</span>
         <input
           ref={inputRef}
@@ -105,7 +105,7 @@ export default function ConsoleContent() {
           value={input}
           onChange={(e) => setInput(e.target.value)}
           onKeyDown={handleKeyDown}
-          className="flex-grow text-sm bg-dark p-0 outline-none border-0"
+          className="flex-grow text-xs md:text-sm bg-dark p-0 outline-none border-0"
           autoFocus
         />
       </form>

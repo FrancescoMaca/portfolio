@@ -293,9 +293,9 @@ export const fileStructure = [
         children: [
           { name: 'cracked-glass.png', icon: 'image' },
           { name: 'duck.png', icon: 'image' },
-          { name: 'francesco-macaluso.webp', icon: 'image' },
+          { name: 'francesco-macaluso.webp', icon: 'image', isLink: true },
           { name: 'gh-profile.png', icon: 'image' },
-          { name: 'me.webp', icon: 'image' }
+          { name: 'me.webp', icon: 'image', isLink: true }
         ]
       },
       { name: 'robots.txt', icon: 'robots' },

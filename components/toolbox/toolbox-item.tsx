@@ -3,10 +3,11 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../redux";
-import { setActiveToolboxItem } from "../redux/slices/toolbox-slice";
+import { setActiveToolboxItem, setItemCollapse } from "../redux/slices/toolbox-slice";
 import { fetchGitHubCommits } from "../tabs/source-control/commit-finder";
 import { showNotification } from "../redux/slices/notification-slice";
 import { generateUUID } from "../utils/helpers";
+import { useWindowWidth } from '@react-hook/window-size'
 import Image from "next/image";
 
 export interface ToolboxItemData {
@@ -14,16 +15,18 @@ export interface ToolboxItemData {
   icon: string;
 }
 
+// Temporary, until I want to change them
 const disabledItems = [ 'Account', 'Settings' ]
 
 export default function ToolboxItem({ item }: { item: ToolboxItemData }) {
   const dispatch = useDispatch()
   const [isHovered, setHovered] = useState<boolean>(false)
   const [toolTip, setToolTip] = useState<boolean>(false)
-  const activeItem = useSelector((state: RootState) => state.toolbox.activeItem);
+  const { activeItem, collapsed } = useSelector((state: RootState) => state.toolbox);
   const [notifCount, setNotifCount] = useState<number>(0)
+  const width = useWindowWidth({ wait: 100 })
 
-  useEffect(() => {
+  useEffect(() => {    
     if (item.text.toLowerCase() === 'source control') {
       fetchGitHubCommits().then((commits) => {
         setNotifCount(commits.length)
@@ -42,7 +45,7 @@ export default function ToolboxItem({ item }: { item: ToolboxItemData }) {
   }, [isHovered, item.text]);
   
   return (
-    <button className="relative p-4 select-disable"
+    <button className="relative p-3 md:p-4 select-disable"
       onClick={() => {
         if (disabledItems.includes(item.text)) {
           dispatch(showNotification({
@@ -56,7 +59,13 @@ export default function ToolboxItem({ item }: { item: ToolboxItemData }) {
           }))
         }
         else {
-          dispatch(setActiveToolboxItem(item))}
+          if (activeItem.text === item.text) {
+            dispatch(setItemCollapse(!collapsed))
+          }
+          else {
+            dispatch(setItemCollapse(false))
+            dispatch(setActiveToolboxItem(item))}
+          }
         }
       }
       onMouseEnter={() => setHovered(true)}
@@ -81,12 +90,16 @@ export default function ToolboxItem({ item }: { item: ToolboxItemData }) {
         </div>
       }
       {
-        toolTip && 
+        toolTip && width > 768 &&
         <div className="absolute top-1/2 -translate-y-1/2 left-[110%] px-4 py-1  border-2 rounded-md border-text-normal bg-dark text-text-normal whitespace-nowrap z-10">
           {item.text}
         </div>
       }
-      <div className={`absolute top-0 left-0 h-full w-0.5 rounded-r-sm ${item.text === activeItem.text ? 'bg-accent' : 'bg-dark'}`}/>
+      <div className={`absolute top-0 left-0 
+        ${collapsed ? 'h-1/2 mt-4' : 'h-full'} w-0.5 rounded-r-sm 
+        ${item.text === activeItem.text ? 'bg-accent' : 'bg-dark'}
+        transition-all
+      `}/>
     </button>
   )
 }

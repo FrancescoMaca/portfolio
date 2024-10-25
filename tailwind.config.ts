@@ -27,10 +27,7 @@ const config: Config = {
         'notif-bg': '#252526'
       },
       fontSize: {
-        'l': '4rem',
-        'm': '3rem',
-        's': '2rem',
-        'xs': '1.5rem',
+        
       },
       borderRadius: {
         '4xl': '3rem',

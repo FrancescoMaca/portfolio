@@ -6,7 +6,6 @@ export function generateUUID(): string {
   });
 }
 
-
 const extensionLanguageMap = {
   'tsx': 'typescript',
   'ts': 'typescript',
@@ -37,6 +36,7 @@ const extensionIconMap = {
   'png': 'image',
   'svg': 'image',
   'jpg': 'image',
+  'webp': 'image',
   'pdf': 'pdf'
 }
 
@@ -113,5 +113,27 @@ export function formatRelativeTime(date: Date): string {
     return `${diffInMonths} month${diffInMonths > 1 ? 's' : ''} ago`;
   } else {
     return `${diffInYears} year${diffInYears > 1 ? 's' : ''} ago`;
+  }
+}
+
+// Window sizes
+export enum TWPageSize {
+  MD = 1,
+  LG = 2,
+}
+
+export function getTWPageSize() {
+  if (typeof window === 'undefined') return TWPageSize.MD;
+  const MD_BREAKPOINT = 768
+  const LG_BREAKPOINT = 1024
+
+  const width = window.innerWidth;
+
+  if (width >= LG_BREAKPOINT) {
+    return TWPageSize.LG;
+  } else if (width >= MD_BREAKPOINT) {
+    return TWPageSize.MD;
+  } else {
+    return TWPageSize.MD;
   }
 }

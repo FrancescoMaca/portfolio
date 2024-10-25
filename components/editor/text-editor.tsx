@@ -19,6 +19,7 @@ import { bake_cookie, read_cookie } from "sfcookies";
 import { useSelector } from "react-redux";
 import { RootState } from "../redux";
 import Image from "next/image";
+import { useWindowWidth } from "@react-hook/window-size";
 
 type ActionType = 'HOVER' | 'URL' | 'ACTION'
 type ActionHandler = (args: string[]) => React.ReactNode
@@ -37,6 +38,7 @@ export default function TextEditor({ currentPage }: { currentPage: string }) {
   const duckRef = useRef<HTMLImageElement>(null)
   const theme = useSelector((state: RootState) => state.ideControls.theme)
   const dispatch = useDispatch()
+  const width = useWindowWidth()
 
   const handleCommandClick = () => {
 
@@ -87,7 +89,7 @@ export default function TextEditor({ currentPage }: { currentPage: string }) {
   }, [actions, handleOpenImage, handleCommandClick, handleSeeMore])
 
   return (
-    <div className="relative flex w-full h-full flex-col bg-editor text-white font-mono text-sm overflow-hidden">
+    <div className="relative flex w-full h-full flex-col bg-editor text-white font-mono text-xs md:text-sm overflow-hidden">
       {
         currentPage === 'page.tsx' &&
         <Image ref={duckRef} src="/pictures/duck.png" alt="A duck?" title="Duck" width={350} height={350}
@@ -95,9 +97,9 @@ export default function TextEditor({ currentPage }: { currentPage: string }) {
         />
       }
       {
-        contentHasPrettyOption(currentPage) && 
-        <div className="absolute top-2 right-3 p-2 z-10 bg-editor rounded-md border-editor border">
-          <ToggleButton onChange={() => setGoodFormat(!goodFormat)} label="Fellow Developer Mode"/>
+        contentHasPrettyOption(currentPage) &&
+        <div className="absolute top-4 right-3 p-2 z-10 bg-editor rounded-md border-editor border">
+          <ToggleButton onChange={() => setGoodFormat(!goodFormat)} label={`${width > 768 ? 'Fellow Developer Mode' : 'F.D.M'}`} />
         </div>
       }
       <div className="flex-grow overflow-auto px-[10px]">

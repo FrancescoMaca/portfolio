@@ -18,7 +18,7 @@ export default function Default() {
     <ReduxProvider>
       <ShortcutManager />
       <IDEControls />
-      <div className="h-screen">
+      <div className="h-[100svh] overflow-hidden">
         <LoadingScreen />
         <PanelGroup direction="vertical">
           <Navbar/>

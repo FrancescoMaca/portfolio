@@ -27,7 +27,7 @@ export const metadata: Metadata = {
 export default function RootLayout({children}: {children: React.ReactNode}) {
   return (
     <html lang="en">
-      <body className='relative bg-dark font-text overscroll-none'>
+      <body className='relative bg-dark font-text overscroll-none overflow-hidden'>
         {children}
       </body>
     </html>

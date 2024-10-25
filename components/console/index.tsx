@@ -24,7 +24,7 @@ export default function Console() {
       collapsedSize={0} 
       collapsible
     >
-      <div className="flex text-sm">
+      <div className="flex text-xs md:text-sm">
         {tabs.map((tabName, index) => (
           <ConsoleTab 
             key={index} 

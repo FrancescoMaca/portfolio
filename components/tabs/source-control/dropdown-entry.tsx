@@ -26,7 +26,7 @@ export function SourceControlDropdown({ title, children, isExpanded, onToggle }:
   };
 
   return (
-    <div className={`flex flex-col ${isExpanded ? '' : 'flex-shrink-0'} overflow-y-auto text-sm`}>
+    <div className={`flex flex-col ${isExpanded ? '' : 'flex-shrink-0'} overflow-y-auto text-xs md:text-sm`}>
       <div 
         className={`
           flex px-3 py-0.5 border-t-2 border-${isHighlighted ? 'accent' : 'dark'} border-t-border-panel

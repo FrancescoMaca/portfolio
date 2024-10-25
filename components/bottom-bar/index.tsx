@@ -12,7 +12,7 @@ export default function BottomBar() {
       <div className="flex">
         <BottomBarEntry hoverDisable>
           <span>©</span>
-          <span className="text-sm">{new Date().getFullYear()} Francesco Macaluso</span>
+          <span className="text-xs md:text-sm">{new Date().getFullYear()} Francesco Macaluso</span>
         </BottomBarEntry>
       </div>
       <div className="flex">
@@ -24,7 +24,7 @@ export default function BottomBar() {
           />
         </BottomBarEntry>
         <BottomBarEntry icon="/svg/ide/rss.svg">
-          <span>Go Live</span>
+          <span className="text-xs md:text-sm">Go Live</span>
         </BottomBarEntry>
       </div>
     </div>

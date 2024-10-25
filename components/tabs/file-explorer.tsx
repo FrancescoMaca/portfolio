@@ -64,7 +64,7 @@ export default function FileExplorer() {
   return (
     <div className="flex flex-col h-full pt-2 bg-dark text-white select-disable">
       <div className='flex justify-between items-center px-3 mb-2'>
-        <span className='uppercase text-sm text-text-normal truncate'>
+        <span className='uppercase text-xs md:text-sm text-text-normal truncate'>
           Folders: portfolio
         </span>
         <div className='flex gap-2 ml-5'>
@@ -98,7 +98,7 @@ export default function FileExplorer() {
         ))}
         {
           tooltipVisible && 
-          <div className='flex flex-col mt-2 px-9 text-center text-sm text-text-normal'>
+          <div className='flex flex-col mt-2 px-9 text-center text-xs md:text-sm text-text-normal'>
             <Image src="/svg/ide/close.svg" alt='Close Icon' title='' width={20} height={20}
               className='self-end rounded-md hover:bg-hover-dark cursor-pointer'
               onClick={hideTooltip}

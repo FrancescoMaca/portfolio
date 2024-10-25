@@ -16,7 +16,7 @@ export default function Navbar() {
   }
 
   return (
-    <div className="flex justify-center bg-dark py-1 border-b-border-panel border-b-2">
+    <div className="flex justify-center bg-dark py-1 border-b-border-panel border-b-2 text-xs md:text-sm">
       <div className="flex gap-4">
         <Image src="/svg/ide/arrow-left.svg" alt="arrow left" title="" width={20} height={20}
           onClick={backward}
@@ -28,9 +28,9 @@ export default function Navbar() {
         />
       </div>
       <input className="
-          tracking-[-.05em] bg-input text-text-unfocused min-w-[400px] ml-5 px-6 text-center rounded-lg
-        border-border-input border-2 outline-none placeholder:text-text-unfocused focus:text-left focus:placeholder:text-input
-        "
+          tracking-[-.05em] bg-input text-text-unfocused min-w-[200px] md:min-w-[400px] ml-5 px-6 text-center rounded-lg
+        border-border-input border-2 outline-none placeholder:text-text-unfocused focus:text-left focus:placeholder:text-input"
+        disabled
         placeholder={'francesco-vs-code'}
       />
     </div>

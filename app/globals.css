@@ -37,6 +37,13 @@ html {
   height: 10px;
 }
 
+@media screen and (max-width: 768px)  {
+  ::-webkit-scrollbar {
+    width: 5px;
+    height: 5px;
+  }
+}
+
 ::-webkit-scrollbar-track {
   background: #00000000;
 }

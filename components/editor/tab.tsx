@@ -26,7 +26,7 @@ export default function Tab({ name, isActive, onClick, onClose }: TabProps) {
 
   return (
     <button className={`
-      flex items-center justify-between gap-2 px-5 py-2
+      flex items-center justify-between gap-2 px-4 py-1 md:px-5 md:py-2
       hover:bg-hover-dark focus:outline-none
       border-t-[3px] border-x-[0.5px] border-x-border-panel
       whitespace-nowrap select-disable
@@ -41,7 +41,7 @@ export default function Tab({ name, isActive, onClick, onClose }: TabProps) {
     >
 
       <Image src={`svg/files/file_type_${extToIcon(name)}.svg`} width={16} height={16} alt="File Icon" loading='lazy' />
-      <span className="text-sm">{name}</span>
+      <span className="text-xs md:text-sm">{name}</span>
       <div className={`hover:bg-hover-dark hover:brightness-125 rounded-md p-1 ${isHovered || isActive ? 'visible' : 'invisible'}`}
         onClick={(e) => {
           e.stopPropagation()
