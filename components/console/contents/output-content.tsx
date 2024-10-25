@@ -8,7 +8,7 @@ export default function OutputContent() {
   const dispatch = useDispatch()
 
   return (
-    <div className="relative h-full overflow-hidden text-sm">
+    <div className="relative h-full overflow-hidden text-xs md:text-sm">
       <ConsoleLogger />
       <button className="absolute p-1 top-4 right-4 bg-dark hover:bg-hover-dark rounded-md"
         onClick={() => dispatch(clearLogs())}

@@ -5,6 +5,7 @@ import { RootState } from '@/components/redux';
 import { clearPendingCommand } from '@/components/redux/slices/console-commands-slice';
 import { useDispatch } from 'react-redux';
 import { CLICommand, CLICommandOutput, CLICommandResult, CLICommandResultDetails, CLICommandType, specificCmd } from '../commands/command-handler';
+import { useWindowWidth } from '@react-hook/window-size';
 
 export default function ConsoleContent() {
   const [input, setInput] = useState('')
@@ -16,8 +17,9 @@ export default function ConsoleContent() {
   const pendingCommand = useSelector((state: RootState) => state.consoleCommands.pendingCommand)
   const pendingCommandRef = useRef<string | null>(null)
   const dispatch = useDispatch()
-
-  const prompt = '○ francescomacaluso@Frankys-MacBook-Pro portfolio % '
+  const width = useWindowWidth()
+  
+  const prompt = `○ ${ width > 768 ? 'francescomacaluso' : 'franky'}@${ width > 768 ? 'Frankys-MacBook-Pro' : 'iPhone'} portfolio % `
 
   useEffect(() => {
     if (pendingCommand) {
@@ -91,14 +93,14 @@ export default function ConsoleContent() {
       {
         output.map((item, index) => (
           <div key={index} className="break-words whitespace-pre-wrap text-xs md:text-sm">
-            {item.type === CLICommandType.INPUT ? getPrompt(output[index + 1].status) : ''}
+            {item.type === CLICommandType.INPUT ? getPrompt(output[index + 1].status, prompt) : ''}
             <span>{item.content}</span>
           </div>
           )
         )
       }
       <form onSubmit={handleSubmit} className="flex items-center text-xs md:text-sm">
-        <span className="flex-shrink-0 mr-2">{getPrompt(CLICommandResult.NONE)}</span>
+        <span className="flex-shrink-0 mr-2">{getPrompt(CLICommandResult.NONE, prompt)}</span>
         <input
           ref={inputRef}
           type="text"
@@ -113,7 +115,7 @@ export default function ConsoleContent() {
   );
 }
 
-const getPrompt = (status: CLICommandResult) => {
+const getPrompt = (status: CLICommandResult, adaptivePrompt: string) => {
   const circle = status !== CLICommandResult.NONE ? '●' : '○'
   let color = 'text-white'
   
@@ -127,7 +129,7 @@ const getPrompt = (status: CLICommandResult) => {
   return (
     <span>
       <span className={`${color} select-disable`}>{circle}</span>
-      <span> francescomacaluso@Frankys-MacBook-Pro portfolio % </span>
+      <span> {adaptivePrompt.substring(2)} </span>
     </span>
   );
 };

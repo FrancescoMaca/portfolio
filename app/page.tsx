@@ -12,13 +12,24 @@ import BottomBar from "@/components/bottom-bar"
 import LoadingScreen from "@/components/loading-screen"
 import ShortcutManager from "@/components/utils/shortcut-manager"
 import { IDEControls } from "@/components/utils/ide-controls"
+import { useEffect, useState } from "react"
 
 export default function Default() {
+
+  const [height, setHeight] = useState(window.innerHeight);
+
+  useEffect(() => {
+    const handleResize = () => setHeight(window.innerHeight);
+    
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
+
   return (
     <ReduxProvider>
       <ShortcutManager />
       <IDEControls />
-      <div className="h-[100svh] overflow-hidden">
+      <div style={{ height: `${height}px` }}  className="overflow-hidden">
         <LoadingScreen />
         <PanelGroup direction="vertical">
           <Navbar/>
