@@ -51,7 +51,7 @@ export default function TextWithIcon({ label, icon }: TextWithIconProps) {
           }}
         >
           <div className={`${isHovering ? 'opacity-100' : 'opacity-0'} transition-opacity duration-300`}>
-            <Image src={icon} alt="Skill Icon" className="min-w-[128px] rounded-md" width={128} height={128} />
+            <Image src={icon} alt="Skill Icon" className="min-w-[64px] md:min-w-[128px] rounded-md" width={128} height={128} />
           </div>
         </div>
       )}

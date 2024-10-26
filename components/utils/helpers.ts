@@ -6,7 +6,7 @@ export function generateUUID(): string {
   });
 }
 
-const extensionLanguageMap = {
+const extensionLanguageMap: { [key: string]: string } = {
   'tsx': 'typescript',
   'ts': 'typescript',
   'dockerfile': 'dockerfile',
@@ -21,12 +21,12 @@ const extensionLanguageMap = {
 }
 
 export function getPageLanguage(filename: string): string {
-  const ext = filename.split('.').pop().toLowerCase()
+  const ext = filename.split('.').pop()?.toLowerCase() || ''
   
   return extensionLanguageMap[ext] ?? 'plaintext'
 }
 
-const extensionIconMap = {
+const extensionIconMap: { [key: string]: string }= {
   'tsx': 'reactts',
   'dockerfile': 'docker',
   'js': 'js',
@@ -40,7 +40,7 @@ const extensionIconMap = {
   'pdf': 'pdf'
 }
 
-const specialIconMap = {
+const specialIconMap: { [key: string]: string } = {
   'next.config.js': 'next',
   '.eslintrc.json': 'eslint',
   '.gitignore': 'git',
@@ -59,7 +59,7 @@ export function extToIcon(filename: string): string {
     return specialIconMap[filename]
   }
 
-  const ext = filename.split('.').pop().toLowerCase()
+  const ext = filename.split('.').pop()?.toLowerCase() || ''
   
   return extensionIconMap[ext] ?? 'text'
 }

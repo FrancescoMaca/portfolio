@@ -1,5 +1,5 @@
 'use client'
-import React, { useEffect, useState } from 'react';
+import React, { RefObject, useEffect, useState } from 'react';
 import FileExplorerItem from './file-explorer/file-explorer-item';
 import { fileStructure } from './file-explorer/file-structure';
 import { useDispatch } from 'react-redux';
@@ -8,6 +8,7 @@ import { generateUUID } from '../utils/helpers';
 import { NotificationProps } from '../notification/notification-popup';
 import Image from 'next/image';
 import { bake_cookie, read_cookie } from 'sfcookies';
+import { ImperativePanelHandle } from 'react-resizable-panels';
 
 const fileCreationNotification: NotificationProps = {
   id: '',
@@ -33,7 +34,7 @@ const folderCreationNotification: NotificationProps = {
   timeout: 2000
 }
 
-export default function FileExplorer() {
+export default function FileExplorer({ parentPanelRef } : { parentPanelRef: RefObject<ImperativePanelHandle> }) {
   const dispatch = useDispatch()
   const [isRefreshing, setRefreshing] = useState<boolean>(false);
   const [collapsedAll, setCollapsedAll] = useState<boolean>(false);
@@ -94,11 +95,11 @@ export default function FileExplorer() {
       </div>
       <div className='overflow-y-auto overflow-x-hidden'>
         {fileStructure.map((item, index) => (
-          <FileExplorerItem key={index} item={item} level={0} allCollapsed={collapsedAll} />
+          <FileExplorerItem key={index} item={item} level={0} allCollapsed={collapsedAll} parentPanel={parentPanelRef} />
         ))}
         {
           tooltipVisible && 
-          <div className='flex flex-col mt-2 px-9 text-center text-xs md:text-sm text-text-normal'>
+          <div className='flex flex-col mt-2 mb-5 px-9 text-center text-xs md:text-sm text-text-normal'>
             <Image src="/svg/ide/close.svg" alt='Close Icon' title='' width={20} height={20}
               className='self-end rounded-md hover:bg-hover-dark cursor-pointer'
               onClick={hideTooltip}

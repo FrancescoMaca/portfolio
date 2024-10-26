@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useCallback, useEffect, useRef, useState } from 'react';
 import { consoleCommands } from '../commands';
 import { useSelector } from 'react-redux';
 import { RootState } from '@/components/redux';
@@ -32,7 +32,8 @@ export default function ConsoleContent() {
       consoleRef.current.scrollTop = consoleRef.current.scrollHeight
     }
   }, [output, pendingCommand, dispatch])
-  const handleSubmit = (e?: React.FormEvent) => {
+
+  const handleSubmit = useCallback((e?: React.FormEvent) => {
     e?.preventDefault();
     
     if (!input.trim()) {
@@ -53,8 +54,8 @@ export default function ConsoleContent() {
       setHistoryIndex(-1);
       setInput('');
     }
-  }
-  
+  }, [input, prompt])
+
   useEffect(() => {
     if (pendingCommandRef.current) {
       handleSubmit();
@@ -62,7 +63,6 @@ export default function ConsoleContent() {
       inputRef.current?.focus()
     }
   }, [input, handleSubmit])
-  
 
   const handleKeyDown = (e: React.KeyboardEvent) => {
     

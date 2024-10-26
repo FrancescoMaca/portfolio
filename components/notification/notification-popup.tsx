@@ -1,7 +1,7 @@
 'use client'
 import { useDispatch } from "react-redux";
 import { hideNotification, showNotification } from "../redux/slices/notification-slice";
-import { useEffect } from "react";
+import { useCallback, useEffect, useMemo } from "react";
 import { setPendingCommand } from "../redux/slices/console-commands-slice";
 import { generateUUID } from "../utils/helpers";
 import Image from "next/image";
@@ -36,7 +36,7 @@ export function Notification({
   const dispatch = useDispatch();
   
   // This approach is not great, not terri ble
-  const callbackMap: Record<string, () => void> = {
+  const callbackMap: Record<string, () => void> = useMemo(() => ({
     '': () => {},
     'spareDuck': () => dispatch(setPendingCommand('hwmemsize=$(sysctl -n hw.memsize)')),
     'killDuck': () => dispatch(setPendingCommand('pkill -KILL duck.exe')),
@@ -62,15 +62,15 @@ export function Notification({
       secondaryButtonCb: "",
       hasCloseButton: false
     })), 500)
-  }
+  }), [dispatch])
 
-  const handleOnClose = () => {
+  const handleOnClose = useCallback(() => {
     if (onClose) {
       callbackMap[onClose] && callbackMap[onClose]()
     }
 
     dispatch(hideNotification(id));
-  };
+  }, [dispatch, id, callbackMap, onClose])
 
   useEffect(() => {
     if (timeout) {
@@ -82,7 +82,7 @@ export function Notification({
 
 
   return (
-    <div className={`flex flex-col p-5 w-[25vw] min-w-fit bg-notif-bg text-text-normal text-sm shadow-[0px_0px_20px_5px_#00000044]`}>
+    <div className={`flex flex-col p-3 md:p-5 w-[25vw] min-w-fit bg-notif-bg text-text-normal text-xs md:text-sm shadow-[0px_0px_20px_5px_#00000044]`}>
       <div className="flex justify-between items-center">
         <div className="flex items-center gap-3">
           <Image src={`/svg/ide/type-${type}.svg`} alt="Close Icon" width={24} height={24} className="select-disable" />
@@ -106,7 +106,7 @@ export function Notification({
           )
         }
       </p>
-      <div className="flex gap-5 self-end">
+      <div className="flex gap-3 md:gap-5 self-end">
         {
           actionButton &&
           <button className='p-2 shadow-dark shadow-sm rounded-none whitespace-nowrap bg-accent hover:brightness-125'

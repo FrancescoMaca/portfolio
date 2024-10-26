@@ -9,7 +9,6 @@ import SourceControlTab from "./source-control";
 import ExtensionTab from "./extensions";
 import RunAndDebugTab from "./run-and-debug";
 import HighlightHandler from "../utils/highlight-panel-handler";
-import { getTWPageSize, TWPageSize } from "../utils/helpers";
 import { useWindowWidth } from "@react-hook/window-size";
 
 export function ActiveTabComponent() {
@@ -19,14 +18,18 @@ export function ActiveTabComponent() {
   const width = useWindowWidth({ wait: 100 })
 
   
-  const sidebarContent = {
-    'Folders': <FileExplorerTab />,
+  const sidebarContent: { [key: string]: any }= {
+    'Folders': <FileExplorerTab parentPanelRef={previewRef}/>,
     'Source Control': <SourceControlTab parentPanelRef={previewRef} />,
     'Extensions': <ExtensionTab />,
     'Run and Debug': <RunAndDebugTab />,
   };
 
   useEffect(() => {
+    if (!previewRef.current) {
+      return
+    }
+
     if (collapsed) {
       previewRef.current.collapse()
     }
@@ -37,7 +40,7 @@ export function ActiveTabComponent() {
 
   useEffect(() => {
     const handleResize = () => {      
-      if (width <= 768) {
+      if (previewRef.current && width <= 768) {
         setPanelSizes({ max: -1, min: 100, def: 100 });
 
         if (collapsed) {
@@ -55,7 +58,7 @@ export function ActiveTabComponent() {
 
     window.addEventListener('resize', handleResize);
     return () => window.removeEventListener('resize', handleResize);
-  }, []);
+  }, [ collapsed, width ]);
 
   return (
     <>
@@ -67,12 +70,11 @@ export function ActiveTabComponent() {
         defaultSize={panelSizes.def}
         collapsedSize={0}
         collapsible={true}
-        // onResize={handlePanelResize}
         className={`font-ide ${width <= 768 ? 'transition-all' : ''}`}
       >
-        {sidebarContent[activeItem.text] ?? <FileExplorerTab />}
+        {sidebarContent[activeItem.text] ?? <FileExplorerTab parentPanelRef={previewRef}/>}
       </Panel>
-      {width > 768 && <HighlightHandler />}
+      <HighlightHandler disabled={width <= 768}/>
     </>
   );
 }

@@ -3,7 +3,7 @@
 import { useEffect, useId } from "react";
 import { getResizeHandleElement, PanelResizeHandle } from "react-resizable-panels";
 
-export default function HighlightHandler({ horizontal = false }: { horizontal?: boolean }) {
+export default function HighlightHandler({ horizontal = false, disabled }: { horizontal?: boolean, disabled?: boolean }) {
   const uniqueId = useId();
   const resizeHandleId = `resize-handle-${uniqueId}`;
 
@@ -30,6 +30,7 @@ export default function HighlightHandler({ horizontal = false }: { horizontal?: 
   return (
     <PanelResizeHandle 
       id={resizeHandleId}
+      disabled={disabled}
       className={`border-b-dark border-l-dark
         ${horizontal
           ? 'hover:w-full border-t-border-panel !hover:cursor-row-resize border-y-2' 

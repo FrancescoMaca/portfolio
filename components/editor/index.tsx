@@ -1,5 +1,6 @@
 'use client'
 import React, { MouseEvent, useCallback, useEffect, useState } from 'react';
+import dynamic from 'next/dynamic';
 import { Panel } from "react-resizable-panels";
 import { getRandomFunnyFileName } from './page-content/new-tab-names';
 import Tab from './tab';
@@ -21,8 +22,8 @@ import { PdfViewer } from './page-content/pdf-viewer';
 export default function Editor() {
   const dispatch = useDispatch()
   const { tabs, activeTabIndex } = useSelector((state: RootState) => state.tabs)
-  const [clickTimeout, setClickTimeout] = useState(null);
-  const [contextMenu, setContextMenu] = useState(null);
+  const [clickTimeout, setClickTimeout] = useState<NodeJS.Timeout | null>(null);
+  const [contextMenu, setContextMenu] = useState<{x: number, y: number} | null>(null);
 
   useEffect(() => {
     const handleOutsideClick = () => setContextMenu(null);
@@ -121,23 +122,34 @@ export default function Editor() {
   );
 }
 
+  
+const DynamicTextEditor = dynamic(() => import('./text-editor'), {
+  loading: () => (
+    <div className=' animate-spin'>
+      ciaoo
+    </div>
+  ),
+  ssr: false
+})
+
+
 function displayFile(file?: string) {
 
   if (!file) {
     return <DefaultPage />
   }
 
-  const editor = {
+  const editor: { [key: string]: any } = {
     'png': <ImageViewer name={file} />,
     'md': <MarkdownEditor name={file}/>,
     'pdf': <PdfViewer name={file} />
   }
 
-  const ext = file.split('.').pop()
-  
+  const ext: string = file.split('.').pop() || ''
+
   return (
     <div className='h-full overflow-y-auto'>
-      { editor[ext] ?? <TextEditor currentPage={file} /> }
+      { editor[ext] ?? <DynamicTextEditor currentPage={file} /> }
     </div>
   )
 }

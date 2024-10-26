@@ -1,5 +1,5 @@
 'use client'
-import { MutableRefObject, useState } from "react";
+import { RefObject, useState } from "react";
 import { useDispatch } from "react-redux";
 import { showNotification } from "../redux/slices/notification-slice";
 import { generateUUID } from "../utils/helpers";
@@ -10,7 +10,7 @@ import { ContributionDropdown } from "./source-control/contributions-dropdown";
 import { getPanelElement, ImperativePanelHandle } from "react-resizable-panels";
 import Image from "next/image";
 
-export default function SourceControl({ parentPanelRef }: { parentPanelRef: MutableRefObject<ImperativePanelHandle>}) {
+export default function SourceControl({ parentPanelRef }: { parentPanelRef: RefObject<ImperativePanelHandle> }) {
   const dispatch = useDispatch()
   const [isRefreshing, setRefreshing] = useState<boolean>(false);
   const [expandedSection, setExpandedSection] = useState<string | null>(null);
@@ -18,11 +18,17 @@ export default function SourceControl({ parentPanelRef }: { parentPanelRef: Muta
   const onCardHover = () => {
     const percentage = (100 * 360) / (window.innerWidth - 64) 
     
+    if (!parentPanelRef.current) {
+      return
+    }
+    
     if (parentPanelRef.current.getSize() < percentage) {
       const panelhtml = getPanelElement(parentPanelRef.current.getId())
-      panelhtml.classList.add('transition-all')
-      parentPanelRef.current.resize(percentage)
-      setTimeout(() => panelhtml.classList.remove('transition-all'), 300)
+      if (panelhtml) {
+        panelhtml.classList.add('transition-all')
+        parentPanelRef.current.resize(percentage)
+        setTimeout(() => panelhtml.classList.remove('transition-all'), 300)
+      }
     }
   }
 

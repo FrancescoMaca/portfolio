@@ -1,13 +1,13 @@
 'use client'
 import { useEffect, useState } from 'react'
-import { Document, Page, pdfjs } from 'react-pdf'
-import 'react-pdf/dist/Page/TextLayer.css'
-import 'react-pdf/dist/Page/AnnotationLayer.css'
+// import { Document, Page, pdfjs } from 'react-pdf'
+// import 'react-pdf/dist/Page/TextLayer.css'
+// import 'react-pdf/dist/Page/AnnotationLayer.css'
 
-pdfjs.GlobalWorkerOptions.workerSrc = new URL(
-  'pdfjs-dist/build/pdf.worker.min.mjs',
-  import.meta.url,
-).toString()
+// pdfjs.GlobalWorkerOptions.workerSrc = new URL(
+//   'pdfjs-dist/build/pdf.worker.min.mjs',
+//   import.meta.url,
+// ).toString()
 
 export function PdfViewer({ name }: {name: string}) {
   const [numPages, setNumPages] = useState<number>();
@@ -51,7 +51,8 @@ export function PdfViewer({ name }: {name: string}) {
 
   return (
     <div ref={setParentRef} className=" bg-dark w-full p-5">
-      <Document file={`/documents/${name}`} onLoadSuccess={onDocumentLoadSuccess}
+      REACT PDF
+      {/* <Document file={`/documents/${name}`} onLoadSuccess={onDocumentLoadSuccess}
         className="bg-dark"
       >
       {
@@ -64,7 +65,7 @@ export function PdfViewer({ name }: {name: string}) {
           />
         )
       }
-      </Document>
+      </Document> */}
     </div>
   );
 }

@@ -2,7 +2,7 @@
 
 import SyntaxHighlighter from "react-syntax-highlighter/dist/esm/light-async";
 import { contentHasPrettyOption, getEditorContent } from "./page-content/content-handler";
-import { CSSProperties, useEffect, useRef, useState } from "react";
+import { CSSProperties, useCallback, useEffect, useRef, useState } from "react";
 import { ToggleButton } from "../utils/toggle-button";
 import React from 'react'
 import { useDispatch } from "react-redux";
@@ -40,8 +40,7 @@ export default function TextEditor({ currentPage }: { currentPage: string }) {
   const dispatch = useDispatch()
   const width = useWindowWidth()
 
-  const handleCommandClick = () => {
-
+  const handleCommandClick = useCallback(() => {
     // The duck is unavailable so just execute command
     if (!duckRef.current) {
       dispatch(setPendingCommand(specificCmd[1].command))
@@ -71,22 +70,22 @@ export default function TextEditor({ currentPage }: { currentPage: string }) {
         type: 'warning',
       }))
     }
-  }
+  }, [dispatch, duckRef])
 
-  const handleOpenImage = () => {
+  const handleOpenImage = useCallback(() => {
     dispatch(addTab('francesco-macaluso.png'))
-  }
+  }, [dispatch])
 
-  const handleSeeMore = () => {
+  const handleSeeMore = useCallback(() => {
     dispatch(addTab('project-page.tsx'))
-  }
+  }, [dispatch])
 
   useEffect(() => {
     actions['openProfileImage'] = handleOpenImage
     actions['runSecretCommand'] = handleCommandClick
     actions['seeMore'] = handleSeeMore
 
-  }, [actions, handleOpenImage, handleCommandClick, handleSeeMore])
+  }, [handleOpenImage, handleCommandClick, handleSeeMore])
 
   return (
     <div className="relative flex w-full h-full flex-col bg-editor text-white font-mono text-xs md:text-sm overflow-hidden">
@@ -114,7 +113,9 @@ export default function TextEditor({ currentPage }: { currentPage: string }) {
               ))
             }
             <span className="flex gap-1">
-              <Image src={`svg/files/file_type_${extToIcon(currentPage)}.svg`} alt="File Icon" width={16} height={16} title=""/>
+              <Image src={`svg/files/file_type_${extToIcon(currentPage)}.svg`} alt="File Icon" width={16} height={16} title=""
+                style={{ width: 'auto', height: '16px' }}
+              />
               <span className="rounded-md px-1 text-text-unfocused hover:text-text-normal">{currentPage}</span>
             </span>
           </div>

@@ -1,4 +1,4 @@
-import axios from 'axios';
+import axios from "axios";
 
 export interface Commit {
   sha: string;
@@ -29,53 +29,35 @@ export interface GitHubBranch {
   name: string;
 }
 
+export interface GitHubProfile {
+  userProfile: GitHubUser;
+  repoInfo: GitHubRepo;
+  branches: GitHubBranch[];
+}
+
+
 export async function fetchGitHubCommits(): Promise<Commit[]> {
-  const apiUrl = `https://api.github.com/repos/FrancescoMaca/portfolio/commits`;
-  let allCommits: Commit[] = [];
-  let page = 1;
-
   try {
-    while (true) {
-      const response = await axios.get(apiUrl, {
-        params: {
-          per_page: 100, // Max allowed by GitHub API
-          page: page,
-        },
-        headers: {
-          Accept: 'application/vnd.github.v3+json',
-        },
-      });
-      
-      const commits: Commit[] = response.data;
-      allCommits = allCommits.concat(commits);
-
-      if (commits.length < 100) {
-        break; // No more pages
-      }
-
-      page++;
+    const response = await axios('/api/github/commits');
+    if (response.status !== 200) {
+      throw new Error('Failed to fetch commits');
     }
-
-    return allCommits;
+    return response.data
   } catch (error) {
     console.error('Error fetching commits:', error);
     throw error;
   }
 }
 
-export async function getGitHubProfileAndRepoInfo() {
-  const userResponse = await axios.get(`https://api.github.com/users/FrancescoMaca`);
-  const userProfile: GitHubUser = userResponse.data;
-
-  const repoResponse = await axios.get(`https://api.github.com/repos/FrancescoMaca/portfolio`);
-  const repoInfo: GitHubRepo = repoResponse.data;
-
-  const branchesResponse = await axios.get(`https://api.github.com/repos/FrancescoMaca/portfolio/branches`);
-  const branches: GitHubBranch[] = branchesResponse.data;
-
-  return {
-    userProfile,
-    repoInfo,
-    branches,
-  };
+export async function getGitHubProfileAndRepoInfo(): Promise<GitHubProfile> {
+  try {
+    const response = await axios('/api/github/profile');
+    if (response.status !== 200) {
+      throw new Error('Failed to fetch profile');
+    }
+    return response.data
+  } catch (error) {
+    console.error('Error fetching profile:', error);
+    throw error;
+  }
 }

@@ -2,9 +2,9 @@ import NextImage from 'next/image';
 import React, { useState, useEffect, useRef } from 'react';
 import { bake_cookie, read_cookie } from 'sfcookies';
 
-export default function ImageViewer({ name }) {
+export default function ImageViewer({ name }: { name: string }) {
   const [_, setDimensions] = useState({ width: 700, height: 0 });
-  const containerRef = useRef(null);
+  const containerRef = useRef<HTMLDivElement>(null);
   const [isCracked, setIsCracked] = useState<boolean>(false)
 
   useEffect(() => {

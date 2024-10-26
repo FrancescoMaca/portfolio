@@ -1,10 +1,12 @@
 /** @type {import('next').NextConfig} */
+const withBundleAnalyzer = require('@next/bundle-analyzer')({
+  enabled: process.env.ANALYZE === 'true',
+  openAnalyzer: true,
+});
+
+
 const nextConfig = {
-  reactStrictMode: false,
-  output: 'standalone',
-  experimental: {
-    serverActions: true
-  },
+  reactStrictMode: true,
   images: {
     domains: ['avatars.githubusercontent.com'],
     remotePatterns: [
@@ -15,11 +17,24 @@ const nextConfig = {
       },
     ],
   },
-  webpack: (config) => {
+  webpack: (config, {dev, isServer}) => {
     config.resolve.alias.canvas = false;
     
+    if (!dev && !isServer) {
+      config.optimization.splitChunks.cacheGroups.styles = {
+        name: 'styles',
+        test: /\.(css)$/,
+        chunks: 'all',
+        enforce: true,
+      };
+    }
+
     return config;
   },
+  experimental: {
+    optimizeCss: true,
+    scrollRestoration: true,
+  }
 }
 
-module.exports = nextConfig
+module.exports = withBundleAnalyzer(nextConfig)

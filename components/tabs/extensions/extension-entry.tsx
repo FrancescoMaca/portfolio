@@ -9,7 +9,7 @@ export interface ExtensionEntryProps {
   description: string;
   icon: string;
   action: () => { payload: string; type: "ide-controls/changeTheme"; };
-  undoAction: () => { payload: string; type: "ide-controls/undoLastThemeChange"; };
+  undoAction: () => { payload: any; type: "ide-controls/undoLastThemeChange"; };
 }
 
 export function ExtensionEntry({ name, description, icon, action, undoAction }: ExtensionEntryProps) {

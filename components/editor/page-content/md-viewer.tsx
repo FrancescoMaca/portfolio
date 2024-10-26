@@ -15,6 +15,10 @@ export default function MarkdownEditor({ name }: MarkdownEditorProps) {
   const previewRef = useRef<ImperativePanelHandle>(null)
 
   const togglePreview = () => {
+    if (!previewRef.current) {
+      return
+    }
+    
     previewRef.current.isCollapsed() ? 
       previewRef.current.expand() :
       previewRef.current.collapse()

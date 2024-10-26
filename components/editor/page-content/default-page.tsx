@@ -43,7 +43,7 @@ export default function DefaultPage() {
       }
       <div className="absolute flex items-center bottom-2 right-2 text-xs md:text-sm mt-10">
         <span>100% made with</span>
-        <Image src="/svg/ide/vscode-logo.svg" alt="IDE logo" title="" width={32} height={32} />
+        <Image src="/svg/ide/vscode-logo.svg" alt="IDE logo" title="" width={32} height={32} style={{ width: 'auto', height: '32px' }} />
         <span>VS Code</span>
       </div>
 
@@ -53,7 +53,7 @@ export default function DefaultPage() {
 
 function createKey(ch: string) {
   return (
-    <span className="px-1.5 py-0.5 border-[1px] border-text-normal rounded-md bg-text-normal text-black">
+    <span className="px-1.5 py-0.5 border-[1px] border-text-normal rounded-md bg-white text-black">
       {ch}
     </span>
   )

@@ -10,7 +10,7 @@ interface IdeControlsProps {
   prevThemeName: string;
 }
 
-const themeMap = {
+const themeMap: { [key: string]: any } = {
   'atomOneDark': atomOneDark,
   'atelierCaveDark': atelierCaveDark
 }
@@ -22,7 +22,6 @@ const initialState: IdeControlsProps = {
   prevTheme: null,
   prevThemeName: 'atomOneDark',
 }
-
 
 const ideControls = createSlice({
   name: 'ide-controls',

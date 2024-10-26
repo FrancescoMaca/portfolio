@@ -1,6 +1,5 @@
 'use client'
 import Image from 'next/image';
-// import RainbowText from '@/components/utils/rainbow-text';
 import React, { useState } from 'react';
 
 interface FileProps {
@@ -21,7 +20,12 @@ export default function File({ name, icon, isFolder = false, isOpen = false, ico
     <div 
       className={`flex items-center py-1 ${name.includes('[errno 122]') ? 'cursor-not-allowed' : 'cursor-pointer'} hover:bg-control-disable`} 
       style={{ paddingLeft: `${(level * 16) + 12 + (isFolder ? 0 : 24)}px` }}
-      onClick={() => {onToggle(); setOpenState(!openState)}}
+      onClick={() => { 
+        if (onToggle) {
+          onToggle()
+        }
+        setOpenState(!openState)
+      }}
     >
       <div className="flex mr-2">
         {

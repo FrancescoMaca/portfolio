@@ -6,8 +6,9 @@ import { killProcess, runningProcesses } from "./ps-command"
 export const killDuckCommand: CLICommand = {
   description: 'Kills a process.',
   usage: 'pkill -<HUP|KILL|TERM> <process_name>',
-  action: (args: string[]) => {
-    if (args.length < 1) {
+  action: (args?: string[]) => {
+
+    if (!args || args.length < 1) {
       return {
         message: 'usage: pkill -<HUP|KILL|TERM> <process_name>',
         status: CLICommandResult.ERROR
