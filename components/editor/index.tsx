@@ -4,7 +4,6 @@ import dynamic from 'next/dynamic';
 import { Panel } from "react-resizable-panels";
 import { getRandomFunnyFileName } from './page-content/new-tab-names';
 import Tab from './tab';
-import TextEditor from './text-editor';
 import DefaultPage from './page-content/default-page';
 import HighlightHandler from '../utils/highlight-panel-handler';
 import { useDispatch } from 'react-redux';
@@ -12,12 +11,15 @@ import { useSelector } from 'react-redux';
 import { RootState } from '../redux';
 import { addTab, closeTab, setActiveTab } from '../redux/slices/editor-tab-slice';
 import ContextMenu from '../context-menu';
-import ImageViewer from './page-content/image-viewer';
 import { showNotification } from '../redux/slices/notification-slice';
 import { generateUUID } from '../utils/helpers';
 import { bake_cookie, read_cookie } from 'sfcookies';
-import MarkdownEditor from './page-content/md-viewer';
-import { PdfViewer } from './page-content/pdf-viewer';
+import { EditorLoadingState } from './text-editor-loading';
+
+const DynamicTextEditor = dynamic(() => import('./text-editor'), { loading: () => <EditorLoadingState />, ssr: false });
+const ImageViewer = dynamic(() => import('./page-content/image-viewer'), { loading: () => <EditorLoadingState />, ssr: false });
+const MarkdownEditor = dynamic(() => import('./page-content/md-viewer'), { loading: () => <EditorLoadingState />, ssr: false });
+const PdfViewer = dynamic(() => import('./page-content/pdf-viewer'), { loading: () => <EditorLoadingState />, ssr: false });
 
 export default function Editor() {
   const dispatch = useDispatch()
@@ -121,17 +123,6 @@ export default function Editor() {
     </>
   );
 }
-
-  
-const DynamicTextEditor = dynamic(() => import('./text-editor'), {
-  loading: () => (
-    <div className=' animate-spin'>
-      ciaoo
-    </div>
-  ),
-  ssr: false
-})
-
 
 function displayFile(file?: string) {
 

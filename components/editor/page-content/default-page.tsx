@@ -2,6 +2,7 @@
 import { useWindowWidth } from "@react-hook/window-size"
 import Image from "next/image"
 import { useEffect, useState } from "react"
+import { useHotkeys } from "react-hotkeys-hook"
 
 
 export default function DefaultPage() {
@@ -52,8 +53,23 @@ export default function DefaultPage() {
 }
 
 function createKey(ch: string) {
+  const [isPressed, setIsPressed] = useState(false)
+
+  const getKeyName = (ch: string) => {
+    if (ch === '⌘') return 'meta'
+    else if (ch === '⌥') return 'alt'
+    return ch
+  }
+  
+  useHotkeys(getKeyName(ch), 
+    (event) => {
+      setIsPressed(event.type === 'keydown');
+    }, 
+    { keydown: true, keyup: true, preventDefault: true }
+  );
+
   return (
-    <span className="px-1.5 py-0.5 border-[1px] border-text-normal rounded-md bg-white text-black">
+    <span className={`border-[1px] border-text-normal bg-white text-black ${isPressed ? 'text-xs px-1 rounded-[4px]' : 'text-sm px-1.5 rounded-md'} py-0.5 transition-all duration-100`}>
       {ch}
     </span>
   )

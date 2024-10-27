@@ -1,6 +1,7 @@
 import { clearCommand } from "./clear-command";
 import { CLICommand } from "./command-handler";
 import { echoCommand } from "./echo-command";
+import { gitCommand } from "./git-command";
 import { helpCommand } from "./help-command";
 import { psCommand } from "./ps-command";
 import { killDuckCommand } from "./specific-commands";
@@ -10,5 +11,6 @@ export const consoleCommands: { [key: string]: CLICommand } = {
   'echo': echoCommand,
   'clear': clearCommand,
   'pkill': killDuckCommand,
-  'ps': psCommand
+  'ps': psCommand,
+  'git': gitCommand
 }

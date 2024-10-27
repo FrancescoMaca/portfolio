@@ -1,50 +1,47 @@
-// app/api/contact/route.ts
 import { NextResponse } from "next/server";
 import { Resend } from "resend";
 
 const resend = new Resend(process.env.RESEND_TOKEN);
 
-// Validate email format
 function isValidEmail(email: string) {
-  const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  const regex = /^[\w\-\.]+@([\w-]+\.)+[\w-]{2,}$/;
+
   return regex.test(email);
 }
 
 export async function POST(request: Request) {
   try {
-    const { name, email, message } = await request.json();
-
-    // Validate inputs
-    if (!name || !email || !message) {
+    const { email, title, message } = await request.json();
+    
+    if (!email || !message) {
       return NextResponse.json(
-        { error: "Name, email and message are required" },
+        { error: "Email and message are required" },
         { status: 400 }
       );
     }
 
     if (!isValidEmail(email)) {
       return NextResponse.json(
-        { error: "Invalid email address" },
+        { error: "The entered email address is not valid" },
         { status: 400 }
       );
     }
 
     const emailData = await resend.emails.send({
-      from: "Contact Form <contact@frankymaca.me>", // Verify your domain to change this
-      to: process.env.RESEND_SENDER!,
+      from: "Contact Form <contact@frankymaca.me>",
+      to: process.env.RESEND_RECEIVER!,
       replyTo: email,
-      subject: `New Contact Form Message from ${name}`,
+      subject: `New Contact Form Message from ${title ? title : 'someone'}`,
       html: `
-        <h2>New Contact Form Submission</h2>
-        <p><strong>From:</strong> ${name}</p>
-        <p><strong>Email:</strong> ${email}</p>
+        <h2>${title ? title : 'New Contact Form Submission'}</h2>
+        <p><strong>From:</strong> ${email}</p>
         <p><strong>Message:</strong></p>
-        <p>${message.replace(/\n/g, '<br>')}</p>
+        <p>${message.replace(/\n/g, '<br/>')}</p>
       `,
     });
 
     return NextResponse.json(
-      { message: "Email sent successfully", id: emailData.id },
+      { message: "Email sent successfully", id: emailData.data?.id },
       { status: 200 }
     );
   } catch (error) {

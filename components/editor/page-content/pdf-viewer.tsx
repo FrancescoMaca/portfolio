@@ -1,71 +1,33 @@
 'use client'
-import { useEffect, useState } from 'react'
-// import { Document, Page, pdfjs } from 'react-pdf'
-// import 'react-pdf/dist/Page/TextLayer.css'
-// import 'react-pdf/dist/Page/AnnotationLayer.css'
+import Image from "next/image";
+import { useEffect, useRef, useState } from "react";
 
-// pdfjs.GlobalWorkerOptions.workerSrc = new URL(
-//   'pdfjs-dist/build/pdf.worker.min.mjs',
-//   import.meta.url,
-// ).toString()
-
-export function PdfViewer({ name }: {name: string}) {
-  const [numPages, setNumPages] = useState<number>();
-  const [parentRef, setParentRef] = useState<HTMLDivElement | null>(null)
-  const [containerWidth, setContainerWidth] = useState<number | undefined>(undefined)
+export default function PdfViewer({ name }: { name: string }) {
+  const iframeRef = useRef<HTMLIFrameElement>(null);
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
-    let timeoutId: NodeJS.Timeout;
-
-    const updateWidth = () => {
-      clearTimeout(timeoutId);
-
-      timeoutId = setTimeout(() => {
-        if (parentRef) {
-          setContainerWidth(parentRef.clientWidth - 40)
-        }
-      }, 1000)
+    const iframe = iframeRef.current;
+    if (iframe) {
+      iframe.onload = () => {
+        setIsLoading(false);
+      };
     }
-
-    if (parentRef) {
-      setContainerWidth(parentRef.clientWidth - 40)
-    }
-
-    const resizeObserver = new ResizeObserver(() => {
-      updateWidth()
-    })
-
-    if (parentRef) {
-      resizeObserver.observe(parentRef)
-    }
-
-    return () => {
-      resizeObserver.disconnect()
-      clearTimeout(timeoutId)
-    }
-  }, [parentRef])
-
-  function onDocumentLoadSuccess({ numPages }: { numPages: number }): void {
-    setNumPages(numPages);
-  }
+  }, []);
 
   return (
-    <div ref={setParentRef} className=" bg-dark w-full p-5">
-      REACT PDF
-      {/* <Document file={`/documents/${name}`} onLoadSuccess={onDocumentLoadSuccess}
-        className="bg-dark"
-      >
-      {
-        Array.from({ length: numPages }).map((_, index) =>
-          <Page
-            key={index}
-            pageNumber={index + 1}
-            width={containerWidth}
-            className={`max-w-full ${index !== 0 ? 'mt-5' : ''}`}
-          />
-        )
-      }
-      </Document> */}
+    <div className="relative w-full h-full">
+      {isLoading && (
+        <div className="absolute inset-0 flex items-center justify-center bg-dark">
+          <Image src="/svg/ide/loading.svg" className="animate-spin text-accent" alt={"Loading..."} width={20} height={20}/>
+        </div>
+      )}
+      <iframe
+        ref={iframeRef}
+        src={`/documents/${name}`}
+        className="w-full h-full border-none"
+        title="PDF Viewer"
+      />
     </div>
   );
 }

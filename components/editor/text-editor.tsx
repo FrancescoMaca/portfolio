@@ -20,6 +20,7 @@ import { useSelector } from "react-redux";
 import { RootState } from "../redux";
 import Image from "next/image";
 import { useWindowWidth } from "@react-hook/window-size";
+import { setConsoleCollpased } from "../redux/slices/console-tab-slice";
 
 type ActionType = 'HOVER' | 'URL' | 'ACTION'
 type ActionHandler = (args: string[]) => React.ReactNode
@@ -43,6 +44,7 @@ export default function TextEditor({ currentPage }: { currentPage: string }) {
   const handleCommandClick = useCallback(() => {
     // The duck is unavailable so just execute command
     if (!duckRef.current) {
+      dispatch(setConsoleCollpased(false))
       dispatch(setPendingCommand(specificCmd[1].command))
       return
     }
@@ -84,7 +86,6 @@ export default function TextEditor({ currentPage }: { currentPage: string }) {
     actions['openProfileImage'] = handleOpenImage
     actions['runSecretCommand'] = handleCommandClick
     actions['seeMore'] = handleSeeMore
-
   }, [handleOpenImage, handleCommandClick, handleSeeMore])
 
   return (

@@ -13,9 +13,6 @@ import LoadingScreen from "@/components/loading-screen"
 import ShortcutManager from "@/components/utils/shortcut-manager"
 import { IDEControls } from "@/components/utils/ide-controls"
 import { useEffect, useState } from "react"
-import { Resend } from 'resend';
-
-const resend = new Resend('re_Uc4Ajg5M_M7PgwDNBQXX8PrUAfqr28PCU');
 
 export default function Default() {
 
@@ -34,11 +31,6 @@ export default function Default() {
     <ReduxProvider>
       <ShortcutManager />
       <IDEControls />
-      <button className="absolute top-5 left-5 bg-slate-300"
-        onClick={sendEmail}
-      >
-        Send Email
-      </button>
       <div style={{ height: `${height}px` }}  className="overflow-hidden">
         <LoadingScreen />
         <PanelGroup direction="vertical">
@@ -61,20 +53,4 @@ export default function Default() {
       </div>
     </ReduxProvider>
   )
-}
-
-async function sendEmail() {
-  const res = await fetch("/api/contact", {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify({ name: 'Franky', email: 'frankymaca@gmail.com', message: 'Hey its me' }),
-  });
-
-  const data = await res.json();
-
-  if (!res.ok) {
-    throw new Error(data.error || "Failed to send message");
-  }  
 }

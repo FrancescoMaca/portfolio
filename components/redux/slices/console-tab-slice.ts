@@ -3,6 +3,7 @@ import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 interface TabState {
   tabs: string[];
   activeTabIndex: number;
+  collapsed: boolean;
 }
 
 const initialState: TabState = {
@@ -12,6 +13,7 @@ const initialState: TabState = {
     'Console'
   ],
   activeTabIndex: 2,
+  collapsed: false
 };
 
 const tabSlice = createSlice({
@@ -20,9 +22,12 @@ const tabSlice = createSlice({
   reducers: {
     setActiveTab: (state, action: PayloadAction<number>) => {
       state.activeTabIndex = action.payload;
+    },
+    setConsoleCollpased: (state, action: PayloadAction<boolean>) => {
+      state.collapsed = action.payload
     }
   }
 })
 
-export const { setActiveTab } = tabSlice.actions
+export const { setActiveTab, setConsoleCollpased } = tabSlice.actions
 export default tabSlice.reducer

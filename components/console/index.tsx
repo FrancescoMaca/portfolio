@@ -4,10 +4,15 @@ import { RootState } from "@/components/redux"
 import ConsoleContent from "./contents/console-content"
 import ProblemContent from "./contents/problems-content"
 import OutputContent from "./contents/output-content"
-import { Panel } from "react-resizable-panels"
+import { ImperativePanelHandle, Panel } from "react-resizable-panels"
+import { useEffect, useRef } from "react"
+import { useDispatch } from "react-redux"
+import { setConsoleCollpased } from "../redux/slices/console-tab-slice"
 
 export default function Console() {
-  const { tabs, activeTabIndex } = useSelector((state: RootState) => state.consoleTabs)
+  const dispatch = useDispatch()
+  const { tabs, activeTabIndex, collapsed } = useSelector((state: RootState) => state.consoleTabs)
+  const consolePanelRef = useRef<ImperativePanelHandle | null>(null)
 
   const sidebarContent = [
     <ProblemContent key={Math.random()} />,
@@ -17,6 +22,16 @@ export default function Console() {
 
   return (
     <Panel 
+      onResize={() => {
+        if (!consolePanelRef.current) {
+          return
+        }
+
+        if (collapsed !== consolePanelRef.current.isCollapsed()) {
+          dispatch(setConsoleCollpased(consolePanelRef.current.isCollapsed()))
+        }
+      }}
+      ref={consolePanelRef}
       className="flex flex-col h-full" 
       defaultSize={20} 
       maxSize={50} 
@@ -35,7 +50,7 @@ export default function Console() {
       </div>
       {
         sidebarContent.map((content, index) => (
-          <div key={index} className={`${index === activeTabIndex ? 'block' : 'hidden'} overflow-y-auto`}>
+          <div key={index} className={`${index === activeTabIndex ? 'block' : 'hidden'} h-full overflow-y-auto`}>
             {content}
           </div>
         ))

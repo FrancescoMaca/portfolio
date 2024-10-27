@@ -41,7 +41,7 @@ export interface CLICommandResultDetails {
 export interface CLICommand {
   description: string;
   usage: string;
-  action: (args?: string[]) => CLICommandResultDetails;
+  action: (args?: string[]) => Promise<CLICommandResultDetails>;
 }
 
 export interface CLICommandOutput {

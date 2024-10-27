@@ -33,7 +33,7 @@ export default function ConsoleContent() {
     }
   }, [output, pendingCommand, dispatch])
 
-  const handleSubmit = useCallback((e?: React.FormEvent) => {
+  const handleSubmit = useCallback(async (e?: React.FormEvent) => {
     e?.preventDefault();
     
     if (!input.trim()) {
@@ -42,7 +42,7 @@ export default function ConsoleContent() {
       return
     }
     
-    const commandResult: CLICommandOutput = handleCommand(input)
+    const commandResult: CLICommandOutput = await handleCommand(input)
     if (commandResult.content === 'CLEAR') {
       setOutput([])
       setInput('');
@@ -86,7 +86,7 @@ export default function ConsoleContent() {
   }
 
   return (
-    <div className="h-full overflow-y-auto text-white p-4 rounded-md flex flex-col cursor-text"
+    <div className="h-full overflow-y-auto text-white p-4 flex flex-col cursor-text"
       onClick={() => inputRef.current?.focus()}
       ref={consoleRef}
     >
@@ -129,12 +129,12 @@ const getPrompt = (status: CLICommandResult, adaptivePrompt: string) => {
   return (
     <span>
       <span className={`${color} select-disable`}>{circle}</span>
-      <span> {adaptivePrompt.substring(2)} </span>
+      <span> {adaptivePrompt.substring(2, adaptivePrompt.length - 1)} </span>
     </span>
   );
 };
 
-function handleCommand(cmd: string): CLICommandOutput {
+async function handleCommand(cmd: string): Promise<CLICommandOutput> {
   const cmdObject = specificCmd.find(command => command.command === cmd)
   
   if (cmdObject) {
@@ -151,7 +151,7 @@ function handleCommand(cmd: string): CLICommandOutput {
   }
   
   if (command) {
-    const { message, status }: CLICommandResultDetails = command.action(argsNames)
+    const { message, status }: CLICommandResultDetails = await command.action(argsNames)
     
     if (message === 'CLEAR') {
       return { ...res, content: 'CLEAR' }
@@ -159,6 +159,6 @@ function handleCommand(cmd: string): CLICommandOutput {
 
     res = { ...res, content: message, status: status }
   }
-
+  
   return { type: CLICommandType.OUTPUT, content: res.content, status: res.status }
 }
