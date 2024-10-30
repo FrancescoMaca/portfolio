@@ -46,15 +46,8 @@ const contentMap: Record<string, PageContent> = {
   'deploy.yml': deployContent
 }
 
-export function getEditorContent(name: string, goodFormat: boolean): string {
-  let pageContent: PageContent = contentMap[name] ?? notFoundContent
-
-  if (goodFormat) {
-    return !!pageContent.prettyContent ? pageContent.prettyContent : pageContent.content
-  }
-  else {
-    return pageContent.content
-  }
+export function getEditorContent(name: string, goodFormat: boolean): PageContent {
+  return contentMap[name] ?? notFoundContent
 }
 
 export function contentHasPrettyOption(name: string): boolean {

@@ -17,7 +17,6 @@ export function ActiveTabComponent() {
   const [panelSizes, setPanelSizes] = useState<{ max: number, min: number, def: number}>({ max: -1, min: 15, def: 25 });
   const width = useWindowWidth({ wait: 100 })
 
-  
   const sidebarContent: { [key: string]: any }= {
     'Folders': <FileExplorerTab parentPanelRef={previewRef}/>,
     'Source Control': <SourceControlTab parentPanelRef={previewRef} />,

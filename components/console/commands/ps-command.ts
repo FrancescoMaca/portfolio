@@ -18,7 +18,7 @@ export function killProcess(pName: string) {
 export const psCommand: CLICommand = {
   description: "Shows all the running processes",
   usage: "ps",
-  action: (_) => {
+  action: async (_) => {
     return {
       status: CLICommandResult.SUCCESS,
       message: runningProcesses.map(proc => `${proc.name} - ${proc.description}`).join('\n')

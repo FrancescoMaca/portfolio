@@ -1,7 +1,7 @@
 'use client'
 
 import SyntaxHighlighter from "react-syntax-highlighter/dist/esm/light-async";
-import { contentHasPrettyOption, getEditorContent } from "./page-content/content-handler";
+import { contentHasPrettyOption, getEditorContent, PageContent } from "./page-content/content-handler";
 import { CSSProperties, useCallback, useEffect, useRef, useState } from "react";
 import { ToggleButton } from "../utils/toggle-button";
 import React from 'react'
@@ -34,8 +34,8 @@ const actionHandlers: Record<ActionType, ActionHandler> = {
 const actions: { [key: string]: () => void | undefined } = { }
 
 export default function TextEditor({ currentPage }: { currentPage: string }) {
-  const [goodFormat, setGoodFormat] = useState<boolean>(false)
-  const content = getEditorContent(currentPage, goodFormat)
+  const [isPretty, setPretty] = useState<boolean>(false)
+  const content: PageContent = getEditorContent(currentPage, isPretty)
   const duckRef = useRef<HTMLImageElement>(null)
   const theme = useSelector((state: RootState) => state.ideControls.theme)
   const dispatch = useDispatch()
@@ -99,7 +99,7 @@ export default function TextEditor({ currentPage }: { currentPage: string }) {
       {
         contentHasPrettyOption(currentPage) &&
         <div className="absolute top-4 right-3 p-2 z-10 bg-editor rounded-md border-editor border">
-          <ToggleButton onChange={() => setGoodFormat(!goodFormat)} label={`${width > 768 ? 'Fellow Developer Mode' : 'F.D.M'}`} />
+          <ToggleButton onChange={() => setPretty(!isPretty)} label={`${width > 768 ? 'Fellow Developer Mode' : 'F.D.M'}`} />
         </div>
       }
       <div className="flex-grow overflow-auto px-[10px]">
@@ -120,16 +120,33 @@ export default function TextEditor({ currentPage }: { currentPage: string }) {
               <span className="rounded-md px-1 text-text-unfocused hover:text-text-normal">{currentPage}</span>
             </span>
           </div>
-          <SyntaxHighlighter
-            customStyle={editorStyle}
-            lineNumberStyle={lineNumberStyle}
-            language={getPageLanguage(currentPage)}
-            style={theme}
-            showLineNumbers={true}
-            PreTag={CustomPreComponent}
-          >
-            {content}
-          </SyntaxHighlighter>
+          {
+            (!isPretty || !contentHasPrettyOption(currentPage)) &&
+            <SyntaxHighlighter
+              customStyle={editorStyle}
+              lineNumberStyle={lineNumberStyle}
+              language={content.content.includes('404') ? 'typescript' : getPageLanguage(currentPage)}
+              style={theme}
+              showLineNumbers={true}
+              PreTag={CustomPreComponent}
+            >
+              {content.content}
+            </SyntaxHighlighter>
+          }
+          {
+            isPretty &&
+            <SyntaxHighlighter
+              customStyle={editorStyle}
+              lineNumberStyle={lineNumberStyle}
+              language={content.content.includes('404') ? 'typescript' : getPageLanguage(currentPage)}
+              style={theme}
+              showLineNumbers={true}
+              PreTag={CustomPreComponent}
+            >
+              {/* This content must exist otherwise the other contentHasPrettyOption condition is going to catch it */}
+              {content.prettyContent!}
+            </SyntaxHighlighter>
+          }
         </div>
       </div>
     </div>

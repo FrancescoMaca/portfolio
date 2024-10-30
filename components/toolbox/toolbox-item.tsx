@@ -26,7 +26,12 @@ export default function ToolboxItem({ item }: { item: ToolboxItemData }) {
   const [notifCount, setNotifCount] = useState<number>(0)
   const width = useWindowWidth({ wait: 100 })
 
-  useEffect(() => {    
+  useEffect(() => {
+    dispatch(setItemCollapse(window.innerWidth <= 768))
+  }, [dispatch])
+
+  useEffect(() => {
+
     if (item.text.toLowerCase() === 'source control') {
       fetchGitHubCommits().then((commits) => {
         setNotifCount(commits.length)

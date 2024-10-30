@@ -18,7 +18,7 @@ export default function MarkdownEditor({ name }: MarkdownEditorProps) {
     if (!previewRef.current) {
       return
     }
-    
+
     previewRef.current.isCollapsed() ? 
       previewRef.current.expand() :
       previewRef.current.collapse()
@@ -41,7 +41,7 @@ export default function MarkdownEditor({ name }: MarkdownEditorProps) {
         <Panel ref={previewRef} minSize={30} defaultSize={30} collapsedSize={0} collapsible>
           <MarkdownPreview 
             className="p-10 h-full !bg-editor text-text-normal overflow-y-auto"
-            source={getEditorContent(name, false)}
+            source={getEditorContent(name, false).content}
           />
         </Panel>
       </PanelGroup>
