@@ -252,11 +252,13 @@ export const fileStructure = [
     name: 'public',
     icon: 'public',
     isFolder: true,
+    isLink: true,
     children: [
       {
         name: 'documents',
         icon: 'default',
         isFolder: true,
+        isLink: true,
         children: [
           { name: 'resume.pdf', icon: 'pdf', isLink: true }
         ]
@@ -290,6 +292,7 @@ export const fileStructure = [
         name: 'pictures',
         icon: 'images',
         isFolder: true,
+        isLink: true,
         children: [
           { name: 'cracked-glass.png', icon: 'image' },
           { name: 'duck.png', icon: 'image' },
@@ -455,7 +458,7 @@ export const fileStructure = [
   { name: 'package.json', icon: 'npm', isLink: true },
   { name: 'postcss.config.js', icon: 'postcssconfig', isLink: true },
   { name: 'README.md', icon: 'markdown', isLink: true },
-  { name: 'tailwind.config.ts', icon: 'tailwind', isLink: true },
+  { name: 'tailwind.config.ts', icon: 'tailwind', isLink: true, hasErrors: true },
   { name: 'tsconfig.json', icon: 'tsconfig', isLink: true },
   { name: 'yarn.lock', icon: 'yarn', isLink: true }
 ];

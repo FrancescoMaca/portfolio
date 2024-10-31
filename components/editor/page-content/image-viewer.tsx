@@ -35,7 +35,7 @@ export default function ImageViewer({ name }: { name: string }) {
   }, [name]);
 
   return (
-    <div ref={containerRef} className="relative flex items-center justify-center h-full">
+    <div ref={containerRef} className="relative flex items-center justify-center h-full bg-editor">
       {
         isCracked &&
         <NextImage src="/pictures/cracked-glass.png" alt="Cracked glass" title="" height={300} width={300}

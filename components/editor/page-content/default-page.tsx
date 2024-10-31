@@ -1,4 +1,5 @@
 'use client'
+import { detectOS } from "@/components/utils/helpers"
 import { useWindowWidth } from "@react-hook/window-size"
 import Image from "next/image"
 import { useEffect, useState } from "react"
@@ -33,22 +34,6 @@ const KeyComponent = ({ ch }: { ch: string }) => {
     </span>
   );
 };
-
-function detectOS() {
-  if (typeof window === 'undefined') return 'Other';
-  
-  const userAgent = window.navigator.userAgent.toLowerCase();
-  const macosPlatforms = /(macintosh|macintel|macppc|mac68k|macos)/i;
-  const windowsPlatforms = /(win32|win64|windows|wince)/i;
-  
-  if (macosPlatforms.test(userAgent)) {
-    return "macOS";
-  } else if (windowsPlatforms.test(userAgent)) {
-    return "Windows";
-  } else {
-    return "Other";
-  }
-}
 
 const Shortcut = ({ mainKey, symbol, letter }: { mainKey: string; symbol: string; letter: string }) => (
   <span className="grid grid-cols-3 w-fit">

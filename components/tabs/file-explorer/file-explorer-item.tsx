@@ -10,6 +10,7 @@ interface FileExplorerItemProps {
   item: {
     name: string | string[];
     icon: string;
+    hasErrors?: boolean;
     isFolder?: boolean;
     children?: FileExplorerItemProps['item'][];
     isOpenByDefault?: boolean;
@@ -61,6 +62,7 @@ export default function FileExplorerItem({ item, level, allCollapsed, parentPane
         isLink={item.isLink}
         level={level}
         onToggle={toggleOpen}
+        hasErrors={item.hasErrors}
       />
       {isOpen && item.children && (
         <div>

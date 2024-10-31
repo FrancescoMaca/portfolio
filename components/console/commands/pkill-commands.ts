@@ -3,7 +3,7 @@
 import { CLICommand, CLICommandResult } from "./command-handler"
 import { killProcess, runningProcesses } from "./ps-command"
 
-export const killDuckCommand: CLICommand = {
+export const pkillCommand: CLICommand = {
   description: 'Kills a process.',
   usage: 'pkill -<HUP|KILL|TERM> <process_name>',
   action: async (args?: string[]) => {

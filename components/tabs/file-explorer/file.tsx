@@ -11,9 +11,10 @@ interface FileProps {
   isLink?: boolean;
   level: number;
   onToggle?: () => void;
+  hasErrors?: boolean;
 }
 
-export default function File({ name, icon, isFolder = false, isOpen = false, iconName, level, onToggle }: FileProps) {
+export default function File({ name, icon, isFolder = false, isOpen = false, isLink, iconName, level, onToggle, hasErrors = false }: FileProps) {
   const [openState, setOpenState] = useState(isOpen)
 
   return (
@@ -52,7 +53,7 @@ export default function File({ name, icon, isFolder = false, isOpen = false, ico
           {
             isFolder && Array.isArray(name) ?
               formatFolderName(name) : 
-              <span className='whitespace-nowrap'>{name}</span>
+              <span className={`whitespace-nowrap ${hasErrors ? 'text-text-error' : isLink ? 'text-text-changed' : ''}`}>{name}</span>
           }
         </p>
       </div>

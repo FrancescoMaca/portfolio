@@ -16,7 +16,7 @@ export default function Navbar() {
   }
 
   return (
-    <div className="flex justify-center bg-dark py-1 border-b-border-panel border-b-2 text-xs md:text-sm">
+    <div className="flex justify-center bg-dark py-1 border-b-border-panel border-b-2 text-xs md:text-sm gap-4">
       <div className="flex gap-4">
         <Image src="/svg/ide/arrow-left.svg" alt="arrow left" title="" width={20} height={20} style={{ width: "auto" }}
           onClick={backward}

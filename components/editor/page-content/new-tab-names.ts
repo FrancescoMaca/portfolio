@@ -1,25 +1,30 @@
 const funnyFileNames = [
-  "totally-not-a-virus.exe",
-  "secret-cookie-recipe.md",
-  "definitely-not-passwords.txt",
-  "quantum-cat-simulator.py",
-  "unicorn-breeding-guide.docx",
-  "time-machine-blueprint.pdf",
-  "how-to-fold-spacetime.js",
-  "intergalactic-meme-collection.zip",
-  "ai-wrote-this-novel.epub",
-  "self-aware-toaster-firmware.bin",
-  "dragons-tax-returns.xlsx",
-  "flux-capacitor-schematics.dwg",
-  "penguins-world-domination-plan.ppt",
-  "invisible-ink-viewer.html",
-  "infinite-pizza-generator.py",
-  "antimatter-sandwich-recipe.md",
-  "black-hole-in-a-box.iso",
-  "schrödinger's-todo-list.txt",
-  "universe-42-travel-guide.epub",
-  "mind-reading-api-docs.js"
+  "it-works-trust-me.tsx",
+  "why-is-this-undefined.ts",
+  "todo-fix-later.tsx",
+  "definitely-no-any.ts",
+  "types-are-suggestions.tsx",
+  "promise-to-fix-types.ts",
+  "quantum-state-manager.tsx",
+  "schroedingers-boolean.ts",
+  
+  "callback-hell-tourism-guide.js",
+  "undefined-is-not-a-function.js",
+  "array-of-promises.js",
+  "this-is-undefined.js",
+  "null-coalescing-chaos.js",
+  "async-await-maybe.js",
+  "recursion-recursion-recursion.js",
+  "global-state-disaster.js",
+  
+  "please-dont-touch.ini",
+  "but-on-my-machine-it-works.ini",
+  "production-secrets.ini",
+  "stack-overflow-copypaste.ini",
+  "dont-delete-this.ini",
+  "magic-numbers.ini"
 ];
+
 
 export function getRandomFunnyFileName(): string {
   const randomIndex = Math.floor(Math.random() * funnyFileNames.length);

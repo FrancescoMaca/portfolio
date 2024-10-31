@@ -22,6 +22,7 @@ const config: Config = {
         'text-normal': '#cccccc',
         'text-unfocused': '#6A6A6A',
         'text-changed': '#D3C194',
+        'text-error': '#F47D6F',
         'selection-color': '#4160A3',
         'line-number': '#717680',
         'notif-bg': '#252526'

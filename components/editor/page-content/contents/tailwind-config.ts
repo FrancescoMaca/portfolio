@@ -8,11 +8,11 @@ const config: Config = {
     './pages/**/*.{js,ts,jsx,tsx,mdx}',
     './components/**/*.{js,ts,jsx,tsx,mdx}',
     './app/**/*.{js,ts,jsx,tsx,mdx}',
-    "node_modules/flowbite-react/lib/esm/**/*.js",
-  ],
+    'node_modules/flowbite-react/lib/esm/**/*.js', 
+    ],
   theme: {
     extend: {
-      colors: {
+      colors: {[[ERROR:should I write here?]]
         'dark': '#181818',
         'editor': '#1E1E1E',
         'hover-dark': '#353535',

@@ -7,7 +7,7 @@ interface CLISpecificCommand {
 
 export const specificCmd: CLISpecificCommand[] = [
   {
-    command: 'top -l 1 | grep "PhysMem"',
+    command: 'hwmemsize=$(sysctl -n hw.memsize)',
     output: "PhysMem: 17G used (3955M wired, 6841M compressor), 212M unused."
   },
   {
@@ -15,9 +15,7 @@ export const specificCmd: CLISpecificCommand[] = [
     output: `--${formatCLIDate()}--  https://frankymaca.me/
 Resolving frankymaca.me (frankymaca.me)... 127.0.0.1
 Checking https://frankymaca.me/ ...  OK
-Checking https://frankymaca.me// ...  OK
-Checking https://frankymaca.me/another-path/ ...  OK
-Checking https://frankymaca.me/another-path/ ...  OK
+Checking https://frankymaca.me/[Future Project Dedicated Pages]/ ...  Not Found
 `
   }
 ]

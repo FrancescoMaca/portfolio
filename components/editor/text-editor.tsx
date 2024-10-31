@@ -22,13 +22,14 @@ import Image from "next/image";
 import { useWindowWidth } from "@react-hook/window-size";
 import { setConsoleCollpased } from "../redux/slices/console-tab-slice";
 
-type ActionType = 'HOVER' | 'URL' | 'ACTION'
+type ActionType = 'HOVER' | 'URL' | 'ACTION' | 'ERROR'
 type ActionHandler = (args: string[]) => React.ReactNode
 
 const actionHandlers: Record<ActionType, ActionHandler> = {
   ACTION: (args) => renderAction(args),
   URL: (args) => renderUrl(args),
   HOVER: (args) => renderHover(args),
+  ERROR: (args) => renderError(args)
 }
 
 const actions: { [key: string]: () => void | undefined } = { }
@@ -87,6 +88,11 @@ export default function TextEditor({ currentPage }: { currentPage: string }) {
     actions['runSecretCommand'] = handleCommandClick
     actions['seeMore'] = handleSeeMore
   }, [handleOpenImage, handleCommandClick, handleSeeMore])
+
+  // Removes the loading screen once everything is gone
+  useEffect(() => {
+    dispatch(finishLoading());
+  }, [dispatch]);
 
   return (
     <div className="relative flex w-full h-full flex-col bg-editor text-white font-mono text-xs md:text-sm overflow-hidden">
@@ -170,13 +176,6 @@ const lineNumberStyle: CSSProperties = {
 }
 
 function CustomPreComponent({ children }: { children: React.ReactNode }) {
-  const dispatch = useDispatch()
-
-  // Removes the loading screen once everything is gone
-  useEffect(() => {
-    dispatch(finishLoading());
-  }, [dispatch]);
-  
   if (!(children as any).props) {
     return <span>Cannot load editor</span>
   }
@@ -188,12 +187,20 @@ function CustomPreComponent({ children }: { children: React.ReactNode }) {
       return code;
     }
 
-    const newChildren = code.props.children[0].split(/(\[\[.*?\]\])/).map((part: string) => {
+    const newChildren = code.props.children[0].split(/(\[\[.*?\]\])/g).map((part: string) => {
       const actionMatch = part.match(/\[\[([\w]+):(.+?)\]\]/);
+      
       if (actionMatch) {
         const actionType = actionMatch[1] as ActionType
-        const actionArgs = actionMatch[2].split(',').map(s => s.trim())
-        
+        let actionArgs: string[] = []
+        // If the action is an error, there are no arguments, just a big string
+        if (actionType === 'ERROR') {
+          actionArgs = [ actionMatch[2] ]
+        }
+        else {
+          actionArgs = actionMatch[2].split(',').map(s => s.trim())
+        }
+                
         if (actionType in actionHandlers) {
           return actionHandlers[actionType](actionArgs)
         }
@@ -243,11 +250,19 @@ function renderAction(args: string[]) {
 }
 
 function renderHover(args: string[]) {
-  return (
-    <TextWithIcon key={Math.random()} label={args[0]} icon={!!args[1] ? `/svg/other/${args[1]}.svg` : undefined}/>
-  )
+  return <TextWithIcon key={Math.random()} label={args[0]} icon={!!args[1] ? `/svg/other/${args[1]}.svg` : undefined}/>
 }
 
 function renderUrl(args: string[]) {
   return <UrlRenderer key={Math.random()} label={args[0]} url={args[1]}/>
+}
+
+function renderError(args: string[]) {
+
+  const words = args[0].split(' ')
+  return (
+    <span className="relative overflow-hidden border-b-[1px] border-dashed border-text-error" key={Math.random()}>
+      { args[0] }
+    </span>
+  )
 }

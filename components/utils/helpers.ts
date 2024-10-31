@@ -116,24 +116,18 @@ export function formatRelativeTime(date: Date): string {
   }
 }
 
-// Window sizes
-export enum TWPageSize {
-  MD = 1,
-  LG = 2,
-}
-
-export function getTWPageSize() {
-  if (typeof window === 'undefined') return TWPageSize.MD;
-  const MD_BREAKPOINT = 768
-  const LG_BREAKPOINT = 1024
-
-  const width = window.innerWidth;
-
-  if (width >= LG_BREAKPOINT) {
-    return TWPageSize.LG;
-  } else if (width >= MD_BREAKPOINT) {
-    return TWPageSize.MD;
+export function detectOS(): "Other"|"macOS"|"Windows" {
+  if (typeof window === 'undefined') return 'Other';
+  
+  const userAgent = window.navigator.userAgent.toLowerCase();
+  const macosPlatforms = /(macintosh|macintel|macppc|mac68k|macos|iphone|safari)/i;
+  const windowsPlatforms = /(win32|win64|windows|wince)/i;
+  
+  if (macosPlatforms.test(userAgent)) {
+    return "macOS";
+  } else if (windowsPlatforms.test(userAgent)) {
+    return "Windows";
   } else {
-    return TWPageSize.MD;
+    return "Other";
   }
 }
