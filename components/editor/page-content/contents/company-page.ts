@@ -2,10 +2,8 @@ import { PageContent } from "../content-handler";
 
 export const companyPage: PageContent = {
   content: `
-// This is my contact page
-throw new Company(name: 'Swondi');
+const intro: string = 'This is my company page :D'
 
-`,
-  prettyContent: `
-
-`};
+const outro: string = \`If you'll ever need a website or a web application, feel free to let me know\`
+`
+};

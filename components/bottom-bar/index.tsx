@@ -4,18 +4,25 @@ import { RootState } from "../redux";
 import Image from "next/image";
 
 export default function BottomBar() {
+  const { activeTabIndex, tabs } = useSelector((state: RootState) => state.tabs);
   const notifications = useSelector((state: RootState) => state.notification.notifications);
   const mustNotify = notifications.length !== 0
-
+  
   return (
     <div className="flex justify-between border-t-[1px] border-t-border-panel text-text-normal">
       <div className="flex">
         <BottomBarEntry hoverDisable>
-          <span>©</span>
+          <span className="text-xs md:text-sm">©</span>
           <span className="text-xs md:text-sm">{new Date().getFullYear()} Francesco Macaluso</span>
         </BottomBarEntry>
       </div>
       <div className="flex">
+        <div className="flex items-center gap-2 p-2 bg-dark hover:bg-hover-dark text-xs md:text-sm">
+          <span className="">{`{}`}</span>
+          {  
+            tabs[activeTabIndex].substring(0, tabs[activeTabIndex].indexOf('.'))
+          }
+        </div>
         <BottomBarEntry>
           <Image src={`/svg/ide/bell${mustNotify ? '-dot' : ''}.svg`} alt="Empty Notification List"
             title={`${mustNotify ? `There are ${notifications.length} notification${notifications.length > 1 ? 's' : ''} to see` : 'No new notifications'}`}
