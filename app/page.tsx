@@ -15,7 +15,6 @@ import { IDEControls } from "@/components/utils/ide-controls"
 import { useEffect, useState } from "react"
 
 export default function Default() {
-
   const [height, setHeight] = useState(0);
 
   useEffect(() => {
