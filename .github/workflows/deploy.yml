@@ -15,8 +15,7 @@ jobs:
 
     - name: Create .env file
       run: |
-        rm .env.local && \
-        cp .env.sample .env && \
+        cp .env.sample .env.local && \
         sed -i 's/GH_TOKEN=.*/GH_TOKEN=\"${{ secrets.GH_TOKEN }}\"/' .env.local && \
         sed -i 's/RESEND_TOKEN=.*/RESEND_TOKEN=\"${{ secrets.RESEND_TOKEN }}\"/' .env.local && \
         sed -i 's/RESEND_RECEIVER=.*/RESEND_RECEIVER=\"${{ secrets.RESEND_RECEIVER }}\"/' .env.local && \
