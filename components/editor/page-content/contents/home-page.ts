@@ -47,7 +47,6 @@ const profiles: Map<string, string> = {
   'linkedin': \`[[URL:[open my Linkedin],${linkedinUrl}]]\`
 }
 
-
 // 
 // Wanna see more? 
 // Click [[ACTION:[seeMore],seeMore]]
@@ -98,7 +97,6 @@ const profiles: Map<string, string> = {
   'instagram': \`[[URL:[open my Instagram],${instagramUrl}]]\`,
   'linkedin': \`[[URL:[open my Linkedin],${linkedinUrl}]]\`
 }
-
 
 //
 // Wanna see more?

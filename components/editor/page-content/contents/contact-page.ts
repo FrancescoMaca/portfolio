@@ -8,26 +8,21 @@ function createContactForm() {
   const form = document.createElement('form');
   form.id = 'contactForm';
 
-  // Insert your name here
-  const name = document.createElement('input');
-  name.type = 'text';
-  name.id = 'name';
-  name.required = true;
-  form.appendChild(name);
-
   // Insert your email here
-  const email = document.createElement('input');
-  email.type = 'email';
+  const email = document.createEmailInput('[[INPUT:email here,email_autogen]]');
   email.id = 'email';
   email.required = true;
   form.appendChild(email);
 
   // Write your beautiful message below :)
-  const message = document.createElement('textarea');
+  const message = document.createTitleInput(\`[[INPUT:title here,title_autogen]]\`);
   message.id = 'message';
   message.rows = 5;
   message.required = true;
   form.appendChild(message);
+
+  // The message body is optional, although appriciated
+  message.attachBody(\`[[INPUT:message here,message_autogen]]\`)
 
   //
   // Click here to send your message

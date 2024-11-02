@@ -23,23 +23,46 @@ const config: Config = {
         'text-unfocused': '#6A6A6A',
         'text-changed': '#D3C194',
         'text-error': '#F47D6F',
+        'text-string-1': '#A1C281',
+        'text-string-2': '#4B9091',
         'selection-color': '#4160A3',
         'line-number': '#717680',
         'notif-bg': '#252526'
-      },
-      fontSize: {
-        
-      },
-      borderRadius: {
-        '4xl': '3rem',
       },
       animation: {
         'fly-duck': 'fly-duck 2s linear forwards',
         'gradient-text': 'rainbow 1s linear infinite',
         'loading-bar': 'loading 2s ease-in-out infinite',
-        'fade-out': 'fade-out 1.5s linear forwards'
+        'fade-out': 'fade-out 1.5s linear forwards',
+        'border-glow': 'border-glow 2s linear forwards',
+        'push-right': 'push-right 1.5s ease-in',
+        'push-left': 'push-left 1.5s ease-in'
       },
       keyframes: {
+        'push-right': {
+          '0%, 100%': {
+            transform: 'translateX(0px)'
+          },
+          '90%': {
+            transform: 'translateX(3px)'
+          }
+        },
+        'push-left': {
+          '0%, 100%': {
+            transform: 'translateX(0px)'
+          },
+          '90%': {
+            transform: 'translateX(-3px)'
+          }
+        },
+        'border-glow': {
+          '50%': {
+            'box-shadow': '0px 0px 10px #5576CC'
+          },
+          '0%, 100%': {
+            'box-shadow': '0px 0px 0px #5576CC00'
+          }
+        },
         'fly-duck': {
           '0%': {
             bottom: '0',

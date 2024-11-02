@@ -9,7 +9,7 @@ export default function BottomBar() {
   const mustNotify = notifications.length !== 0
   
   return (
-    <div className="flex justify-between border-t-[1px] border-t-border-panel text-text-normal">
+    <div className="flex justify-between border-t-[1px] border-t-border-panel text-text-normal select-disable">
       <div className="flex">
         <BottomBarEntry hoverDisable>
           <span className="text-xs md:text-sm">©</span>
@@ -17,8 +17,11 @@ export default function BottomBar() {
         </BottomBarEntry>
       </div>
       <div className="flex">
-        <div className="flex items-center gap-2 p-2 bg-dark hover:bg-hover-dark text-xs md:text-sm">
-          <span className="">{`{}`}</span>
+        <div className="flex items-center gap-2 p-2 bg-dark hover:bg-hover-dark text-xs md:text-sm group">
+          <span className="inline-flex">
+            <span className="group-hover:animate-push-left">{`{`}</span>
+            <span className="group-hover:animate-push-right">{`}`}</span>
+          </span>
           {  
             tabs[activeTabIndex].substring(0, tabs[activeTabIndex].indexOf('.'))
           }

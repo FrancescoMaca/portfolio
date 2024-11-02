@@ -68,3 +68,7 @@ input, textarea {
   -o-user-select: none;
   user-select: none;
 }
+
+.editor-input {
+  animation-delay: 400ms;
+}

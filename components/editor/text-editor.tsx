@@ -21,18 +21,21 @@ import { RootState } from "../redux";
 import Image from "next/image";
 import { useWindowWidth } from "@react-hook/window-size";
 import { setConsoleCollpased } from "../redux/slices/console-tab-slice";
+import { InputRenderer } from "../utils/input-renderer";
+import { sendEmail } from "../utils/emailer";
 
-type ActionType = 'HOVER' | 'URL' | 'ACTION' | 'ERROR'
+type ActionType = 'HOVER' | 'URL' | 'ACTION' | 'ERROR' | 'INPUT'
 type ActionHandler = (args: string[]) => React.ReactNode
 
 const actionHandlers: Record<ActionType, ActionHandler> = {
   ACTION: (args) => renderAction(args),
   URL: (args) => renderUrl(args),
   HOVER: (args) => renderHover(args),
-  ERROR: (args) => renderError(args)
+  ERROR: (args) => renderError(args),
+  INPUT: (args) => renderInput(args)
 }
 
-const actions: { [key: string]: () => void | undefined } = { }
+const actions: { [key: string]: () => Promise<void | undefined> } = { }
 
 export default function TextEditor({ currentPage }: { currentPage: string }) {
   const [isPretty, setPretty] = useState<boolean>(false)
@@ -42,7 +45,7 @@ export default function TextEditor({ currentPage }: { currentPage: string }) {
   const dispatch = useDispatch()
   const width = useWindowWidth()
 
-  const handleCommandClick = useCallback(() => {
+  const handleCommandClick = useCallback(async () => {
     // The duck is unavailable so just execute command
     if (!duckRef.current) {
       dispatch(setConsoleCollpased(false))
@@ -52,8 +55,6 @@ export default function TextEditor({ currentPage }: { currentPage: string }) {
 
     // Was the animation already ran??
     if (!read_cookie('duck-played')) {
-      console.log(specificCmd);
-      
       dispatch(setPendingCommand(specificCmd[1].command))
     }
     else {
@@ -75,19 +76,63 @@ export default function TextEditor({ currentPage }: { currentPage: string }) {
     }
   }, [dispatch, duckRef])
 
-  const handleOpenImage = useCallback(() => {
+  const handleOpenImage = useCallback(async () => {
     dispatch(addTab('francesco-macaluso.png'))
   }, [dispatch])
 
-  const handleSeeMore = useCallback(() => {
+  const handleSeeMore = useCallback(async () => {
     dispatch(addTab('project-page.tsx'))
   }, [dispatch])
 
+  const handleSendMessage = useCallback(async () => {
+    const email = document.getElementById('email_autogen') as HTMLInputElement
+    const title = document.getElementById('title_autogen') as HTMLInputElement
+    const msg = document.getElementById('message_autogen') as HTMLInputElement
+
+    if (!email || !title || !msg) {
+      return
+    }
+
+    let notificationTitle = ''
+    let notificationMessage = ''
+
+    if (!RegExp(/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/).test(email.value)) {
+      notificationTitle = 'Email not valid :('
+      notificationMessage = 'The given email is not valid, make sure it test positive for this:\n`/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/`'
+    }
+    else {
+      notificationTitle = 'Message Sent'
+      notificationMessage = 'The message was sent to Franky! Thank you :)'
+      
+      await sendEmail(title.value, email.value, msg.value)
+      
+      title.value = ''
+      title.size = title.placeholder.length
+      email.value = ''
+      email.size = email.placeholder.length
+      msg.value = ''
+      msg.size = msg.placeholder.length
+    }
+
+    dispatch(showNotification({
+      id: generateUUID(),
+      title: notificationTitle,
+      body: notificationMessage,
+      actionButton: 'Good to know',
+      actionButtonCb: '',
+      secondaryButton: '',
+      secondaryButtonCb: '',
+      type: notificationTitle.startsWith('Email') ? 'error' : 'info',
+      timeout: notificationTitle.startsWith('Email') ? undefined : 3000
+    }))
+  }, [dispatch])
+  
   useEffect(() => {
     actions['openProfileImage'] = handleOpenImage
     actions['runSecretCommand'] = handleCommandClick
     actions['seeMore'] = handleSeeMore
-  }, [handleOpenImage, handleCommandClick, handleSeeMore])
+    actions['sendMessage'] = handleSendMessage
+  }, [handleOpenImage, handleCommandClick, handleSeeMore, handleSendMessage])
 
   // Removes the loading screen once everything is gone
   useEffect(() => {
@@ -258,11 +303,13 @@ function renderUrl(args: string[]) {
 }
 
 function renderError(args: string[]) {
-
-  const words = args[0].split(' ')
   return (
     <span className="relative overflow-hidden border-b-[1px] border-dashed border-text-error" key={Math.random()}>
       { args[0] }
     </span>
   )
+}
+
+function renderInput(args: string[]) {
+  return <InputRenderer key={Math.random()} placeholder={args[0]} id={args[1]} />
 }
