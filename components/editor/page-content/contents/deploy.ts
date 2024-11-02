@@ -21,9 +21,9 @@ jobs:
       run: |
         rm .env && \  # Out with the old!
         cp .env.sample .env && \  # In with the new!
-        sed -i 's/EMAILJS_SERVICE=.*/EMAILJS_SERVICE=\"\${{ secrets.EMAILJS_SERVICE }}\"/' .env && \
-        sed -i 's/EMAILJS_TEMPLATE=.*/EMAILJS_TEMPLATE=\"\${{ secrets.EMAILJS_TEMPLATE }}\"/' .env && \
-        sed -i 's/EMAILJS_KEY=.*/EMAILJS_KEY=\"\${{ secrets.EMAILJS_KEY }}\"/' .env && \
+        sed -i 's/EMAILJS_SERVICE=.*/EMAILJS_SERVICE=\"\${{ secrets.EMAILJS_SERVICE }}\"/' .env && \\
+        sed -i 's/EMAILJS_TEMPLATE=.*/EMAILJS_TEMPLATE=\"\${{ secrets.EMAILJS_TEMPLATE }}\"/' .env && \\
+        sed -i 's/EMAILJS_KEY=.*/EMAILJS_KEY=\"\${{ secrets.EMAILJS_KEY }}\"/' .env && \\
         cat .env  # Meow! 🐱
 
     - name: 🏗️ Summon the Docker Buildx spirits
