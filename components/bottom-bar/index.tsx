@@ -23,7 +23,7 @@ export default function BottomBar() {
             <span className="group-hover:animate-push-right">{`}`}</span>
           </span>
           {  
-            tabs[activeTabIndex].substring(0, tabs[activeTabIndex].indexOf('.'))
+            tabs.length > 0 ? tabs[activeTabIndex].substring(0, tabs[activeTabIndex].indexOf('.')) : '/'
           }
         </div>
         <BottomBarEntry>
