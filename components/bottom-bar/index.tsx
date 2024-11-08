@@ -17,15 +17,18 @@ export default function BottomBar() {
         </BottomBarEntry>
       </div>
       <div className="flex">
-        <div className="flex items-center gap-2 p-2 bg-dark hover:bg-hover-dark text-xs md:text-sm group">
-          <span className="inline-flex">
-            <span className="group-hover:animate-push-left">{`{`}</span>
-            <span className="group-hover:animate-push-right">{`}`}</span>
-          </span>
-          {  
-            tabs.length > 0 ? tabs[activeTabIndex].substring(0, tabs[activeTabIndex].indexOf('.')) : '/'
-          }
-        </div>
+        {
+          tabs.length > 0 &&
+          <div className="flex items-center gap-2 p-2 bg-dark hover:bg-hover-dark text-xs md:text-sm group">
+            <span className="inline-flex">
+              <span className="group-hover:animate-push-left">{`{`}</span>
+              <span className="group-hover:animate-push-right">{`}`}</span>
+            </span>
+            {
+              tabs[activeTabIndex].substring(0, tabs[activeTabIndex].indexOf('.'))
+            }
+          </div>
+        }
         <BottomBarEntry>
           <Image src={`/svg/ide/bell${mustNotify ? '-dot' : ''}.svg`} alt="Empty Notification List"
             title={`${mustNotify ? `There are ${notifications.length} notification${notifications.length > 1 ? 's' : ''} to see` : 'No new notifications'}`}
