@@ -50,7 +50,7 @@ const CPU_Scheduler = {
     I am pretty proud of this as my second project.
   \`,
   rating: Rating.ADEQUATE.
-  url: \`[[URL:See CPU_Scheduler on GitHub,https://github.com/FrancescoMaca/CPU-Scheduling]]\`
+  url: \`[[URL:Look on GitHub,https://github.com/FrancescoMaca/CPU-Scheduling]]\`
 }
 
 const Quickbot = {
@@ -90,7 +90,7 @@ document.this = {
     version for a big while!
   \`,
   rating: Rating.EXCEPTIONAL.
-  url: \`[[URL:See CPU_Scheduler on GitHub,https://github.com/FrancescoMaca/portfolio]]\`
+  url: \`[[URL:Look on GitHub,https://github.com/FrancescoMaca/portfolio]]\`
 }
 
 `};
