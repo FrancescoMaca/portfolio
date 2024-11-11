@@ -31,7 +31,7 @@ export async function POST(request: Request) {
       from: "Contact Form <contact@frankymaca.me>",
       to: process.env.RESEND_RECEIVER!,
       replyTo: email,
-      subject: `New Contact Form Message from ${title ? title : 'someone'}`,
+      subject: `${title ? `Portfolio: ${title}` : 'New Portfolio Message'}`,
       html: `
         <h2>${title ? title : 'New Contact Form Submission'}</h2>
         <p><strong>From:</strong> ${email}</p>

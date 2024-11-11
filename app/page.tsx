@@ -31,6 +31,9 @@ export default function Default() {
       <ShortcutManager />
       <IDEControls />
       <div style={{ height: `${height}px` }}  className="overflow-hidden">
+        <p className="fixed top-2 left-2 text-m text-accent">
+          Testing Mode
+        </p>
         <LoadingScreen />
         <PanelGroup direction="vertical">
           <Navbar/>
