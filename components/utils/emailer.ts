@@ -13,6 +13,7 @@ export async function sendEmail(title: string, sender: string, body?: string) {
       })
     });
 
+    
     if (!response.ok) {
       const errorData = await response.json();
       throw new Error(errorData.error || 'Failed to send email');
