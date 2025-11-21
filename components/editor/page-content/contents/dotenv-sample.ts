@@ -2,7 +2,6 @@ import { PageContent } from "../content-handler";
 
 export const dotenvSampleContent: PageContent = {
   content: `
-GH_TOKEN=
 RESEND_TOKEN=
 RESEND_RECEIVER=
 
